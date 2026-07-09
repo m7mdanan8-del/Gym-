@@ -1,0 +1,10 @@
+# Local data — the app's SQLite database (personal training history)
+gym_rehab.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS / editor
+.DS_Store
