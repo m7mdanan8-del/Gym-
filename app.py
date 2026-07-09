@@ -73,11 +73,12 @@ def L(key: str) -> str:
 
 
 def is_dark() -> bool:
-    """Follow the Streamlit theme the user selected (menu -> Settings)."""
+    """Follow the Streamlit theme the user selected (menu -> Settings).
+    The app ships with a light default; charts match whichever is active."""
     try:
-        return getattr(st.context.theme, "type", "dark") != "light"
+        return getattr(st.context.theme, "type", "light") == "dark"
     except Exception:
-        return True
+        return False
 
 
 def bodyweight_kg() -> float:

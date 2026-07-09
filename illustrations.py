@@ -213,6 +213,27 @@ _PATTERNS = {
       <path d="M62 128 L84 128" opacity="0.5"/><path d="M56 134 L92 134" opacity="0.35"/>
     """.replace("{A}", ACCENT), "Hop and stick landing"),
 
+    "leg_press": _wrap("""
+      <path d="M30 128 L74 128 L74 96 L46 78"/>                     <!-- seat -->
+      <circle cx="58" cy="62" r="11"/>
+      <path d="M62 72 L74 100"/>                                    <!-- torso on seat -->
+      <path d="M74 100 L110 84 L142 96" stroke="{A}"/>              <!-- legs pressing -->
+      <path d="M148 60 L148 130" stroke="{A}"/>                     <!-- sled plate -->
+      <path d="M148 70 L176 70"/><path d="M148 120 L176 120"/>      <!-- rails -->
+      <path d="M70 84 L92 92"/>
+    """.replace("{A}", ACCENT), "Leg press machine"),
+
+    "pulldown": _wrap("""
+      <path d="M60 16 L164 16"/>                                    <!-- crossbar -->
+      <path d="M112 16 L112 34" stroke-dasharray="4 5"/>            <!-- cable -->
+      <path d="M84 36 L140 36" stroke="{A}"/>                       <!-- bar -->
+      <circle cx="112" cy="62" r="11"/>
+      <path d="M112 73 L112 106"/>
+      <path d="M112 106 L94 120 L96 140"/><path d="M112 106 L130 120 L132 140"/>
+      <path d="M108 78 L88 56 L86 38" stroke="{A}"/>                <!-- pulling arms -->
+      <path d="M116 78 L136 56 L138 38" stroke="{A}"/>
+    """.replace("{A}", ACCENT), "Lat pulldown"),
+
     "jog": _wrap("""
       <circle cx="112" cy="30" r="11"/>
       <path d="M112 41 L106 78"/>
