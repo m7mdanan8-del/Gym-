@@ -19,7 +19,7 @@ from exercise_library import EXERCISES
 from illustrations import get_svg
 from program import DAYS, DAY_FOCUS, WEEK_THEMES
 from translations import (LANGS, tr, day_label, section_label, focus_label,
-                          week_theme, exercise_label)
+                          week_theme, exercise_label, daily_quote)
 
 # ----------------------------------------------------------------------
 # App setup
@@ -137,6 +137,25 @@ st.markdown(f"""
 .rp-rx {{ width:100%; border-collapse: collapse; font-size: .92rem; }}
 .rp-rx td {{ padding: 3px 10px 3px 0; vertical-align: top; }}
 .rp-rx td:first-child {{ font-weight: 700; opacity: .75; white-space: nowrap; }}
+/* ---- Gym-motivation energy ---- */
+.rp-hero {{
+    background: linear-gradient(120deg, #f04e23 0%, #f7941d 100%);
+    color: #ffffff; border-radius: 18px; padding: 1.1rem 1.4rem;
+    margin: .4rem 0 1rem; box-shadow: 0 8px 22px rgba(240,78,35,.28);
+}}
+.rp-hero .q {{ font-size: 1.18rem; font-weight: 800; line-height: 1.35; }}
+.rp-hero .sub {{ opacity: .95; font-size: .92rem; margin-top: .45rem;
+                 font-weight: 600; }}
+.rp-hero .tag {{ display:inline-block; background: rgba(255,255,255,.18);
+    border-radius: 999px; padding: 2px 12px; margin-top: .55rem;
+    margin-inline-end: 6px; font-size: .8rem; font-weight: 700; }}
+/* Accent-striped section headers */
+h3 {{ border-inline-start: 5px solid #f04e23;
+     padding-inline-start: .6rem; border-radius: 3px; }}
+/* Fiery progress bar */
+.stProgress > div > div > div > div {{
+    background: linear-gradient(90deg, #f04e23, #f7941d) !important;
+}}
 /* Tighter mobile padding */
 @media (max-width: 640px) {{
     .block-container {{ padding: 1rem 0.7rem; }}
@@ -284,9 +303,14 @@ def page_workout():
                            format_func=lambda d: day_label(d, LANG))
 
     theme_name, theme_desc = week_theme(week, LANG, WEEK_THEMES)
+    quote = daily_quote(LANG, sel_date.toordinal())
     st.markdown(
-        f'<span class="rp-pill">{L("week_word")} {week} — {theme_name}</span>'
-        f'<span class="rp-pill">{focus_label(day, DAY_FOCUS[day], LANG)}</span>',
+        f'<div class="rp-hero">'
+        f'<div class="q">{L("quote_prefix")}: “{quote}”</div>'
+        f'<div class="sub">{focus_label(day, DAY_FOCUS[day], LANG)}</div>'
+        f'<span class="tag">{L("week_word")} {week} — {theme_name}</span>'
+        f'<span class="tag">🔥 {db.workout_streak()} {L("days_unit")}</span>'
+        f'</div>',
         unsafe_allow_html=True)
     st.caption(theme_desc)
 
@@ -304,6 +328,12 @@ def page_workout():
     pct = int(done / planned * 100) if planned else 0
     st.progress(pct / 100,
                 text=f"**{done} / {planned} {L('progress_of')} — {pct}% {L('complete_word')}**")
+    celebrate_key = f"celebrated|{log_date}|{day}"
+    if planned and done >= planned:
+        if not st.session_state.get(celebrate_key):
+            st.balloons()
+            st.session_state[celebrate_key] = True
+        st.success(L("session_done"))
 
     if day == "Saturday":
         st.info(L("match_day_info"))

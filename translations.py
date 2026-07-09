@@ -55,6 +55,11 @@ UI = {
                                 "تمارين الاستعادة خلال ٣٠ دقيقة من نهاية المباراة. سجّل المباراة "
                                 "في سجل الكارديو أدناه وقيّم أداءك في تبويب الاستشفاء."},
     "no_program":       {"en": "No program found for this day.", "ar": "لا يوجد برنامج لهذا اليوم."},
+    "session_done":     {"en": "🎉 Session complete — that's how champions are "
+                                "built! See you at the next one.",
+                         "ar": "🎉 اكتملت الجلسة — هكذا يُصنع الأبطال! نلقاك في "
+                                "الجلسة القادمة."},
+    "quote_prefix":     {"en": "💪 Today's fuel", "ar": "💪 وقود اليوم"},
 
     # tracker
     "tracker":          {"en": "📋 Tracker", "ar": "📋 المتابعة"},
@@ -515,6 +520,47 @@ EXERCISE_NAME_AR = {
 # -------------------------------------------------------------------------
 # Helpers
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Daily motivation — one quote per day, rotating (both languages)
+# -------------------------------------------------------------------------
+QUOTES = {
+    "en": [
+        "The comeback is always stronger than the setback.",
+        "You don't have to be extreme — just consistent.",
+        "Strong knees, strong shoulders, strong season.",
+        "Every rep today is a tackle you win on Saturday.",
+        "Discipline beats motivation — today you have both.",
+        "Rehab IS training. Train it like a final.",
+        "Small weights now, big future later.",
+        "Champions are built on the days nobody is watching.",
+        "Slow is smooth, and smooth is strong.",
+        "One quality rep beats ten sloppy ones.",
+        "Protect the knee. Power the game.",
+        "Show up. The streak takes care of the rest.",
+    ],
+    "ar": [
+        "العودة دائمًا أقوى من الكبوة.",
+        "لست بحاجة لأن تكون متطرفًا — فقط كن مستمرًا.",
+        "ركبة قوية، كتف قوي، موسم قوي.",
+        "كل تكرار اليوم هو التحام تكسبه يوم السبت.",
+        "الانضباط يتفوق على الحماس — واليوم لديك الاثنان.",
+        "التأهيل تدريبٌ حقيقي. تدرّب كأنه نهائي.",
+        "أوزان صغيرة الآن، مستقبل كبير لاحقًا.",
+        "الأبطال يُصنعون في الأيام التي لا يراقبك فيها أحد.",
+        "البطء إتقان، والإتقان قوة.",
+        "تكرار واحد متقن خيرٌ من عشرة مهملة.",
+        "احمِ الركبة، واصنع اللعب.",
+        "احضر فقط — والاستمرارية تتكفل بالباقي.",
+    ],
+}
+
+
+def daily_quote(lang: str, day_index: int) -> str:
+    """Rotating motivational quote — same quote all day, new one tomorrow."""
+    qs = QUOTES.get(lang, QUOTES["en"])
+    return qs[day_index % len(qs)]
+
+
 def tr(key: str, lang: str) -> str:
     """UI string in the active language (falls back to English)."""
     entry = UI.get(key)

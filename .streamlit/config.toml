@@ -1,11 +1,12 @@
 [theme]
-# Clean light default. Users can switch Dark / Light from the
-# app menu (top-right ⋮ -> Settings -> Theme) — charts adapt automatically.
+# Energetic light "gym motivation" theme — bold orange accents on a warm
+# light background. Users can still switch Dark / Light from the app menu
+# (top-right ⋮ -> Settings -> Theme); charts adapt automatically.
 base = "light"
-primaryColor = "#2a78d6"
-backgroundColor = "#fcfcfb"
-secondaryBackgroundColor = "#f0efec"
-textColor = "#0b0b0b"
+primaryColor = "#f04e23"
+backgroundColor = "#fdfcfa"
+secondaryBackgroundColor = "#f6f1ea"
+textColor = "#141414"
 font = "sans serif"
 
 [server]
