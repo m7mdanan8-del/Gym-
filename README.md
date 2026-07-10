@@ -71,9 +71,12 @@ lets you pin a specific video, GIF or picture, which the app embeds).
 ## Features
 
 - **🏋️ Today's Workout** — auto-selects the right week/day from your start
-  date; per-exercise tracker (completion checkbox, weight, pain 0–10,
-  difficulty, energy, sets/reps done, notes) that **auto-saves on change**;
-  live pain-rule warnings; cardio log with MET-based calorie estimates.
+  date; **grid view** (default) shows every exercise of the day as a card
+  with its illustration and prescription — tap Open for the full guide +
+  tracker in a popup — or switch to the classic list view; per-exercise
+  tracker (completion checkbox, weight, pain 0–10, difficulty, energy,
+  sets/reps done, notes) that **auto-saves on change**; live pain-rule
+  warnings; cardio log with MET-based calorie estimates.
 - **📅 Monthly Program** — full month overview, per week and day.
 - **📈 Progress Dashboard** — streak, totals, training volume, daily/weekly
   completion, pain trend with modify/stop guide-lines, body-weight and
