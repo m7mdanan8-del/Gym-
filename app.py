@@ -15,7 +15,6 @@ import streamlit as st
 
 import charts
 import database as db
-import garmin_sync
 import next_block
 from exercise_library import EXERCISES
 from illustrations import get_svg
@@ -852,49 +851,6 @@ def page_settings():
 
     st.subheader(L("appearance"))
     st.markdown(L("appearance_note"))
-
-    # ---------------- Garmin watch sync ----------------
-    st.subheader(L("gw_header"))
-    st.caption(L("gw_caption"))
-    if garmin_sync.is_connected():
-        st.success(L("gw_connected").format(email=garmin_sync.connected_email()))
-        g1, g2, g3 = st.columns([1, 1, 1])
-        days = g1.selectbox(L("gw_days"), [7, 14, 30], index=0)
-        if g2.button(L("gw_sync_now"), type="primary", width="stretch"):
-            with st.spinner(L("gw_syncing")):
-                rep = garmin_sync.sync(days_back=int(days))
-            if rep.get("ok"):
-                st.success(L("gw_sync_done").format(
-                    steps=rep["days_steps"], sleep=rep["days_sleep"],
-                    acts=rep["activities"]))
-            else:
-                st.error(L("gw_reconnect"))
-        if g3.button(L("gw_disconnect"), width="stretch"):
-            garmin_sync.disconnect()
-            st.rerun()
-    else:
-        ge = st.text_input(L("gw_email"), value="",
-                           placeholder="name@example.com")
-        gp = st.text_input(L("gw_password"), value="", type="password")
-        gm = st.text_input(L("gw_mfa"), value="",
-                           placeholder=L("gw_mfa_ph"))
-        st.caption(L("gw_privacy"))
-        if st.button(L("gw_connect"), type="primary",
-                     disabled=not (ge and gp)):
-            with st.spinner(L("gw_connecting")):
-                res = garmin_sync.connect(ge, gp, gm)
-            if res.get("ok"):
-                st.success(L("gw_connected").format(email=ge))
-                st.rerun()
-            elif res.get("needs_mfa"):
-                st.warning(L("gw_needs_mfa"))
-            elif res.get("error") == "auth":
-                st.error(L("gw_auth_fail"))
-            elif res.get("error") == "network":
-                st.error(L("gw_network_fail"))
-            else:
-                st.error(L("gw_generic_fail").format(
-                    err=res.get("error", "?")))
 
     # ---------------- next training block ----------------
     st.subheader(L("nb_header"))

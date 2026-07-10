@@ -96,13 +96,6 @@ lets you pin a specific video, GIF or picture, which the app embeds).
   load stamped on every exercise you logged a weight for (with a pain
   guard that keeps suggestions conservative when recent pain averaged
   ≥3/10), and a recap of your latest test results.
-- **⌚ Garmin watch sync** — connect a Garmin account in Settings and
-  daily steps and sleep flow into the Recovery Tracker while recorded
-  activities land in the cardio log with the watch's real duration and
-  calories. Password is used once and never stored (only session tokens);
-  two-factor accounts supported; one-tap disconnect. Uses the community
-  `garminconnect` library (unofficial API — may need a library update if
-  Garmin changes something).
 - **🌐 Arabic language option** — a sidebar switcher (English / العربية)
   translates the entire interface, exercise names, section names, week
   themes, day focuses and the full safety guide, and flips the layout to
