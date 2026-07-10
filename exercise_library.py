@@ -104,6 +104,43 @@ EXERCISES = {
         "Stationary bike easy spin.",
         yt_query="dynamic warm up march high knees light jog"),
 
+    "cardio_warmup_20": _ex(
+        "Cardio Warm-Up — 20 min Bike or Easy Run", "bike",
+        "Cardiovascular system, whole body",
+        "Your preferred session opener: 20 minutes of bike or easy running "
+        "before the weights. It fully warms the knee and shoulder, burns "
+        "150-250 kcal, and doubles as your daily aerobic base work — so "
+        "the strength session starts with warm, cooperative joints.",
+        1, "20 min", "easy → moderate build", "—", "4-6",
+        "Choose today's tool: stationary bike (saddle set so the knee "
+        "keeps a slight bend at the bottom) or treadmill/flat easy run in "
+        "cushioned shoes.",
+        "Minutes 0-5: very easy — conversation pace. Minutes 5-15: settle "
+        "into a comfortable rhythm (RPE 5-6, short-sentences pace). "
+        "Minutes 15-20: ease back down. Log it in the cardio log below so "
+        "its calories count in your dashboard.",
+        ["First 5 minutes always easy — joints warm before effort",
+         "Bike: smooth circles at 80-90 rpm",
+         "Run: short, quiet steps — no overstriding"],
+        ["Pick the bike on days the knee feels stiff, after football, or "
+         "when yesterday's legs are heavy — same warm-up value, zero "
+         "impact.",
+         "Running is fine for your knee as long as it stays pain-free "
+         "(≤2/10) during AND the next morning."],
+        ["Sprinting cold in the first minutes",
+         "Running through knee pain 'to finish the 20 minutes'",
+         "Arriving at the weights already exhausted — this is a warm-up, "
+         "not a race"],
+        "Run only if pain-free: any knee pain >2/10 while running, or "
+        "swelling the next morning, means bike-only for a week. Never run "
+        "the day after football — that's what Sunday recovery is for.",
+        "Add 2-3 short 30-s pick-ups in the middle once running feels "
+        "easy.",
+        "15 min bike, easy pace only.",
+        "Brisk incline walk 20 min, or rower.",
+        equipment="Stationary bike or treadmill",
+        yt_query="20 minute easy bike warm up before lifting"),
+
     # ================================================================
     # MOBILITY
     # ================================================================
@@ -2187,6 +2224,524 @@ EXERCISES = {
         "Knee plank max hold.",
         "—",
         yt_query="plank test core endurance"),
+
+    # ================================================================
+    # GYM — WEIGHTED LOWER BODY (machines, barbells, dumbbells)
+    # ================================================================
+    "leg_press": _ex(
+        "Leg Press (machine)", "leg_press",
+        "Quadriceps, glutes",
+        "The safest way to load the legs HEAVY on a partial-ACL knee: the "
+        "machine removes the balance demand so you can focus purely on "
+        "producing force with perfect knee tracking.",
+        3, "10-12", "3-1-1-0", "90 s", "7",
+        "Sit with the back and hips glued to the pad, feet mid-platform, "
+        "hip-width, toes slightly out. Handles gripped lightly.",
+        "Lower the sled over 3 s until the knees reach ~90° (never so deep "
+        "that the hips roll off the pad), pause, then press through the "
+        "whole foot without ever snapping the knees straight at the top.",
+        ["Hips stay glued to the pad", "Knees track over the toes",
+         "Never lock the knees at the top"],
+        ["Feet slightly higher on the platform = more glute/hamstring and "
+         "less knee stress — a useful dial on sensitive days."],
+        ["Going too deep (hips rolling off the pad)",
+         "Slamming into lockout", "Knees caving inward"],
+        "Stop the depth at 90° or wherever the knee is quiet. Heavy is "
+        "fine; deep + heavy is not — this month, depth stays conservative.",
+        "Add weight ~5% weekly; then single-leg leg press (light).",
+        "Lighter sled, shallower depth.",
+        "Goblet box squat.",
+        equipment="Leg press machine",
+        yt_query="leg press machine proper form knee safe"),
+
+    "leg_extension": _ex(
+        "Leg Extension (machine, 90°→45° range)", "tke",
+        "Quadriceps (isolated)",
+        "Direct quad strength with zero balance demand. In conservative "
+        "ACL rehab it is used in a LIMITED arc (90° down to ~45°) where "
+        "ACL strain is minimal — a precision tool, not an ego machine.",
+        3, "12-15", "2-1-2-0", "60 s", "6-7",
+        "Adjust the seat so the knee axis lines up with the machine's "
+        "pivot; pad on the lower shin. Set the range limiter (or mentally "
+        "mark it) from 90° of bend to about 45°.",
+        "Extend the knees smoothly from 90° to roughly 45° (do NOT go to "
+        "full straight this month), squeeze 1 s, lower over 2 s. Light-to-"
+        "moderate weight, high control.",
+        ["Work the 90°→45° window only", "Squeeze, don't kick",
+         "Slow 2-second lowering"],
+        ["If your machine has a range limiter, use it — that hardware "
+         "setting is your ACL's bodyguard."],
+        ["Extending to full lockout under load (peak ACL strain zone)",
+         "Heavy weight with fast kicks", "Hips lifting off the seat"],
+        "The last 45° of extension under machine load is exactly where "
+        "the ACL strains most — the limited arc is non-negotiable this "
+        "month. Any joint-line pain >2/10 → back to band TKEs.",
+        "Add small weight increments inside the same arc; full arc only "
+        "with physio clearance next block.",
+        "Band terminal knee extension.",
+        "Spanish squat.",
+        equipment="Leg extension machine",
+        yt_query="leg extension limited range ACL rehab"),
+
+    "leg_curl_machine": _ex(
+        "Seated Leg Curl (machine)", "hamstring_curl",
+        "Hamstrings (knee-flexor function)",
+        "Heavy, safe hamstring isolation. The seated version trains the "
+        "hamstrings at a long muscle length — the position where they "
+        "protect the ACL and resist sprint strains best.",
+        3, "10-12", "2-1-3-0", "75 s", "7",
+        "Seat adjusted so the knee lines up with the machine pivot, pad "
+        "behind the lower calf, thigh pad locked down snug.",
+        "Curl the heels down/under as far as comfortable, squeeze 1 s, "
+        "then resist the return for a full 3 seconds. The lowering is "
+        "the ACL-protective part — treat it as the rep.",
+        ["Pull with the heels", "3-second fight on the way back",
+         "Hips stay down on the seat"],
+        ["Lying leg curl is a fine substitute if that's what your gym "
+         "has — same rules."],
+        ["Letting the stack yank the legs back straight",
+         "Hips hinging up to cheat", "Half reps"],
+        "Fully knee-safe. Mild hamstring cramping early on = drop one "
+        "plate and build up.",
+        "Add weight weekly; single-leg curls for symmetry.",
+        "Lighter stack; slider curls at home.",
+        "Slider hamstring curl or Nordic lowering.",
+        equipment="Leg curl machine",
+        yt_query="seated leg curl machine proper form"),
+
+    "barbell_rdl": _ex(
+        "Barbell Romanian Deadlift", "hinge",
+        "Hamstrings, glutes, spinal erectors",
+        "The heaviest safe hamstring builder in the gym. Bigger loads "
+        "than dumbbells allow — more hamstring armour for the ACL and "
+        "for sprinting.",
+        3, "8", "3-1-1-0", "2 min", "7-8",
+        "Barbell held at the thighs with a double-overhand grip just "
+        "outside the legs, feet hip-width, soft knees, shoulder blades "
+        "set back and down.",
+        "Push the hips straight back, sliding the bar down the thighs "
+        "with a flat back until a strong hamstring stretch (bar around "
+        "knee height / mid-shin). Drive the hips forward to stand tall. "
+        "The bar shaves the legs the entire way.",
+        ["Bar stays glued to the legs", "Hips back, chest proud",
+         "Stand up by squeezing the glutes"],
+        ["Start with just the bar (20 kg) to groove it, then add small "
+         "plates weekly. Straps are fine if grip limits you — this is a "
+         "hamstring exercise, not a grip test."],
+        ["Rounding the low back", "Bar drifting away from the legs",
+         "Turning it into a squat by bending the knees"],
+        "Flat back is the contract: film one set side-on each week. The "
+        "double-overhand grip keeps both shoulders in a safe, symmetric "
+        "position — avoid mixed grip with your right shoulder.",
+        "Add 2.5 kg per side weekly while the tempo holds.",
+        "Dumbbell RDL.",
+        "Trap-bar deadlift (elevated handles).",
+        equipment="Barbell",
+        yt_query="barbell romanian deadlift proper form"),
+
+    "trap_bar_deadlift": _ex(
+        "Trap-Bar Deadlift", "hinge",
+        "Glutes, quads, hamstrings, whole posterior chain",
+        "The friendliest heavy pull in the gym: neutral grip protects the "
+        "shoulder, the centred load protects the back, and the mixed "
+        "squat-hinge pattern builds total-body force for duels and "
+        "sprints.",
+        3, "6-8", "2-1-1-0", "2-3 min", "7-8",
+        "Stand centred inside the trap bar, feet hip-width. Hinge down "
+        "with a flat back, grip the handles, chest up, arms straight, "
+        "shoulder blades set.",
+        "Take the slack out of the bar, then push the floor away — hips "
+        "and shoulders rise together to a tall stand with squeezed "
+        "glutes. Lower with control by hinging back down. Reset each rep.",
+        ["Push the floor away", "Hips and chest rise together",
+         "Tall finish — no lean-back"],
+        ["The neutral handles are exactly why this replaces a straight-"
+         "bar deadlift for you — the right shoulder sits in its safest "
+         "position under heavy load."],
+        ["Hips shooting up first (turns it into a stiff-leg pull)",
+         "Yanking the bar off the floor", "Rounding under fatigue"],
+        "Introduced Week 3 after two weeks of RDL grooving. Keep 2 reps "
+        "in the tank on every set this month — this lift rewards "
+        "patience.",
+        "Add 5 kg weekly while bar speed stays crisp.",
+        "Barbell or dumbbell RDL.",
+        "Heavy goblet squat + RDL pairing.",
+        equipment="Trap bar",
+        yt_query="trap bar deadlift proper form"),
+
+    "barbell_hip_thrust": _ex(
+        "Barbell Hip Thrust", "hip_thrust",
+        "Gluteus maximus",
+        "The heaviest direct glute loading that exists — and glutes are "
+        "the engine that shields both your knee and your hamstrings at "
+        "sprint speed. Zero knee shear, zero shoulder involvement.",
+        3, "8-10", "2-2-1-1", "2 min", "7-8",
+        "Upper back on a bench edge, barbell (with a thick pad) across "
+        "the hip crease, feet planted hip-width so the shins are vertical "
+        "at the top. Chin tucked.",
+        "Drive through the heels to full hip extension — body a flat "
+        "table — and squeeze the glutes hard for 2 s. Lower with control "
+        "until the plates almost touch the floor. No back arching, ever.",
+        ["Chin tucked, ribs down", "2-second squeeze at the top",
+         "Shins vertical at lockout"],
+        ["Posterior pelvic tilt at the top (tuck the tailbone) doubles "
+         "the glute contraction at the same weight."],
+        ["Hyperextending the low back instead of the hips",
+         "Feet too far out (hamstring takeover)", "Bouncing off the floor"],
+        "Pad the bar generously. Load progresses fast on this lift — "
+        "keep the 2-s squeeze honest as the plates grow.",
+        "Add 5-10 kg weekly while the top squeeze holds 2 s.",
+        "Dumbbell hip thrust or heavy glute bridge.",
+        "Dumbbell hip thrust.",
+        equipment="Barbell + pad + bench",
+        yt_query="barbell hip thrust proper form"),
+
+    "back_extension_45": _ex(
+        "45° Back Extension (glute-biased)", "hinge",
+        "Glutes, hamstrings, spinal erectors",
+        "Posterior-chain volume that bulletproofs the low back for heavy "
+        "RDLs and deadlifts, with a strong glute bias when the toes are "
+        "turned slightly out.",
+        3, "12-15", "2-1-2-1", "60 s", "6-7",
+        "Thighs on the 45° pad with the hip crease just above the pad "
+        "edge so the hips can hinge freely. Feet locked, arms crossed on "
+        "the chest (or hugging a plate).",
+        "Hinge down with a long neutral spine until the hamstrings "
+        "stretch, then squeeze the glutes to rise until the body forms "
+        "one straight line — no higher. Pause 1 s.",
+        ["Hip crease above the pad edge", "Rise to straight, never arched",
+         "Squeeze the glutes, not the low back"],
+        ["Point the toes slightly outward to bias the glutes harder."],
+        ["Hyperextending past straight at the top", "Jerky reps",
+         "Pad set too high (blocks the hinge)"],
+        "Rising past neutral into an arch is the only way to get hurt "
+        "here — straight line is the ceiling.",
+        "Hug a 5-10 kg plate to the chest.",
+        "Bodyweight, half range.",
+        "Barbell RDL (light).",
+        equipment="45° back extension bench",
+        yt_query="45 degree back extension proper form glutes"),
+
+    "smith_calf": _ex(
+        "Standing Calf Raise (Smith machine / calf machine)", "calf_raise",
+        "Gastrocnemius",
+        "Heavy standing calf loading — footballers need calves that "
+        "tolerate multiples of bodyweight, and machines let you load far "
+        "past what dumbbells allow.",
+        3, "10-12", "2-1-2-1", "75 s", "7",
+        "Balls of the feet on the block/step under the padded bar (or "
+        "the machine's shoulder pads), heels hanging free, knees "
+        "straight but not slammed back.",
+        "Lower the heels to a full stretch over 2 s, pause 1 s, then "
+        "drive up as tall as possible onto the big toes and pause again. "
+        "Four honest positions per rep — no bouncing.",
+        ["Full stretch, full height, both paused",
+         "Big-toe side does the pushing", "No knee bounce"],
+        ["The 1-s pause at the bottom removes the tendon's free elastic "
+         "bounce and forces the muscle to work — this detail is what "
+         "finally makes calves grow."],
+        ["Bouncing reps", "Tiny mid-range pulses",
+         "Bar resting painfully without a pad"],
+        "The fixed bar path makes this a safe heavy option; any Achilles "
+        "sharpness = drop to bodyweight tempo raises.",
+        "Add 5 kg weekly while the pauses stay honest.",
+        "Dumbbell single-leg calf raises on a step.",
+        "Single-leg calf raise (dumbbell).",
+        equipment="Smith machine / calf raise machine",
+        yt_query="standing calf raise smith machine form"),
+
+    "seated_calf_machine": _ex(
+        "Seated Calf Raise (machine)", "calf_raise",
+        "Soleus",
+        "The soleus absorbs up to 8× bodyweight every stride — the seated "
+        "(bent-knee) machine is the only way to load it really heavy.",
+        3, "12-15", "2-1-2-1", "60 s", "7",
+        "Sit with the balls of the feet on the platform, knee pads snug "
+        "on the lower thighs, heels hanging.",
+        "Lower the heels to a deep stretch, pause, then press up to full "
+        "height and squeeze 1 s. Slow, burning reps — the soleus "
+        "responds to time under tension.",
+        ["Deep stretch every rep", "Pause top and bottom",
+         "Slow burn is the goal"],
+        ["Do these AFTER standing raises — the fresh gastroc first, then "
+         "the endurance soleus."],
+        ["Bouncy half reps", "Pads set too loose (knees lifting)"],
+        "Completely joint-safe volume work.",
+        "Add a plate when 15 paused reps are clean.",
+        "Bent-knee bodyweight raises on a step.",
+        "Bent-knee (soleus) calf raise.",
+        equipment="Seated calf machine",
+        yt_query="seated calf raise machine proper form"),
+
+    "adductor_machine": _ex(
+        "Hip Adduction Machine", "clamshell",
+        "Adductors (groin)",
+        "Groin strains are football's most common muscle injury, and "
+        "adductor strength is the proven antidote. The machine loads the "
+        "groin safely through a controlled arc — the gym partner of your "
+        "Copenhagen planks.",
+        3, "12-15", "2-1-3-0", "60 s", "6-7",
+        "Sit tall, pads inside the knees, start range set at a "
+        "comfortable stretch (not maximal — set the machine's start "
+        "position conservatively).",
+        "Squeeze the legs together smoothly, hold 1 s fully closed, then "
+        "resist the opening for a full 3 seconds. The slow opening is "
+        "where the injury-proofing happens.",
+        ["Squeeze together, fight apart", "Sit tall — no slouching",
+         "Conservative start range, grow weekly"],
+        ["Sore groin 48 h before football? Skip this and the Copenhagens "
+         "that week — adductor DOMS ruins passing."],
+        ["Starting at an aggressive stretch on day one",
+         "Letting the pads snap open", "Gripping the seat and straining"],
+        "Never combine a range increase AND a weight increase in the "
+        "same session.",
+        "Small weight jumps; slightly wider start each week.",
+        "Ball squeeze between the knees (isometric).",
+        "Copenhagen plank (short lever).",
+        equipment="Adduction machine",
+        yt_query="hip adduction machine proper form"),
+
+    "abductor_machine": _ex(
+        "Hip Abduction Machine", "side_leg_raise",
+        "Gluteus medius, gluteus minimus",
+        "Machine-loaded glute medius — the muscle that stops the knee "
+        "collapsing inward on every cut and landing. Heavier than any "
+        "band can go.",
+        3, "12-15", "2-1-3-0", "60 s", "6-7",
+        "Sit tall (or lean slightly forward to bias the glute med "
+        "harder), pads outside the knees, feet on the rests.",
+        "Push the knees apart smoothly to a strong width, hold 1 s, "
+        "resist the return over 3 s. No slamming in either direction.",
+        ["Push apart, fight together", "Lean slightly forward",
+         "Side-of-hip burn is the target"],
+        ["Pair it with the adduction machine as a superset to save time — "
+         "inner then outer, same seat."],
+        ["Using momentum rocks", "Range so big the pelvis rolls",
+         "Racing the reps"],
+        "Joint-safe. This directly strengthens the anti-valgus muscle "
+        "your ACL depends on.",
+        "Weight jumps while the 3-s return holds.",
+        "Banded seated abduction.",
+        "Lateral band walk.",
+        equipment="Abduction machine",
+        yt_query="hip abduction machine proper form glute"),
+
+    # ================================================================
+    # GYM — WEIGHTED UPPER BODY (cables, machines, dumbbells)
+    # ================================================================
+    "lat_pulldown_machine": _ex(
+        "Lat Pulldown (cable, neutral or underhand grip)", "pulldown",
+        "Lats, mid-back, biceps",
+        "Heavy vertical pulling without hanging from a bar — builds the "
+        "lats that decelerate the arm and stabilise the shoulder from "
+        "below. The neutral-grip handle is the shoulder-safe choice.",
+        3, "10-12", "2-1-3-0", "90 s", "7",
+        "Thighs locked under the pads, neutral-grip (palms facing) "
+        "attachment or shoulder-width underhand grip, arms long, ribs "
+        "down, slight backward lean from the hips.",
+        "Pull the elbows down and slightly back until the bar/handles "
+        "reach the collarbones, chest proud. Squeeze 1 s, then ride the "
+        "weight back up over 3 s to a long (but not yanked) stretch.",
+        ["Elbows to the back pockets", "Chest up to meet the bar",
+         "3-second ride back up"],
+        ["Neutral grip first this month; wide overhand can wait until "
+         "the shoulder earns it."],
+        ["Leaning way back and heaving", "Behind-the-neck pulling (never)",
+         "Letting the stack jerk the arms at the top"],
+        "NEVER behind the neck. Stop the top stretch just short of a "
+        "shrug-yank — a controlled long arm, not a hanging dead weight.",
+        "Weight jumps; single-arm kneeling pulldown for symmetry.",
+        "Band pulldown (tall-kneeling).",
+        "Tall-kneeling band pulldown.",
+        equipment="Lat pulldown station",
+        yt_query="neutral grip lat pulldown proper form"),
+
+    "seated_cable_row": _ex(
+        "Seated Cable Row (neutral grip)", "row",
+        "Mid-back, lats, rear delts, biceps",
+        "The gym's best horizontal pull: constant cable tension feeding "
+        "every muscle that holds your shoulder blade — and therefore "
+        "your shoulder — where it belongs.",
+        3, "10-12", "2-1-2-1", "90 s", "7",
+        "Feet on the platform, knees soft, neutral-grip V-handle, back "
+        "tall, arms long with the blades reaching forward.",
+        "Draw the shoulder blades back first, then pull the handle to "
+        "the lower ribs with elbows shaving the sides. Squeeze 1 s, "
+        "return over 2 s until the blades reach forward again.",
+        ["Blades first, then arms", "Handle to the lower ribs",
+         "Tall spine — no rocking"],
+        ["This is your heaviest scapular exercise — progressive overload "
+         "here IS shoulder rehab."],
+        ["Rocking the torso back and forth", "Shrugging into the neck",
+         "Cutting the forward stretch"],
+        "Shoulder-safe by design. Keep the elbow path close to the body; "
+        "wide flared rows can wait a block.",
+        "Weight jumps; pause rows (2 s on the ribs).",
+        "Single-arm dumbbell row or band row.",
+        "Chest-supported dumbbell row.",
+        equipment="Cable row station",
+        yt_query="seated cable row proper form"),
+
+    "db_bench": _ex(
+        "Dumbbell Bench Press (neutral grip, controlled depth)", "press",
+        "Chest, triceps, anterior shoulder",
+        "The graduation press from the floor press: more range, more "
+        "muscle — with dumbbells (not a barbell) so each shoulder works "
+        "in its own safe path, and a depth stop to protect the labrum.",
+        3, "8-10", "3-1-1-0", "2 min", "7",
+        "Flat bench, dumbbells pressed over the chest with palms facing "
+        "each other (neutral), feet planted, shoulder blades pinched "
+        "back-and-down into the bench and kept there.",
+        "Lower over 3 s with elbows ~45° from the ribs, stopping when "
+        "the upper arms reach parallel to the floor — NOT a maximal "
+        "stretch. Press back up without losing the blade pin.",
+        ["Elbows 45°, palms neutral",
+         "Stop at arms-parallel — no deep stretch",
+         "Blades pinned the whole set"],
+        ["Depth rule of thumb: the elbows never dip more than a fist-"
+         "height below the bench line this month."],
+        ["Deep-stretch bottoming out (labrum danger zone)",
+         "Flaring the elbows to 90°", "Feet dancing"],
+        "Introduced Week 3 only if floor presses were silent. The moment "
+        "the front of the shoulder pinches or feels loose at the bottom "
+        "— return to floor presses. Never barbell bench this month.",
+        "Small DB jumps; low-incline (15-30°) DB press next block.",
+        "Dumbbell floor press.",
+        "Chest press machine.",
+        equipment="Dumbbells + bench",
+        yt_query="neutral grip dumbbell bench press shoulder safe"),
+
+    "chest_press_machine": _ex(
+        "Chest Press Machine", "press",
+        "Chest, triceps, anterior shoulder",
+        "Pressing with a fixed, guided path and an adjustable start "
+        "depth — the machine lets you press meaningful weight while the "
+        "range is capped exactly where your shoulder is safe.",
+        3, "10-12", "2-1-2-0", "90 s", "6-7",
+        "Adjust the seat so the handles sit at mid-chest height, and the "
+        "start position so your elbows begin only slightly behind your "
+        "torso line — never deeply cocked back. Neutral grip if offered.",
+        "Press to long arms without slamming the lockout, then return "
+        "over 2 s, stopping at the set depth. The blades stay gently "
+        "set against the pad.",
+        ["Set the start depth shallow", "Smooth press, soft lockout",
+         "2-second returns"],
+        ["The seat and range adjustments ARE the exercise setup — spend "
+         "30 seconds on them every session."],
+        ["Start range set too deep", "Bouncing at the chest",
+         "Shrugging during the press"],
+        "The depth adjustment is your labrum's friend: elbows never "
+        "travel far behind the torso line this month.",
+        "Weight jumps; then DB bench (Week 3+).",
+        "Incline push-up.",
+        "Dumbbell floor press.",
+        equipment="Chest press machine",
+        yt_query="chest press machine proper setup form"),
+
+    "cable_face_pull": _ex(
+        "Cable Face Pull (rope)", "face_pull",
+        "Rear delts, lower traps, external rotators",
+        "The band face pull's heavier gym sibling — smooth cable "
+        "resistance through the exact retraction + external-rotation "
+        "combo that keeps the humeral head centred in its socket.",
+        3, "12-15", "2-1-2-0", "60 s", "6-7",
+        "Cable set at upper-chest/eye height with a rope attachment. "
+        "Grab with thumbs pointing back toward you, arms long, split "
+        "stance, slight lean back.",
+        "Pull the rope toward the bridge of the nose, elbows high and "
+        "wide, finishing with knuckles beside the ears and a final "
+        "outward twist of the wrists. Control the return.",
+        ["Pull to the nose", "Thumbs finish by the ears",
+         "Twist out at the end of every rep"],
+        ["Moderate weight, perfect reps — if you have to lean like a "
+         "water-skier, it's too heavy."],
+        ["Turning it into a row (elbows dropping)",
+         "Overloading and shrugging",
+         "Standing bolt upright and getting pulled forward"],
+        "The single best cable exercise for your shoulder. Hard to do "
+        "wrong at sensible weight.",
+        "Weight jumps; half-kneeling strict version.",
+        "Band face pull.",
+        "Band face pull + band pull-apart.",
+        equipment="Cable station + rope",
+        yt_query="cable face pull rope proper form"),
+
+    "cable_er": _ex(
+        "Cable External Rotation (elbow at side)", "band_er",
+        "Infraspinatus, teres minor",
+        "Band ER with a loadable, measurable stack — the cable's "
+        "constant tension and precise weight jumps make cuff progress "
+        "trackable week to week.",
+        3, "12-15", "2-1-3-0", "45 s", "6",
+        "Cable at elbow height, light weight. Stand left-side to the "
+        "stack, right elbow bent 90° and pinned to the ribs (towel "
+        "trapped under it), hand starting at the belly.",
+        "Rotate the forearm outward like a gate to a comfortable range "
+        "(~30-45°), keeping the towel trapped, then return over a slow "
+        "3 seconds.",
+        ["Towel stays trapped", "Gate swings, hinge still",
+         "Slow 3-count home"],
+        ["Also do internal rotation facing the other way — the "
+         "subscapularis guards the exact direction you dislocated."],
+        ["Elbow drifting off the ribs", "Too heavy, trunk twisting",
+         "Snapping the return"],
+        "Smallest plate on the stack to start. Pain-free arc only; no "
+        "apprehension positions.",
+        "One small plate at a time; 90/90 cable ER when gated in.",
+        "Band external rotation.",
+        "Band external rotation.",
+        equipment="Cable station",
+        yt_query="cable external rotation shoulder rotator cuff"),
+
+    "rear_delt_fly": _ex(
+        "Reverse Pec-Deck (rear-delt fly)", "face_pull",
+        "Rear deltoids, rhomboids",
+        "Machine-loaded rear-shoulder volume — the muscles behind the "
+        "joint that physically resist the forward slide of a previously "
+        "dislocated shoulder.",
+        3, "12-15", "2-1-2-0", "60 s", "6-7",
+        "Face the pec-deck's pad, seat set so the handles are at "
+        "shoulder height, arms long with a soft elbow bend, neutral "
+        "grip.",
+        "Sweep the arms out and back until they reach the body line "
+        "(not past it), squeeze the blades 1 s, return over 2 s without "
+        "letting the plates touch down.",
+        ["Sweep, don't press", "Stop at the body line",
+         "Squeeze the blades, not the hands"],
+        ["Light-to-moderate weight forever — this muscle group responds "
+         "to reps and squeezes, not ego plates."],
+        ["Swinging past the body line", "Shrugging", "Bouncing the stack"],
+        "Stop the sweep at the body line — behind it stresses the front "
+        "capsule.",
+        "Small jumps; 2-s squeezes.",
+        "Bent-over light DB rear-delt fly or band pull-apart.",
+        "Band pull-apart.",
+        equipment="Pec-deck machine",
+        yt_query="reverse pec deck rear delt proper form"),
+
+    "cable_pallof": _ex(
+        "Cable Pallof Press", "pallof",
+        "Deep core (anti-rotation), obliques",
+        "The band Pallof with a measurable stack — precise, progressive "
+        "anti-rotation strength for kicking, tackling and shielding.",
+        3, "10/side", "2 s hold pressed out", "60 s", "7",
+        "Cable at chest height, moderate weight. Stand side-on in an "
+        "athletic stance, handle held with both hands at the sternum.",
+        "Press the hands straight out and hold 2 s while the cable "
+        "tries to twist you toward the stack. Refuse. Return. All reps, "
+        "then face the other way.",
+        ["Press, hold, refuse the twist", "Hips and shoulders square",
+         "Exhale on the press"],
+        ["Progress by one small plate OR one step further from the "
+         "stack — never both at once."],
+        ["Rotating toward the stack", "Leaning away as a counterweight",
+         "Rushing the holds"],
+        "Spine- and knee-safe staple.",
+        "Half-kneeling or split-stance; more weight.",
+        "Band Pallof press.",
+        "Suitcase carry (heavy).",
+        equipment="Cable station",
+        yt_query="cable pallof press proper form"),
 }
 
 

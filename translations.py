@@ -55,6 +55,13 @@ UI = {
                                 "تمارين الاستعادة خلال ٣٠ دقيقة من نهاية المباراة. سجّل المباراة "
                                 "في سجل الكارديو أدناه وقيّم أداءك في تبويب الاستشفاء."},
     "no_program":       {"en": "No program found for this day.", "ar": "لا يوجد برنامج لهذا اليوم."},
+    "session_done":     {"en": "🎉 Session complete — that's how champions are "
+                                "built! See you at the next one.",
+                         "ar": "🎉 اكتملت الجلسة — هكذا يُصنع الأبطال! نلقاك في "
+                                "الجلسة القادمة."},
+    "quote_prefix":     {"en": "💪 Today's fuel", "ar": "💪 وقود اليوم"},
+    "last_time":        {"en": "Last time", "ar": "آخر مرة"},
+    "pain_short":       {"en": "pain", "ar": "ألم"},
 
     # tracker
     "tracker":          {"en": "📋 Tracker", "ar": "📋 المتابعة"},
@@ -315,10 +322,12 @@ UI = {
                                 "متوسط · قطع جزئي في الرباط الصليبي الأمامي + خلع سابق في الكتف "
                                 "الأيمن (علاج تحفظي، مسموح بالتدريب)."},
     "appearance":       {"en": "Appearance", "ar": "المظهر"},
-    "appearance_note":  {"en": "Dark / light mode: open the **☰ menu (top-right) → Settings → "
-                                "Theme**. All charts adapt automatically.",
-                         "ar": "الوضع الداكن/الفاتح: افتح **قائمة ☰ (أعلى الصفحة) → Settings → "
-                                "Theme**. كل الرسوم البيانية تتكيف تلقائيًا."},
+    "appearance_note":  {"en": "The app uses one fixed theme: the energetic, motivation-focused "
+                                "gym look — bold orange on a warm light background, designed to "
+                                "keep you fired up during training.",
+                         "ar": "يستخدم التطبيق مظهرًا واحدًا ثابتًا: المظهر التحفيزي الرياضي — "
+                                "برتقالي جريء على خلفية فاتحة دافئة، مصمم ليبقيك متحمسًا أثناء "
+                                "التدريب."},
     "export":           {"en": "Export data", "ar": "تصدير البيانات"},
     "export_note":      {"en": "Everything is stored locally in `gym_rehab.db` (SQLite) next to "
                                 "the app — nothing leaves your machine.",
@@ -402,6 +411,7 @@ SECTION_AR = {
 
 EXERCISE_NAME_AR = {
     "bike_warmup": "دراجة ثابتة — دوران خفيف",
+    "cardio_warmup_20": "إحماء كارديو — ٢٠ دقيقة دراجة أو جري خفيف",
     "brisk_march": "مشية ديناميكية + هرولة خفيفة في المكان",
     "leg_swings": "أرجحة الرجل للأمام والخلف",
     "lateral_leg_swings": "أرجحة الرجل الجانبية",
@@ -489,12 +499,73 @@ EXERCISE_NAME_AR = {
     "assess_sl_hop": "اختبار — القفز لمسافة برجل واحدة",
     "assess_y_balance": "اختبار — أفضل مدى في اتزان Y",
     "assess_plank": "اختبار — أقصى ثبات بلانك",
+    # ------- gym (weighted) exercises -------
+    "leg_press": "دفع الأرجل (جهاز)",
+    "leg_extension": "مد الرجلين (جهاز، مدى ٩٠°←٤٥°)",
+    "leg_curl_machine": "ثني الرجلين جالسًا (جهاز)",
+    "barbell_rdl": "الرفعة الرومانية بالبار",
+    "trap_bar_deadlift": "الرفعة الميتة بالبار السداسي",
+    "barbell_hip_thrust": "دفع الورك بالبار",
+    "back_extension_45": "مد الظهر ٤٥° (تركيز المقعدة)",
+    "smith_calf": "رفع السمانة واقفًا (سميث / جهاز)",
+    "seated_calf_machine": "رفع السمانة جالسًا (جهاز)",
+    "adductor_machine": "جهاز تقريب الفخذين (الضامة)",
+    "abductor_machine": "جهاز تبعيد الفخذين",
+    "lat_pulldown_machine": "السحب العلوي بالكابل (قبضة متعادلة)",
+    "seated_cable_row": "التجديف جالسًا بالكابل",
+    "db_bench": "ضغط الدمبل على البنش (قبضة متعادلة، عمق محدود)",
+    "chest_press_machine": "جهاز ضغط الصدر",
+    "cable_face_pull": "السحب للوجه بالكابل (حبل)",
+    "cable_er": "دوران خارجي بالكابل (المرفق ملاصق)",
+    "rear_delt_fly": "الرفرفة الخلفية (جهاز بيك-دك عكسي)",
+    "cable_pallof": "ضغط بالوف بالكابل",
 }
 
 
 # -------------------------------------------------------------------------
 # Helpers
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Daily motivation — one quote per day, rotating (both languages)
+# -------------------------------------------------------------------------
+QUOTES = {
+    "en": [
+        "The comeback is always stronger than the setback.",
+        "You don't have to be extreme — just consistent.",
+        "Strong knees, strong shoulders, strong season.",
+        "Every rep today is a tackle you win on Saturday.",
+        "Discipline beats motivation — today you have both.",
+        "Rehab IS training. Train it like a final.",
+        "Small weights now, big future later.",
+        "Champions are built on the days nobody is watching.",
+        "Slow is smooth, and smooth is strong.",
+        "One quality rep beats ten sloppy ones.",
+        "Protect the knee. Power the game.",
+        "Show up. The streak takes care of the rest.",
+    ],
+    "ar": [
+        "العودة دائمًا أقوى من الكبوة.",
+        "لست بحاجة لأن تكون متطرفًا — فقط كن مستمرًا.",
+        "ركبة قوية، كتف قوي، موسم قوي.",
+        "كل تكرار اليوم هو التحام تكسبه يوم السبت.",
+        "الانضباط يتفوق على الحماس — واليوم لديك الاثنان.",
+        "التأهيل تدريبٌ حقيقي. تدرّب كأنه نهائي.",
+        "أوزان صغيرة الآن، مستقبل كبير لاحقًا.",
+        "الأبطال يُصنعون في الأيام التي لا يراقبك فيها أحد.",
+        "البطء إتقان، والإتقان قوة.",
+        "تكرار واحد متقن خيرٌ من عشرة مهملة.",
+        "احمِ الركبة، واصنع اللعب.",
+        "احضر فقط — والاستمرارية تتكفل بالباقي.",
+    ],
+}
+
+
+def daily_quote(lang: str, day_index: int) -> str:
+    """Rotating motivational quote — same quote all day, new one tomorrow."""
+    qs = QUOTES.get(lang, QUOTES["en"])
+    return qs[day_index % len(qs)]
+
+
 def tr(key: str, lang: str) -> str:
     """UI string in the active language (falls back to English)."""
     entry = UI.get(key)

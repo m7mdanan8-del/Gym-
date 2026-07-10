@@ -1,12 +1,16 @@
 [theme]
-# Professional dark default. Users can switch Dark / Light from the
-# app menu (top-right ⋮ -> Settings -> Theme) — charts adapt automatically.
-base = "dark"
-primaryColor = "#3987e5"
-backgroundColor = "#0d0d0d"
-secondaryBackgroundColor = "#1a1a19"
-textColor = "#ffffff"
+# The app's single fixed theme: energetic light "gym motivation" look —
+# bold orange accents on a warm light background.
+base = "light"
+primaryColor = "#f04e23"
+backgroundColor = "#fdfcfa"
+secondaryBackgroundColor = "#f6f1ea"
+textColor = "#141414"
 font = "sans serif"
+
+[client]
+# Hide the developer toolbar so the app always shows its own single theme.
+toolbarMode = "minimal"
 
 [server]
 headless = true

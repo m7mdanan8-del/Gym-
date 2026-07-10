@@ -21,17 +21,34 @@ streamlit run app.py
 ```
 
 Open the URL Streamlit prints (works great on iPhone via your computer's
-local network address). Dark/light theme: **☰ menu → Settings → Theme** —
-all charts adapt automatically.
+local network address). The app uses **one fixed theme**: an energetic,
+motivation-focused light look — bold orange accents, a daily motivational
+quote banner, and a fiery progress bar — designed to keep you fired up
+during training.
+
+**Session flow:** every training day starts with a **20-minute cardio
+warm-up (bike or easy run — your choice)**, then mobility, activation,
+the weighted work, core/balance, and stretching. The tracker also shows a
+**"Last time"** hint per exercise (previous weight, sets × reps, pain) so
+you always know what to load next.
 
 ## The program
 
 | Week | Theme | Emphasis |
 |------|-------|----------|
-| 1 | Foundation | Pattern grooving, isometrics, RPE 5–6 |
-| 2 | Progression | Load added, Nordics & floor press enter, RPE 6–7 |
-| 3 | Advanced Progression | Single-leg bias, slow eccentrics, first hop-and-stick landings, 90/90 cuff work (gated), RPE 7–8 |
-| 4 | Variation + Assessment | Fresh variations + benchmark tests (wall-sit, calf raises, plank, Y-balance, single-leg hop) |
+| 1 | Foundation | Pattern grooving, isometrics, machine intro (leg press, cable row, chest press), RPE 5–6 |
+| 2 | Progression | Barbell RDLs & hip thrusts, leg extension in the protected 90°→45° arc, Nordics, cable cuff work, RPE 6–7 |
+| 3 | Advanced Progression | Trap-bar deadlift, heavy leg press, DB bench (capped depth), first hop-and-stick landings, 90/90 cuff work (gated), RPE 7–8 |
+| 4 | Variation + Assessment | Tempo barbell variations + benchmark tests (wall-sit, calf raises, plank, Y-balance, single-leg hop) |
+
+**Built for the gym:** the program is loaded with real weights — leg press,
+leg extension (limited arc), seated leg curl, barbell RDL, trap-bar
+deadlift, barbell hip thrust, Smith/seated calf machines, hip
+adduction/abduction machines, lat pulldown, seated cable row, dumbbell
+bench (neutral grip, capped depth), chest press machine, cable face pulls,
+cable external rotations, reverse pec-deck and cable Pallof presses —
+every one selected and range-restricted to stay safe for a partial-ACL
+knee and a post-dislocation shoulder.
 
 **Weekly schedule:** Mon lower body (quad/ACL) · Tue upper body (shoulder
 rehab) · Wed posterior chain + balance · Thu full-body functional +
