@@ -65,6 +65,8 @@ UI = {
     "view_grid":        {"en": "🔲 Grid", "ar": "🔲 شبكة"},
     "view_list":        {"en": "📋 List", "ar": "📋 قائمة"},
     "open_ex":          {"en": "Open", "ar": "افتح"},
+    "photo_start":      {"en": "Start position", "ar": "وضع البداية"},
+    "photo_end":        {"en": "Finish position", "ar": "وضع النهاية"},
     "done_btn":         {"en": "✔ Done — back to workout", "ar": "✔ تم — عودة إلى التمرين"},
     "pain_short":       {"en": "pain", "ar": "ألم"},
 
@@ -333,6 +335,40 @@ UI = {
                          "ar": "يستخدم التطبيق مظهرًا واحدًا ثابتًا: المظهر التحفيزي الرياضي — "
                                 "برتقالي جريء على خلفية فاتحة دافئة، مصمم ليبقيك متحمسًا أثناء "
                                 "التدريب."},
+    # next training block
+    "nb_header":        {"en": "🔄 Next Training Block", "ar": "🔄 البرنامج التدريبي التالي"},
+    "nb_caption":       {"en": "When Week 4's tests are logged, generate the next 4-week "
+                                "block automatically: same split, rep schemes shifted one gear "
+                                "toward strength, and a personalised suggested start load "
+                                "stamped on every exercise you logged a weight for.",
+                         "ar": "بعد تسجيل اختبارات الأسبوع الرابع، وَلِّد البرنامج التالي "
+                                "(٤ أسابيع) تلقائيًا: نفس التقسيم مع نقل التكرارات درجة نحو "
+                                "القوة، ووزن بداية مقترح مخصص لكل تمرين سجلت له وزنًا."},
+    "nb_current":       {"en": "Current block", "ar": "البرنامج الحالي"},
+    "nb_tests_header":  {"en": "🏁 Your latest benchmark results", "ar": "🏁 أحدث نتائج اختباراتك"},
+    "nb_no_tests":      {"en": "No benchmark tests logged yet — finish Week 4's assessment "
+                                "days first (you can still generate, but the report will "
+                                "have no test recap).",
+                         "ar": "لا توجد اختبارات مسجلة بعد — أكمل أيام التقييم في الأسبوع "
+                                "الرابع أولًا (يمكنك التوليد الآن لكن دون ملخص اختبارات)."},
+    "nb_confirm":       {"en": "I understand — this replaces the current program (history "
+                                "and logs are kept)",
+                         "ar": "أفهم — سيستبدل هذا البرنامج الحالي (السجل والتاريخ محفوظان)"},
+    "nb_generate":      {"en": "⚡ Generate next block", "ar": "⚡ ولِّد البرنامج التالي"},
+    "nb_done":          {"en": "Block {block} generated! It starts Monday {start}.",
+                         "ar": "تم توليد البرنامج رقم {block}! يبدأ يوم الاثنين {start}."},
+    "nb_m_sugg":        {"en": "Load suggestions added", "ar": "اقتراحات أوزان أضيفت"},
+    "nb_m_shift":       {"en": "Rep schemes shifted", "ar": "أنظمة تكرارات نُقلت"},
+    "nb_m_pain":        {"en": "Avg pain (14 d)", "ar": "متوسط الألم (١٤ يومًا)"},
+    "nb_conservative":  {"en": "⚠️ Recent pain averaged ≥3/10 — all load suggestions were "
+                                "kept conservative (−10%). Re-test pain-free before pushing.",
+                         "ar": "⚠️ متوسط الألم الأخير ≥٣/١٠ — أوزان البداية المقترحة "
+                                "متحفظة (−١٠٪). عُد للاختبار بلا ألم قبل الزيادة."},
+    "nb_next_steps":    {"en": "Open Today's Workout — each exercise now shows its suggested "
+                                "start load in the 'Why this exercise' text.",
+                         "ar": "افتح تمرين اليوم — كل تمرين يعرض الآن وزن البداية المقترح "
+                                "ضمن نص «لماذا هذا التمرين»."},
+
     "export":           {"en": "Export data", "ar": "تصدير البيانات"},
     "export_note":      {"en": "Everything is stored locally in `gym_rehab.db` (SQLite) next to "
                                 "the app — nothing leaves your machine.",
