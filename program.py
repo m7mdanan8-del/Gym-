@@ -1,34 +1,38 @@
 """
 program.py
 ==========
-MUSCLE-SPLIT BLOCK — dumbbells & machines only, one muscle group per
-training day (user preference), for a trained athlete (4+ months of
-consistent gym work, pain-free knee and shoulder):
+STRENGTH / BALANCE ALTERNATING BLOCK — the specialist's rhythm the user
+trained with before: one day strength, the next day balance & stability,
+focused on the three priority areas (shoulders, legs, knees).
+Dumbbells & machines only.
 
-  Mon  CHEST day    (presses, flys, triceps)
-  Tue  LEG day      (quads, hamstrings, glutes, calves + knee armour)
-  Wed  BACK day     (pull-ups, pulldowns, rows, biceps)
-  Thu  SHOULDER day (delts, traps, rotator cuff)
+  Mon  LEG & KNEE STRENGTH   (heavy legs + knee armour + jumps)
+  Tue  BALANCE & STABILITY   (knee proprioception + shoulder stability)
+  Wed  SHOULDER STRENGTH     (presses, raises, rows, cuff — the rows and
+                              face pulls ARE shoulder protection)
+  Thu  BALANCE & CONTROL     (landing mechanics, reactive balance,
+                              closed-chain shoulder work, footwork)
   Fri  Recovery
   Sat  Football (pre-match activation + post-match reset)
   Sun  Recovery + Mobility
 
-Leg day sits on Tuesday deliberately: four full days before Saturday's
-match, so heavy legs (and Nordics) never steal match sharpness.
+Leg strength sits on Monday: five full days before Saturday's match, so
+heavy legs and Nordics never steal match sharpness. Thursday's balance
+work is deliberately low-load — it sharpens the knee without costing
+anything two days out.
 
 Four-week wave:
-  Week 1 – Load       (groove the split at RPE 7)
-  Week 2 – Overload   (heavier dumbbells/stacks, RPE 7-8)
-  Week 3 – Intensity  (top week, RPE 8; jumps & bounds peak on leg day)
-  Week 4 – Peak + Retest (reduced volume + benchmark tests spread
-           across the split: push-ups, leg battery, pull-ups, plank)
+  Week 1 – Load      (strength grooved at RPE 7; balance on stable ground)
+  Week 2 – Progress  (heavier strength; balance with eyes closed / head turns)
+  Week 3 – Advanced  (top loads; perturbation balance + bigger landings)
+  Week 4 – Peak + Retest (benchmarks on both sides: strength tests Monday,
+           balance battery Thursday)
 
 Standing guardrails (independent of training age):
 - dumbbells and machines only — no barbell work in this block
-- no behind-the-neck pressing/pulling, no dips
-- pressing depth capped at arms-parallel; pec-deck range stop shallow
-- pull-up bottoms stay ACTIVE (no dead hang on the capsule)
-- jumps/bounds only fresh and pain-free; box jumps always stepped down
+- no behind-the-neck pressing/pulling, no dips, pressing depth capped
+- jumps/bounds/landings only fresh and pain-free; box jumps stepped down
+- Nordics never within 48 h of a match (Monday placement guarantees it)
 
 The materialised program (library data + weekly prescription overrides)
 is what gets seeded into SQLite; Edit Mode then owns it.
@@ -45,31 +49,30 @@ TRAINING_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday"]
 
 WEEK_THEMES = {
     1: ("Load",
-        "The muscle-per-day split begins: chest, legs, back, shoulders — "
-        "dumbbells and machines only. Weights stay one gear down (RPE 7) "
-        "while you find your working loads on every machine; write them "
-        "all in the tracker."),
-    2: ("Overload",
-        "Same split, heavier dumbbells and stacks (RPE 7-8). Single-leg "
-        "press and heavy dumbbell RDLs join leg day. Add weight anywhere "
-        "last week's final set was smooth."),
-    3: ("Intensity",
-        "Top week (RPE 8): heaviest loads of the block, box jumps at "
-        "their highest and skater bounds on leg day. Quality gates "
-        "everything — power work ends the moment reps slow down."),
+        "The specialist rhythm returns: strength one day, balance the "
+        "next. Strength days open at RPE 7 while you set your working "
+        "weights; balance days start on stable ground, eyes open — "
+        "quality of control is the score."),
+    2: ("Progress",
+        "Strength days get heavier (RPE 7-8). Balance days progress the "
+        "challenge instead of the load: eyes-closed holds, head turns "
+        "and longer single-leg reaches."),
+    3: ("Advanced",
+        "Top strength week (RPE 8) — and the balance days turn reactive: "
+        "ball tosses, cushion stands, bigger hop-and-stick landings. "
+        "Control decides every progression."),
     4: ("Peak + Retest",
-        "Volume drops and the benchmarks run, spread across the split: "
-        "max push-ups (chest day), wall-sit / calf / Y-balance / "
-        "single-leg hop (leg day), max strict pull-ups (back day) and "
-        "max plank (shoulder day). Beat last block's numbers."),
+        "Volume drops and both sides get measured: wall-sit and calf "
+        "tests on strength Monday; Y-balance, single-leg hop and plank "
+        "on balance Thursday. Beat last block's numbers."),
 }
 
 # Friendly names for the day focus
 DAY_FOCUS = {
-    "Monday":    "Chest Day — Presses, Flys & Triceps",
-    "Tuesday":   "Leg Day — Quads, Hamstrings, Glutes & Calves",
-    "Wednesday": "Back Day — Pull-Ups, Rows & Biceps",
-    "Thursday":  "Shoulder Day — Delts, Traps & Rotator Cuff",
+    "Monday":    "Leg & Knee Strength — Heavy Day",
+    "Tuesday":   "Balance & Stability — Knee + Shoulder",
+    "Wednesday": "Shoulder Strength — Heavy Day",
+    "Thursday":  "Balance & Control — Landings + Reactive",
     "Friday":    "Recovery Day",
     "Saturday":  "Football Match Day",
     "Sunday":    "Recovery + Mobility",
@@ -155,73 +158,9 @@ def _sunday(week):
 
 
 # ---------------------------------------------------------------------
-# Day builders — one per muscle group, parameterised by week
+# MONDAY — LEG & KNEE STRENGTH (heavy)
 # ---------------------------------------------------------------------
-def _chest_day(week):
-    """Monday — CHEST. Progression: load W1→W3, W4 moderate + push-up test."""
-    w = week
-    sections = [
-        ("Warm-Up", ["cardio_warmup_20"]),
-        ("Mobility", ["cat_cow", "open_book"]),
-        ("Activation", [
-            ("scap_pushup", {"sets": 2, "reps": "12"}),
-            ("band_pull_apart", {"sets": 2})]),
-    ]
-    if w == 4:
-        sections.append(("Assessment", [
-            ("pushup", {"sets": 1, "reps": "TEST — max strict push-ups "
-                        "(record the number)", "rpe": "9",
-                        "purpose": "Chest-day benchmark: strict full-range "
-                        "push-ups to one shy of failure. Beat it next "
-                        "block."})]))
-    strength = {
-        1: [("chest_press_machine", {"sets": 4, "reps": "10", "rpe": "7",
-                                     "purpose": "Open the block finding your "
-                                     "working stack — log it."}),
-            ("db_bench", {"sets": 4, "reps": "8", "rpe": "7"}),
-            ("incline_db_press", {"sets": 3, "reps": "10", "rpe": "7"}),
-            ("pec_deck", {"sets": 3, "reps": "12-15", "rpe": "7",
-                          "purpose": "New: chest isolation finisher — set "
-                          "the range stop shallow before rep one."}),
-            ("triceps_pushdown", {"sets": 3, "reps": "12", "rpe": "7"})],
-        2: [("db_bench", {"sets": 4, "reps": "8", "rpe": "7-8",
-                          "equipment": "Heavier DBs than Week 1"}),
-            ("incline_db_press", {"sets": 4, "reps": "8-10", "rpe": "7-8"}),
-            ("chest_press_machine", {"sets": 3, "reps": "10", "rpe": "7-8"}),
-            ("pec_deck", {"sets": 3, "reps": "12", "rpe": "7-8"}),
-            ("triceps_pushdown", {"sets": 3, "reps": "12", "rpe": "7-8"})],
-        3: [("db_bench", {"sets": 5, "reps": "6-8", "rpe": "8",
-                          "purpose": "Top pressing week — heaviest clean "
-                          "sets of the block, depth cap unchanged."}),
-            ("incline_db_press", {"sets": 4, "reps": "8", "rpe": "8"}),
-            ("chest_press_machine", {"sets": 3, "reps": "8-10", "rpe": "8"}),
-            ("pec_deck", {"sets": 3, "reps": "12", "rpe": "8"}),
-            ("triceps_pushdown", {"sets": 4, "reps": "10-12", "rpe": "8"})],
-        4: [("db_bench", {"sets": 3, "reps": "8", "rpe": "7",
-                          "purpose": "Week-2 weights at perfect speed — "
-                          "stay crisp on test week."}),
-            ("incline_db_press", {"sets": 3, "reps": "10", "rpe": "7"}),
-            ("pec_deck", {"sets": 2, "reps": "12-15", "rpe": "7"}),
-            ("triceps_pushdown", {"sets": 3, "reps": "12", "rpe": "7"})],
-    }[w]
-    sections += [
-        ("Strength", strength),
-        ("Core", [("plank_tap", {"sets": 2, "reps": "10 taps/side",
-                                 "rpe": "7"})]),
-        ("Conditioning", [
-            ("bike_intervals", {"reps": f"{8 + (w in (2, 3)) * 2} rounds",
-                                "rpe": "8 work",
-                                "purpose": "Optional finisher — the 20-min "
-                                "warm-up already banked aerobic work."})]),
-        ("Cool-Down & Stretch", [
-            "stretch_chest", "cross_body_stretch", "breathing_reset"]),
-    ]
-    return _day(DAY_FOCUS["Monday"], sections)
-
-
-def _leg_day(week):
-    """Tuesday — LEGS. Quads + hamstrings + glutes + calves + knee armour.
-    Four days before the match, so heavy legs and Nordics recover fully."""
+def _leg_strength_day(week):
     w = week
     sections = [
         ("Warm-Up", ["cardio_warmup_20"]),
@@ -231,42 +170,32 @@ def _leg_day(week):
             ("band_walk", {"sets": 2})]),
     ]
     if w == 4:
-        sections.append(("Assessment Battery (fresh + fully warm)", [
+        sections.append(("Assessment", [
             ("assess_wall_sit", {}),
-            ("assess_sl_calf", {}),
-            ("assess_y_balance", {}),
-            ("assess_sl_hop", {})]))
+            ("assess_sl_calf", {})]))
     else:
-        power = {
-            1: ("box_jump", {"sets": 3, "reps": "3", "rpe": "7",
-                             "purpose": "Knee-height box, quiet landings, "
-                             "always step down."}),
-            2: ("box_jump", {"sets": 4, "reps": "3", "rpe": "7-8",
-                             "purpose": "One box height up if every Week-1 "
-                             "landing was quiet."}),
-            3: ("skater_bound", {"sets": 4, "reps": "4/side", "rpe": "8",
-                                 "purpose": "Peak power week: lateral bounds "
-                                 "with frozen 2-s landings — film the "
-                                 "knee."}),
-        }[w]
-        sections.append(("Power & Plyometrics (fresh)", [power]))
+        sections.append(("Power & Plyometrics (fresh)", [
+            ("box_jump", {"sets": 2 + w, "reps": "3",
+                          "rpe": "7" if w == 1 else "7-8" if w == 2 else "8",
+                          "purpose": {1: "Knee-height box, quiet landings, "
+                                         "always step down.",
+                                      2: "One height up if every Week-1 "
+                                         "landing was quiet.",
+                                      3: "Peak jump week — highest box you "
+                                         "land QUIETLY on."}[w]})]))
     strength = {
         1: [("leg_press", {"sets": 4, "reps": "10", "rpe": "7"}),
             ("hack_squat", {"sets": 3, "reps": "10", "rpe": "7"}),
             ("rfe_split_squat", {"sets": 3, "reps": "8/side", "rpe": "7",
                                  "equipment": "Bench + dumbbells"}),
-            ("leg_extension", {"sets": 3, "reps": "12", "rpe": "7"}),
             ("leg_curl_machine", {"sets": 3, "reps": "10", "rpe": "7-8"}),
             ("smith_calf", {"sets": 4, "reps": "10", "rpe": "7"})],
         2: [("leg_press", {"sets": 4, "reps": "8", "rpe": "7-8"}),
             ("single_leg_press", {"sets": 3, "reps": "8/side", "rpe": "7-8",
-                                  "purpose": "New: close the left-right gap "
-                                  "— weak side first."}),
+                                  "purpose": "Close the left-right gap — "
+                                  "weak side first."}),
             ("romanian_deadlift", {"sets": 3, "reps": "8", "rpe": "7-8",
-                                   "equipment": "Heavy dumbbells",
-                                   "purpose": "Heavy DB hinge for the "
-                                   "hamstrings at length."}),
-            ("leg_extension", {"sets": 3, "reps": "12", "rpe": "7-8"}),
+                                   "equipment": "Heavy dumbbells"}),
             ("leg_curl_machine", {"sets": 3, "reps": "10", "rpe": "8"}),
             ("seated_calf_machine", {"sets": 3, "reps": "12-15", "rpe": "7-8"})],
         3: [("hack_squat", {"sets": 4, "reps": "8", "rpe": "8",
@@ -277,7 +206,6 @@ def _leg_day(week):
                                "equipment": "Heavier dumbbells"}),
             ("romanian_deadlift", {"sets": 3, "reps": "8", "rpe": "8",
                                    "equipment": "Heavy dumbbells"}),
-            ("leg_curl_machine", {"sets": 3, "reps": "8-10", "rpe": "8"}),
             ("smith_calf", {"sets": 4, "reps": "8-10", "rpe": "8"})],
         4: [("leg_press", {"sets": 3, "reps": "10", "rpe": "7",
                            "purpose": "Moderate plates on test day — "
@@ -286,13 +214,16 @@ def _leg_day(week):
             ("smith_calf", {"sets": 3, "reps": "10", "rpe": "7"})],
     }[w]
     rehab = {
-        1: [("nordic_curl", {"sets": 3, "reps": "5", "rpe": "8"}),
+        1: [("leg_extension", {"sets": 3, "reps": "12", "rpe": "7"}),
+            ("nordic_curl", {"sets": 3, "reps": "5", "rpe": "8"}),
             ("copenhagen", {"sets": 2, "reps": "20 s/side", "rpe": "7"})],
-        2: [("nordic_curl", {"sets": 3, "reps": "6", "rpe": "8"}),
+        2: [("leg_extension", {"sets": 3, "reps": "12", "rpe": "7-8"}),
+            ("nordic_curl", {"sets": 3, "reps": "6", "rpe": "8"}),
             ("copenhagen", {"sets": 2, "reps": "15-20 s/side", "rpe": "8",
                             "setup": "Progress to the LONG lever: the top "
                             "FOOT (not the knee) rests on the bench."})],
-        3: [("nordic_curl", {"sets": 3, "reps": "6-8", "rpe": "8"}),
+        3: [("leg_extension", {"sets": 3, "reps": "10-12", "rpe": "8"}),
+            ("nordic_curl", {"sets": 3, "reps": "6-8", "rpe": "8"}),
             ("copenhagen", {"sets": 2, "reps": "20-25 s/side", "rpe": "8",
                             "setup": "Long lever (foot on the bench)."})],
         4: [("nordic_curl", {"sets": 2, "reps": "5-6", "rpe": "8",
@@ -308,147 +239,235 @@ def _leg_day(week):
             "stretch_quad", "stretch_hamstring", "stretch_calf",
             "breathing_reset"]),
     ]
-    return _day(DAY_FOCUS["Tuesday"], sections)
+    return _day(DAY_FOCUS["Monday"], sections)
 
 
-def _back_day(week):
-    """Wednesday — BACK. Vertical pull + horizontal rows + biceps."""
+# ---------------------------------------------------------------------
+# TUESDAY — BALANCE & STABILITY (knee proprioception + shoulder stability)
+# ---------------------------------------------------------------------
+def _balance_stability_day(week):
     w = week
-    sections = [
-        ("Warm-Up", ["cardio_warmup_20"]),
-        ("Mobility", ["cat_cow", "open_book"]),
-        ("Activation", [
-            ("scap_pushup", {"sets": 2}),
-            ("band_pull_apart", {"sets": 2})]),
-    ]
-    if w == 4:
-        sections.append(("Assessment", [
-            ("pullup", {"sets": 1, "reps": "TEST — max strict reps (record "
-                        "the number + assist used)", "rpe": "9",
-                        "purpose": "Back-day benchmark: strict neutral-grip "
-                        "reps to one shy of failure."})]))
-    strength = {
-        1: [("pullup", {"sets": 4, "reps": "5-8", "rpe": "7-8",
-                        "purpose": "Set the assist for 5-8 strict reps; it "
-                        "shrinks every week."}),
-            ("lat_pulldown_machine", {"sets": 3, "reps": "10", "rpe": "7"}),
-            ("seated_cable_row", {"sets": 3, "reps": "10", "rpe": "7"}),
-            ("chest_supported_row", {"sets": 3, "reps": "10", "rpe": "7",
-                                     "purpose": "New: heavy strict rowing "
-                                     "with zero low-back cost."}),
-            ("back_extension_45", {"sets": 3, "reps": "12", "rpe": "7"}),
-            ("db_curl", {"sets": 3, "reps": "10/side", "rpe": "7"})],
-        2: [("pullup", {"sets": 4, "reps": "5-8", "rpe": "8",
-                        "purpose": "One notch less assist; keep the 3-s "
-                        "negatives."}),
-            ("chest_supported_row", {"sets": 4, "reps": "8-10", "rpe": "7-8"}),
-            ("lat_pulldown_machine", {"sets": 3, "reps": "10", "rpe": "7-8"}),
-            ("seated_cable_row", {"sets": 3, "reps": "10", "rpe": "7-8"}),
-            ("back_extension_45", {"sets": 3, "reps": "12", "rpe": "7-8",
-                                   "equipment": "Plate hugged to chest"}),
-            ("db_curl", {"sets": 3, "reps": "10/side", "rpe": "7-8"})],
-        3: [("pullup", {"sets": 4, "reps": "max strict (leave 1 in the "
-                        "tank)", "rpe": "8",
-                        "purpose": "Minimal assist — or bodyweight with "
-                        "slow negatives on the last set."}),
-            ("chest_supported_row", {"sets": 4, "reps": "8", "rpe": "8"}),
-            ("lat_pulldown_machine", {"sets": 3, "reps": "8-10", "rpe": "8"}),
-            ("seated_cable_row", {"sets": 3, "reps": "8-10", "rpe": "8"}),
-            ("back_extension_45", {"sets": 3, "reps": "10-12", "rpe": "8",
-                                   "equipment": "Heavier plate"}),
-            ("db_curl", {"sets": 4, "reps": "10/side", "rpe": "8"})],
-        4: [("chest_supported_row", {"sets": 3, "reps": "10", "rpe": "7"}),
-            ("seated_cable_row", {"sets": 3, "reps": "10", "rpe": "7",
-                                  "tempo": "2-2-2-1",
-                                  "purpose": "Variation: 2-s pause on the "
-                                  "ribs every rep."}),
-            ("lat_pulldown_machine", {"sets": 2, "reps": "12", "rpe": "6-7"}),
-            ("db_curl", {"sets": 3, "reps": "10/side", "rpe": "7"})],
+    knee_balance = {
+        1: [("sl_balance", {"sets": 3, "reps": "30 s/side", "rpe": "5",
+                            "purpose": "Week 1: stable ground, eyes open — "
+                            "own the quiet stand first."}),
+            ("sl_reach", {"sets": 2}),
+            ("single_leg_rdl", {"sets": 2, "reps": "6/side", "rpe": "6",
+                                "equipment": "Light dumbbell",
+                                "purpose": "Balance-focused here: slow, "
+                                "perfect, light."}),
+            ("tke", {"sets": 2}),
+            ("wall_sit", {"sets": 2, "reps": "40 s", "rpe": "6"})],
+        2: [("sl_balance", {"sets": 3, "reps": "30 s/side, eyes CLOSED",
+                            "rpe": "6",
+                            "purpose": "Progression: eyes closed — the "
+                            "knee's sensors must do all the work."}),
+            ("sl_reach", {"sets": 2, "reps": "5 reaches × 3 directions/side, "
+                          "longer reaches"}),
+            ("single_leg_rdl", {"sets": 3, "reps": "6/side", "rpe": "6-7",
+                                "equipment": "Light dumbbell"}),
+            ("tke", {"sets": 2}),
+            ("wall_sit", {"sets": 3, "reps": "45 s", "rpe": "6-7"})],
+        3: [("sl_balance_perturb", {"sets": 3, "reps": "30 s/side",
+                                    "purpose": "Reactive week: ball tosses "
+                                    "and head turns; add a folded towel "
+                                    "underfoot on the last set."}),
+            ("sl_reach", {"sets": 2, "equipment": "Dumbbell at chest"}),
+            ("single_leg_rdl", {"sets": 3, "reps": "6-8/side", "rpe": "7",
+                                "equipment": "Moderate dumbbell"}),
+            ("lateral_step_up", {"sets": 2, "reps": "8/side", "rpe": "6-7",
+                                 "purpose": "Control focus: slow lowering, "
+                                 "frozen pelvis — this is a balance "
+                                 "exercise wearing a strength costume."}),
+            ("spanish_squat", {"sets": 2, "reps": "40 s iso hold", "rpe": "7"})],
+        4: [("sl_balance_perturb", {"sets": 2, "reps": "30 s/side",
+                                    "rpe": "6"}),
+            ("sl_reach", {"sets": 2}),
+            ("single_leg_rdl", {"sets": 2, "reps": "6/side", "rpe": "6",
+                                "equipment": "Light dumbbell"}),
+            ("wall_sit", {"sets": 2, "reps": "40 s", "rpe": "6"})],
     }[w]
-    sections += [
-        ("Strength", strength),
-        ("Core", [("cable_pallof", {"sets": 3,
-                                    "reps": "10/side" if w < 3
-                                    else "10/side (split stance)"})]),
-        ("Conditioning", [
-            ("bike_intervals", {"reps": f"{8 + (w in (2, 3)) * 2} rounds",
-                                "rpe": "8 work",
-                                "purpose": "Optional finisher."})]),
-        ("Cool-Down & Stretch", [
-            "stretch_hamstring", "stretch_glute", "breathing_reset"]),
-    ]
-    return _day(DAY_FOCUS["Wednesday"], sections)
-
-
-def _shoulder_day(week):
-    """Thursday — SHOULDERS. Delts + traps + the rotator-cuff insurance
-    block. Two days before the match: moderate legs-free work only."""
-    w = week
-    sections = [
+    shoulder_stab = {
+        1: [("wall_slide", {"sets": 2}),
+            ("scap_pushup", {"sets": 2, "reps": "12"}),
+            ("band_er", {"sets": 3, "rpe": "6"}),
+            ("band_ir", {"sets": 3, "rpe": "6"}),
+            ("bird_dog", {"sets": 2})],
+        2: [("wall_slide", {"sets": 2, "equipment": "Mini-band around wrists"}),
+            ("scap_pushup", {"sets": 2, "reps": "12"}),
+            ("band_er_90", {"sets": 2, "reps": "12", "rpe": "6-7"}),
+            ("band_ir", {"sets": 3, "rpe": "6-7"}),
+            ("prone_ytw", {"sets": 2})],
+        3: [("wall_slide", {"sets": 2, "equipment": "Mini-band around wrists"}),
+            ("band_er_90", {"sets": 3, "reps": "12", "rpe": "7"}),
+            ("cable_er", {"sets": 2, "rpe": "7"}),
+            ("prone_ytw", {"sets": 2}),
+            ("bird_dog", {"sets": 2, "reps": "10/side"})],
+        4: [("wall_slide", {"sets": 2}),
+            ("band_er", {"sets": 2, "rpe": "6"}),
+            ("band_ir", {"sets": 2, "rpe": "6"}),
+            ("prone_ytw", {"sets": 2,
+                           "purpose": "Deload week — quality letters, "
+                           "gravity only."})],
+    }[w]
+    return _day(DAY_FOCUS["Tuesday"], [
         ("Warm-Up", ["cardio_warmup_20"]),
         ("Mobility", ["cat_cow", "open_book"]),
-        ("Activation", [
-            ("wall_slide", {"sets": 2}),
-            ("band_pull_apart", {"sets": 2})]),
-        ("Shoulder Rehabilitation", [
-            ("band_er_90", {"sets": 2, "reps": "12", "rpe": "6-7"}),
-            ("cable_er", {"sets": 2, "rpe": "7"})]),
-    ]
-    if w == 4:
-        sections.append(("Assessment", [
-            ("assess_plank", {})]))
+        ("Balance", knee_balance),
+        ("Shoulder Rehabilitation", shoulder_stab),
+        ("Core", [
+            ("pallof_press", {"sets": 3}),
+            ("side_plank", {"sets": 2, "reps": "30-40 s/side", "rpe": "6-7"})]),
+        ("Cool-Down & Stretch", [
+            "stretch_glute", "stretch_chest", "breathing_reset"]),
+    ])
+
+
+# ---------------------------------------------------------------------
+# WEDNESDAY — SHOULDER STRENGTH (heavy)
+# ---------------------------------------------------------------------
+def _shoulder_strength_day(week):
+    w = week
     strength = {
         1: [("db_shoulder_press", {"sets": 4, "reps": "8", "rpe": "7",
                                    "purpose": "The day's anchor lift — "
                                    "neutral grip, elbows forward."}),
             ("lateral_raise", {"sets": 4, "reps": "12-15", "rpe": "7"}),
+            ("seated_cable_row", {"sets": 3, "reps": "10", "rpe": "7",
+                                  "purpose": "Rows ARE shoulder training: "
+                                  "they build the wall behind the joint."}),
             ("rear_delt_fly", {"sets": 3, "reps": "15", "rpe": "7"}),
-            ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "7"}),
-            ("db_shrug", {"sets": 3, "reps": "12-15", "rpe": "7",
-                          "purpose": "New: vertical-only trap work to "
-                          "finish the day."})],
+            ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "7"})],
         2: [("db_shoulder_press", {"sets": 4, "reps": "8", "rpe": "7-8",
                                    "equipment": "Heavier DBs than Week 1"}),
             ("lateral_raise", {"sets": 4, "reps": "12", "rpe": "7-8"}),
+            ("chest_supported_row", {"sets": 4, "reps": "8-10", "rpe": "7-8"}),
             ("scaption_raise", {"sets": 3, "reps": "10-12", "rpe": "7"}),
-            ("rear_delt_fly", {"sets": 3, "reps": "12-15", "rpe": "7-8"}),
             ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "7-8"}),
             ("db_shrug", {"sets": 3, "reps": "12", "rpe": "7-8"})],
         3: [("db_shoulder_press", {"sets": 5, "reps": "6", "rpe": "8",
                                    "purpose": "Top pressing week — "
                                    "heaviest clean sixes, zero grinding."}),
             ("lateral_raise", {"sets": 4, "reps": "10-12", "rpe": "8"}),
+            ("chest_supported_row", {"sets": 4, "reps": "8", "rpe": "8"}),
             ("rear_delt_fly", {"sets": 4, "reps": "12", "rpe": "8"}),
             ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "8"}),
             ("db_shrug", {"sets": 4, "reps": "10-12", "rpe": "8"})],
         4: [("db_shoulder_press", {"sets": 3, "reps": "8", "rpe": "7",
                                    "purpose": "Week-2 weights at perfect "
-                                   "speed."}),
+                                   "speed — stay crisp on test week."}),
             ("lateral_raise", {"sets": 3, "reps": "12-15", "rpe": "7"}),
-            ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "7"}),
-            ("prone_ytw", {"sets": 2,
-                           "purpose": "Cuff deload — quality letters, "
-                           "gravity only."})],
+            ("seated_cable_row", {"sets": 3, "reps": "10", "rpe": "7",
+                                  "tempo": "2-2-2-1",
+                                  "purpose": "Variation: 2-s pause on the "
+                                  "ribs every rep."}),
+            ("cable_face_pull", {"sets": 3, "reps": "12", "rpe": "7"})],
     }[w]
-    sections += [
+    return _day(DAY_FOCUS["Wednesday"], [
+        ("Warm-Up", ["cardio_warmup_20"]),
+        ("Mobility", ["cat_cow", "open_book"]),
+        ("Activation", [
+            ("band_pull_apart", {"sets": 2}),
+            ("wall_slide", {"sets": 2})]),
+        ("Shoulder Rehabilitation", [
+            ("band_er_90", {"sets": 2, "reps": "12", "rpe": "6-7"}),
+            ("cable_er", {"sets": 2, "rpe": "7"})]),
         ("Strength", strength),
-        ("Core", [("side_plank", {"sets": 2, "reps": "35-40 s/side",
-                                  "rpe": "7"})]),
+        ("Core", [
+            ("plank_tap", {"sets": 2, "reps": "10 taps/side", "rpe": "7"})]),
         ("Functional Finisher", [
             ("farmer_carry", {"sets": 3, "reps": "40 m",
-                              "rpe": "7-8" if w != 3 else "8"})]),
+                              "rpe": "8" if w == 3 else "7-8"})]),
         ("Cool-Down & Stretch", [
             "stretch_chest", "cross_body_stretch", "breathing_reset"]),
+    ])
+
+
+# ---------------------------------------------------------------------
+# THURSDAY — BALANCE & CONTROL (landings, reactive, closed-chain shoulder)
+# ---------------------------------------------------------------------
+def _balance_control_day(week):
+    w = week
+    sections = [
+        ("Warm-Up", ["cardio_warmup_20"]),
+        ("Mobility", ["leg_swings", "ankle_rocks"]),
+        ("Activation", [
+            ("band_walk", {"sets": 2}),
+            ("deadbug", {"sets": 2})]),
+    ]
+    if w == 4:
+        sections.append(("Assessment Battery (fresh + fully warm)", [
+            ("assess_y_balance", {}),
+            ("assess_sl_hop", {}),
+            ("assess_plank", {})]))
+    else:
+        landing = {
+            1: [("hop_stick", {"sets": 3, "reps": "4/side", "rpe": "7",
+                               "purpose": "Small forward hops, frozen 2-s "
+                               "landings — quality is the only score."})],
+            2: [("hop_stick", {"sets": 3, "reps": "5/side", "rpe": "7",
+                               "purpose": "Slightly further — landings "
+                               "still silent and frozen."}),
+                ("lateral_hop_stick", {"sets": 2, "reps": "4/direction/side",
+                                       "rpe": "7"})],
+            3: [("lateral_hop_stick", {"sets": 3, "reps": "4/direction/side",
+                                       "rpe": "7-8"}),
+                ("skater_bound", {"sets": 3, "reps": "3/side", "rpe": "7-8",
+                                  "purpose": "Reactive week: short bounds, "
+                                  "frozen landings, film the knee. Kept "
+                                  "sub-maximal two days before the "
+                                  "match."})],
+        }[w]
+        sections.append(("Landing Mechanics (fresh)", landing))
+        balance = {
+            1: [("sl_balance", {"sets": 2, "reps": "30 s/side", "rpe": "5"}),
+                ("sl_reach", {"sets": 2})],
+            2: [("sl_balance_perturb", {"sets": 2, "reps": "30 s/side, "
+                                        "head turns"}),
+                ("sl_reach", {"sets": 2})],
+            3: [("sl_balance_perturb", {"sets": 3, "reps": "30 s/side, "
+                                        "ball toss + eyes-closed finish"}),
+                ("sl_reach", {"sets": 2, "equipment": "Dumbbell at chest"})],
+        }[w]
+        sections.append(("Balance", balance))
+    shoulder_cc = {
+        1: [("plank_tap", {"sets": 2, "reps": "8 taps/side", "rpe": "6-7"}),
+            ("incline_pushup", {"sets": 3, "reps": "10-12", "rpe": "6-7",
+                                "purpose": "Closed-chain shoulder stability "
+                                "— the blade moves freely under load."}),
+            ("bird_dog", {"sets": 2})],
+        2: [("plank_tap", {"sets": 3, "reps": "8 taps/side", "rpe": "7"}),
+            ("incline_pushup", {"sets": 3, "reps": "12", "rpe": "7"}),
+            ("side_plank_leglift", {"sets": 2, "reps": "6 lifts/side",
+                                    "rpe": "7"})],
+        3: [("plank_tap", {"sets": 3, "reps": "10 taps/side", "rpe": "7",
+                           "purpose": "Feet narrower this week — more "
+                           "anti-rotation demand."}),
+            ("pushup", {"sets": 3, "reps": "8-12", "rpe": "7",
+                        "purpose": "Graduated from the incline — full "
+                        "push-ups if the shoulder stays silent."}),
+            ("side_plank_leglift", {"sets": 2, "reps": "8 lifts/side",
+                                    "rpe": "7-8"})],
+        4: [("plank_tap", {"sets": 2, "reps": "8 taps/side", "rpe": "6-7"}),
+            ("suitcase_carry", {"sets": 2, "reps": "30 m/side", "rpe": "7"})],
+    }[w]
+    sections += [
+        ("Shoulder Rehabilitation", shoulder_cc),
+        ("Conditioning (Football Prep)", [
+            ("shadow_footwork", {"reps": "6-8 min, crisp",
+                                 "rpe": "6-7"})]),
+        ("Cool-Down & Stretch", [
+            "stretch_hip_flexor", "stretch_calf", "breathing_reset"]),
     ]
     return _day(DAY_FOCUS["Thursday"], sections)
 
 
 def _week(n):
     return {
-        "Monday": _chest_day(n),
-        "Tuesday": _leg_day(n),
-        "Wednesday": _back_day(n),
-        "Thursday": _shoulder_day(n),
+        "Monday": _leg_strength_day(n),
+        "Tuesday": _balance_stability_day(n),
+        "Wednesday": _shoulder_strength_day(n),
+        "Thursday": _balance_control_day(n),
         "Friday": _friday(n),
         "Saturday": _saturday(n),
         "Sunday": _sunday(n),
