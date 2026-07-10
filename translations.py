@@ -60,6 +60,8 @@ UI = {
                          "ar": "🎉 اكتملت الجلسة — هكذا يُصنع الأبطال! نلقاك في "
                                 "الجلسة القادمة."},
     "quote_prefix":     {"en": "💪 Today's fuel", "ar": "💪 وقود اليوم"},
+    "last_time":        {"en": "Last time", "ar": "آخر مرة"},
+    "pain_short":       {"en": "pain", "ar": "ألم"},
 
     # tracker
     "tracker":          {"en": "📋 Tracker", "ar": "📋 المتابعة"},
@@ -320,10 +322,12 @@ UI = {
                                 "متوسط · قطع جزئي في الرباط الصليبي الأمامي + خلع سابق في الكتف "
                                 "الأيمن (علاج تحفظي، مسموح بالتدريب)."},
     "appearance":       {"en": "Appearance", "ar": "المظهر"},
-    "appearance_note":  {"en": "Dark / light mode: open the **☰ menu (top-right) → Settings → "
-                                "Theme**. All charts adapt automatically.",
-                         "ar": "الوضع الداكن/الفاتح: افتح **قائمة ☰ (أعلى الصفحة) → Settings → "
-                                "Theme**. كل الرسوم البيانية تتكيف تلقائيًا."},
+    "appearance_note":  {"en": "The app uses one fixed theme: the energetic, motivation-focused "
+                                "gym look — bold orange on a warm light background, designed to "
+                                "keep you fired up during training.",
+                         "ar": "يستخدم التطبيق مظهرًا واحدًا ثابتًا: المظهر التحفيزي الرياضي — "
+                                "برتقالي جريء على خلفية فاتحة دافئة، مصمم ليبقيك متحمسًا أثناء "
+                                "التدريب."},
     "export":           {"en": "Export data", "ar": "تصدير البيانات"},
     "export_note":      {"en": "Everything is stored locally in `gym_rehab.db` (SQLite) next to "
                                 "the app — nothing leaves your machine.",
@@ -407,6 +411,7 @@ SECTION_AR = {
 
 EXERCISE_NAME_AR = {
     "bike_warmup": "دراجة ثابتة — دوران خفيف",
+    "cardio_warmup_20": "إحماء كارديو — ٢٠ دقيقة دراجة أو جري خفيف",
     "brisk_march": "مشية ديناميكية + هرولة خفيفة في المكان",
     "leg_swings": "أرجحة الرجل للأمام والخلف",
     "lateral_leg_swings": "أرجحة الرجل الجانبية",

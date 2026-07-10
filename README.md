@@ -21,9 +21,16 @@ streamlit run app.py
 ```
 
 Open the URL Streamlit prints (works great on iPhone via your computer's
-local network address). The app opens in a clean **light theme** by
-default; switch to dark any time via **☰ menu → Settings → Theme** — all
-charts adapt automatically.
+local network address). The app uses **one fixed theme**: an energetic,
+motivation-focused light look — bold orange accents, a daily motivational
+quote banner, and a fiery progress bar — designed to keep you fired up
+during training.
+
+**Session flow:** every training day starts with a **20-minute cardio
+warm-up (bike or easy run — your choice)**, then mobility, activation,
+the weighted work, core/balance, and stretching. The tracker also shows a
+**"Last time"** hint per exercise (previous weight, sets × reps, pain) so
+you always know what to load next.
 
 ## The program
 

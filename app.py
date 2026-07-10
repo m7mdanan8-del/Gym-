@@ -73,12 +73,9 @@ def L(key: str) -> str:
 
 
 def is_dark() -> bool:
-    """Follow the Streamlit theme the user selected (menu -> Settings).
-    The app ships with a light default; charts match whichever is active."""
-    try:
-        return getattr(st.context.theme, "type", "light") == "dark"
-    except Exception:
-        return False
+    """The app uses ONE fixed theme: the light, motivation-focused gym
+    look. Charts always render on the light palette to match."""
+    return False
 
 
 def bodyweight_kg() -> float:
@@ -220,7 +217,7 @@ def render_exercise_guide(ex: dict):
         if ex.get("video_url"):
             st.video(ex["video_url"])
         st.link_button(L("watch_youtube"), ex["youtube"],
-                       use_container_width=True)
+                       width="stretch")
 
 
 # ----------------------------------------------------------------------
@@ -249,6 +246,16 @@ def render_tracker(ex, log_date, week, day, section, existing):
               args=(kbase, log_date, week, day, section, name))
 
     st.markdown(f"##### {L('tracker')}")
+    last = db.last_exercise_entry(name, log_date)
+    if last:
+        bits = [last["log_date"]]
+        if last.get("weight"):
+            bits.append(f"{last['weight']:g} kg")
+        if last.get("sets_done") or last.get("reps_done"):
+            bits.append(f"{last.get('sets_done') or '?'} × "
+                        f"{last.get('reps_done') or '?'}")
+        bits.append(f"{L('pain_short')} {int(last.get('pain') or 0)}/10")
+        st.caption(f"⏮ {L('last_time')}: " + " · ".join(bits))
     c0, c1, c2 = st.columns([1.3, 1, 1])
     with c0:
         st.checkbox(L("completed"), key=kbase + "done",
@@ -363,7 +370,7 @@ def page_workout():
             L("activity"), list(CARDIO_MET.keys()),
             format_func=lambda a: CARDIO_AR.get(a, a) if LANG == "ar" else a)
         mins = cc2.number_input(L("minutes"), 1.0, 240.0, 20.0, 1.0)
-        sub = cc3.form_submit_button(L("log_cardio"), use_container_width=True)
+        sub = cc3.form_submit_button(L("log_cardio"), width="stretch")
         if sub:
             kcal = cardio_kcal(CARDIO_MET[act], mins, kg)
             db.add_cardio(log_date, act, mins, round(kcal, 0))
@@ -419,7 +426,7 @@ def page_program():
                         L("rpe"): ex["rpe"],
                     })
             if rows:
-                st.dataframe(pd.DataFrame(rows), use_container_width=True,
+                st.dataframe(pd.DataFrame(rows), width="stretch",
                              hide_index=True)
             else:
                 st.caption(L("rest_day_caption"))
@@ -465,7 +472,7 @@ def page_dashboard():
         st.plotly_chart(charts.bar(
             recent, "log_date", "pct", L("ch_daily_completion"), "blue",
             "%", dark, pct=True, hover_fmt="%{y:.0f}%"),
-            use_container_width=True)
+            width="stretch")
     with c2:
         if not comp.empty:
             wk = comp.copy()
@@ -476,17 +483,17 @@ def page_dashboard():
         st.plotly_chart(charts.bar(
             wkg, "week_start", "pct", L("ch_weekly_completion"), "blue",
             "%", dark, pct=True, hover_fmt="%{y:.0f}%"),
-            use_container_width=True)
+            width="stretch")
 
     # ---- pain + body weight ----
     c3, c4 = st.columns(2)
     with c3:
         st.plotly_chart(charts.pain_chart(db.pain_trend_df(), dark,
                                           title=L("ch_pain")),
-                        use_container_width=True)
+                        width="stretch")
     with c4:
         st.plotly_chart(charts.weight_chart(wdf, dark, title=L("ch_weight")),
-                        use_container_width=True)
+                        width="stretch")
 
     # ---- calories + cardio ----
     cdf = db.cardio_df()
@@ -507,7 +514,7 @@ def page_dashboard():
     with c5:
         st.plotly_chart(charts.bar(
             cal_df, "log_date", "kcal", L("ch_calories"), "orange", "kcal",
-            dark, hover_fmt="%{y:.0f} kcal"), use_container_width=True)
+            dark, hover_fmt="%{y:.0f} kcal"), width="stretch")
     with c6:
         if not cdf.empty:
             mins = (cdf.groupby(cdf["log_date"].dt.to_period("W").dt.start_time)
@@ -517,7 +524,7 @@ def page_dashboard():
             mins = pd.DataFrame()
         st.plotly_chart(charts.bar(
             mins, "week_start", "minutes", L("ch_cardio_min"), "aqua",
-            "min", dark, hover_fmt="%{y:.0f} min"), use_container_width=True)
+            "min", dark, hover_fmt="%{y:.0f} min"), width="stretch")
 
     # ---- recovery-linked charts ----
     rdf = db.recovery_df()
@@ -526,13 +533,13 @@ def page_dashboard():
         steps = rdf[rdf["steps"].notna()] if not rdf.empty else pd.DataFrame()
         st.plotly_chart(charts.bar(
             steps, "log_date", "steps", L("ch_steps"), "aqua", "",
-            dark, hover_fmt="%{y:,.0f}"), use_container_width=True)
+            dark, hover_fmt="%{y:,.0f}"), width="stretch")
     with c8:
         rec = rdf[rdf["recovery_score"].notna()] if not rdf.empty else pd.DataFrame()
         st.plotly_chart(charts.line(
             rec, "log_date", "recovery_score", L("ch_recovery"),
             "violet", "/10", dark, y_range=[0, 10.5],
-            hover_fmt="%{y:.0f}/10"), use_container_width=True)
+            hover_fmt="%{y:.0f}/10"), width="stretch")
 
 
 # ----------------------------------------------------------------------
@@ -571,7 +578,7 @@ def page_recovery():
         notes = c9.text_input(L("notes"), value=prev.get("notes") or "",
                               placeholder=L("rec_notes_ph"))
         bw = c10.number_input(L("bw_kg"), 40.0, 150.0, bodyweight_kg(), 0.1)
-        if st.form_submit_button(L("save_recovery"), use_container_width=True):
+        if st.form_submit_button(L("save_recovery"), width="stretch"):
             db.upsert_recovery(log_date, sleep_hours=sleep, water_l=water,
                                protein_g=protein, steps=steps,
                                soreness=soreness, energy=energy,
@@ -594,24 +601,24 @@ def page_recovery():
         st.plotly_chart(charts.line(rdf, "log_date", "sleep_hours",
                                     L("ch_sleep"), "violet", "h", dark,
                                     hover_fmt="%{y:.1f} h"),
-                        use_container_width=True)
+                        width="stretch")
         st.plotly_chart(charts.line(rdf, "log_date", "soreness",
                                     L("ch_soreness"), "red", "/10",
                                     dark, y_range=[0, 10.5],
                                     hover_fmt="%{y:.0f}/10"),
-                        use_container_width=True)
+                        width="stretch")
     with c2:
         st.plotly_chart(charts.line(rdf, "log_date", "energy",
                                     L("ch_energy"), "yellow", "/10", dark,
                                     y_range=[0, 10.5],
                                     hover_fmt="%{y:.0f}/10"),
-                        use_container_width=True)
+                        width="stretch")
         fb = rdf[rdf["football_rating"].notna()]
         st.plotly_chart(charts.line(fb, "log_date", "football_rating",
                                     L("ch_football"), "aqua",
                                     "/10", dark, y_range=[0, 10.5],
                                     hover_fmt="%{y:.0f}/10"),
-                        use_container_width=True)
+                        width="stretch")
 
 
 # ----------------------------------------------------------------------
@@ -670,14 +677,14 @@ def page_edit():
 
                 b1, b2, b3 = st.columns(3)
                 if b1.button(L("save_changes"), key=f"sv{week}{day}{si}{ei}",
-                             use_container_width=True):
+                             width="stretch"):
                     ex.update(edited)
                     ex["execution"] = notes_field
                     db.save_day_program(week, day, data)
                     st.success(L("saved"))
                     st.rerun()
                 if b2.button(L("delete_ex"), key=f"dl{week}{day}{si}{ei}",
-                             use_container_width=True):
+                             width="stretch"):
                     section["exercises"].pop(ei)
                     db.save_day_program(week, day, data)
                     st.rerun()
@@ -691,7 +698,7 @@ def page_edit():
                 if repl != "—":
                     if st.button(L("confirm_replace"),
                                  key=f"rpb{week}{day}{si}{ei}",
-                                 use_container_width=True):
+                                 width="stretch"):
                         import copy as _copy
                         new_ex = _copy.deepcopy(EXERCISES[repl])
                         new_ex["id"] = repl
@@ -717,7 +724,7 @@ def page_edit():
     with a3:
         st.write("")
         st.write("")
-        if st.button(L("add_btn"), use_container_width=True):
+        if st.button(L("add_btn"), width="stretch"):
             import copy as _copy
             new_ex = _copy.deepcopy(EXERCISES[new_id])
             new_ex["id"] = new_id
@@ -735,12 +742,12 @@ def page_edit():
         r1, r2 = st.columns(2)
         confirm = st.checkbox(L("reset_confirm"))
         if r1.button(L("reset_day"), disabled=not confirm,
-                     use_container_width=True):
+                     width="stretch"):
             from program import default_program
             db.save_day_program(week, day, default_program()[week][day])
             st.rerun()
         if r2.button(L("reset_all"), disabled=not confirm,
-                     use_container_width=True):
+                     width="stretch"):
             db.seed_program_if_missing(force=True)
             st.rerun()
 

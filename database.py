@@ -209,6 +209,19 @@ def logs_df() -> pd.DataFrame:
     return df
 
 
+def last_exercise_entry(exercise_name: str, before_date: str) -> dict | None:
+    """Most recent completed log of this exercise before the given date —
+    powers the 'Last time: X kg' hint in the workout tracker."""
+    with _conn() as c:
+        c.row_factory = sqlite3.Row
+        row = c.execute(
+            "SELECT log_date, weight, pain, sets_done, reps_done "
+            "FROM exercise_log WHERE exercise_name=? AND log_date<? "
+            "AND completed=1 ORDER BY log_date DESC LIMIT 1",
+            (exercise_name, before_date)).fetchone()
+    return dict(row) if row else None
+
+
 # ---------------------------------------------------------------------
 # Recovery / weight / cardio
 # ---------------------------------------------------------------------

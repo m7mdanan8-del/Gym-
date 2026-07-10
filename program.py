@@ -153,7 +153,7 @@ def _week1():
     e = {"rpe": "5-6"}
     return {
         "Monday": _day(DAY_FOCUS["Monday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["ankle_rocks", "leg_swings"]),
             ("Activation", [
                 ("quad_set_ssq", {}),
@@ -182,7 +182,7 @@ def _week1():
                 "stretch_quad", "stretch_calf", "breathing_reset"]),
         ]),
         "Tuesday": _day(DAY_FOCUS["Tuesday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["cat_cow", "open_book"]),
             ("Activation", [
                 ("scap_pushup", {"sets": 2}),
@@ -208,7 +208,7 @@ def _week1():
                 "stretch_chest", "cross_body_stretch", "breathing_reset"]),
         ]),
         "Wednesday": _day(DAY_FOCUS["Wednesday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["lateral_leg_swings", "worlds_greatest"]),
             ("Activation", [
                 ("bridge_march", {"sets": 2}),
@@ -233,7 +233,7 @@ def _week1():
                 "stretch_hamstring", "stretch_glute", "breathing_reset"]),
         ]),
         "Thursday": _day(DAY_FOCUS["Thursday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["leg_swings", "ankle_rocks"]),
             ("Activation", [
                 ("monster_walk", {"sets": 2}),
@@ -264,7 +264,7 @@ def _week1():
 def _week2():
     return {
         "Monday": _day(DAY_FOCUS["Monday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["ankle_rocks", "leg_swings"]),
             ("Activation", [
                 ("glute_bridge", {"sets": 2}),
@@ -297,7 +297,7 @@ def _week2():
                 "stretch_quad", "stretch_calf", "breathing_reset"]),
         ]),
         "Tuesday": _day(DAY_FOCUS["Tuesday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["cat_cow", "open_book"]),
             ("Activation", [
                 ("scap_pushup", {"sets": 2}),
@@ -324,7 +324,7 @@ def _week2():
                 "stretch_chest", "cross_body_stretch", "breathing_reset"]),
         ]),
         "Wednesday": _day(DAY_FOCUS["Wednesday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["lateral_leg_swings", "worlds_greatest"]),
             ("Activation", [
                 ("bridge_march", {"sets": 2}),
@@ -355,7 +355,7 @@ def _week2():
                 "stretch_hamstring", "stretch_glute", "breathing_reset"]),
         ]),
         "Thursday": _day(DAY_FOCUS["Thursday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["leg_swings", "ankle_rocks"]),
             ("Activation", [
                 ("monster_walk", {"sets": 2, "reps": "12 steps each way"}),
@@ -389,7 +389,7 @@ def _week2():
 def _week3():
     return {
         "Monday": _day(DAY_FOCUS["Monday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["ankle_rocks", "worlds_greatest"]),
             ("Activation", [
                 ("glute_bridge", {"sets": 2}),
@@ -427,7 +427,7 @@ def _week3():
                 "stretch_quad", "stretch_calf", "breathing_reset"]),
         ]),
         "Tuesday": _day(DAY_FOCUS["Tuesday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["cat_cow", "open_book"]),
             ("Activation", [
                 ("scap_pushup", {"sets": 2, "reps": "12"}),
@@ -459,7 +459,7 @@ def _week3():
                 "stretch_chest", "cross_body_stretch", "breathing_reset"]),
         ]),
         "Wednesday": _day(DAY_FOCUS["Wednesday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["lateral_leg_swings", "worlds_greatest"]),
             ("Activation", [
                 ("bridge_march", {"sets": 2}),
@@ -493,7 +493,7 @@ def _week3():
                 "stretch_hamstring", "stretch_glute", "breathing_reset"]),
         ]),
         "Thursday": _day(DAY_FOCUS["Thursday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["leg_swings", "ankle_rocks"]),
             ("Activation", [
                 ("band_walk", {"sets": 2}),
@@ -532,7 +532,7 @@ def _week3():
 def _week4():
     return {
         "Monday": _day(DAY_FOCUS["Monday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["ankle_rocks", "leg_swings"]),
             ("Activation", [
                 ("glute_bridge", {"sets": 2}),
@@ -558,7 +558,7 @@ def _week4():
                 "stretch_quad", "stretch_calf", "breathing_reset"]),
         ]),
         "Tuesday": _day(DAY_FOCUS["Tuesday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["cat_cow", "open_book"]),
             ("Activation", [
                 ("scap_pushup", {"sets": 2}),
@@ -594,7 +594,7 @@ def _week4():
                 "stretch_chest", "cross_body_stretch", "breathing_reset"]),
         ]),
         "Wednesday": _day(DAY_FOCUS["Wednesday"], [
-            ("Warm-Up", ["bike_warmup"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["lateral_leg_swings", "worlds_greatest"]),
             ("Activation", [
                 ("bridge_march", {"sets": 2}),
@@ -623,7 +623,7 @@ def _week4():
                 "stretch_hamstring", "stretch_glute", "breathing_reset"]),
         ]),
         "Thursday": _day(DAY_FOCUS["Thursday"], [
-            ("Warm-Up", ["brisk_march"]),
+            ("Warm-Up", ["cardio_warmup_20"]),
             ("Mobility", ["leg_swings", "ankle_rocks", "worlds_greatest"]),
             ("Activation", [
                 ("band_walk", {"sets": 2}),

@@ -104,6 +104,43 @@ EXERCISES = {
         "Stationary bike easy spin.",
         yt_query="dynamic warm up march high knees light jog"),
 
+    "cardio_warmup_20": _ex(
+        "Cardio Warm-Up — 20 min Bike or Easy Run", "bike",
+        "Cardiovascular system, whole body",
+        "Your preferred session opener: 20 minutes of bike or easy running "
+        "before the weights. It fully warms the knee and shoulder, burns "
+        "150-250 kcal, and doubles as your daily aerobic base work — so "
+        "the strength session starts with warm, cooperative joints.",
+        1, "20 min", "easy → moderate build", "—", "4-6",
+        "Choose today's tool: stationary bike (saddle set so the knee "
+        "keeps a slight bend at the bottom) or treadmill/flat easy run in "
+        "cushioned shoes.",
+        "Minutes 0-5: very easy — conversation pace. Minutes 5-15: settle "
+        "into a comfortable rhythm (RPE 5-6, short-sentences pace). "
+        "Minutes 15-20: ease back down. Log it in the cardio log below so "
+        "its calories count in your dashboard.",
+        ["First 5 minutes always easy — joints warm before effort",
+         "Bike: smooth circles at 80-90 rpm",
+         "Run: short, quiet steps — no overstriding"],
+        ["Pick the bike on days the knee feels stiff, after football, or "
+         "when yesterday's legs are heavy — same warm-up value, zero "
+         "impact.",
+         "Running is fine for your knee as long as it stays pain-free "
+         "(≤2/10) during AND the next morning."],
+        ["Sprinting cold in the first minutes",
+         "Running through knee pain 'to finish the 20 minutes'",
+         "Arriving at the weights already exhausted — this is a warm-up, "
+         "not a race"],
+        "Run only if pain-free: any knee pain >2/10 while running, or "
+        "swelling the next morning, means bike-only for a week. Never run "
+        "the day after football — that's what Sunday recovery is for.",
+        "Add 2-3 short 30-s pick-ups in the middle once running feels "
+        "easy.",
+        "15 min bike, easy pace only.",
+        "Brisk incline walk 20 min, or rower.",
+        equipment="Stationary bike or treadmill",
+        yt_query="20 minute easy bike warm up before lifting"),
+
     # ================================================================
     # MOBILITY
     # ================================================================

@@ -1,13 +1,16 @@
 [theme]
-# Energetic light "gym motivation" theme — bold orange accents on a warm
-# light background. Users can still switch Dark / Light from the app menu
-# (top-right ⋮ -> Settings -> Theme); charts adapt automatically.
+# The app's single fixed theme: energetic light "gym motivation" look —
+# bold orange accents on a warm light background.
 base = "light"
 primaryColor = "#f04e23"
 backgroundColor = "#fdfcfa"
 secondaryBackgroundColor = "#f6f1ea"
 textColor = "#141414"
 font = "sans serif"
+
+[client]
+# Hide the developer toolbar so the app always shows its own single theme.
+toolbarMode = "minimal"
 
 [server]
 headless = true
