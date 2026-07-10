@@ -36,22 +36,26 @@ you always know what to load next.
 
 | Week | Theme | Emphasis |
 |------|-------|----------|
-| 1 | Load | The muscle-per-day split begins — find your working weight on every machine, RPE 7 |
-| 2 | Overload | Heavier dumbbells & stacks (RPE 7–8); single-leg press and heavy DB RDLs join leg day |
-| 3 | Intensity | Top week (RPE 8): heaviest loads, highest box jumps, skater bounds on leg day |
-| 4 | Peak + Retest | Benchmarks across the split: push-ups (chest), leg battery (legs), strict pull-ups (back), plank (shoulders) |
+| 1 | Load | Strength days at RPE 7 while working weights are set; balance days on stable ground |
+| 2 | Progress | Heavier strength days; balance progresses to eyes-closed holds and head turns |
+| 3 | Advanced | Top loads (RPE 8); reactive balance — ball tosses, cushion stands, bigger landings |
+| 4 | Peak + Retest | Strength tests Monday (wall-sit, calf); balance battery Thursday (Y-balance, hop, plank) |
 
-**Muscle-per-day split (current), dumbbells & machines only:**
-Mon **Chest** (machine press, DB bench, low-incline press, pec-deck,
-triceps pushdowns) · Tue **Legs** (leg press, hack squat, Bulgarians, leg
-extension/curl, calves + Nordics, Copenhagens, box jumps) · Wed **Back**
-(pull-ups, pulldowns, cable + chest-supported rows, back extensions,
-biceps curls) · Thu **Shoulders** (DB press, lateral raises, rear-delt
-fly, face pulls, shrugs + rotator-cuff block) · Fri recovery · Sat
-football · Sun recovery + mobility. Leg day sits four days before the
-match on purpose. Standing guardrails: no behind-the-neck work, no dips,
-no barbell bench, pressing depth capped, active-hang pull-ups, step-down
-box jumps.
+**Strength / balance alternating rhythm (current)** — the physiotherapy
+pattern of one strength day followed by one balance day, focused on the
+three priority areas (shoulders, legs, knees), dumbbells & machines only:
+Mon **Leg & Knee Strength** (leg press, hack squat, Bulgarians, leg
+extension/curl, calves + Nordics, Copenhagens, box jumps) · Tue
+**Balance & Stability** (single-leg balance progressions, Y-reaches,
+single-leg RDLs, TKE + wall slides, cuff work, YTW) · Wed **Shoulder
+Strength** (DB press, lateral raises, rows, rear-delt fly, face pulls,
+shrugs + cuff block) · Thu **Balance & Control** (hop-and-stick landings,
+reactive balance, closed-chain shoulder work, footwork) · Fri recovery ·
+Sat football · Sun recovery + mobility. Leg strength sits five days
+before the match; Thursday's balance work is deliberately low-load.
+Standing guardrails: no behind-the-neck work, no dips, no barbell bench,
+pressing depth capped, step-down box jumps, Nordics never within 48 h of
+a match.
 
 Every exercise includes: target muscle, purpose, sets/reps/tempo/rest/RPE,
 starting position, execution, coaching cues, tips, common mistakes,
