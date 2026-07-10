@@ -15,8 +15,10 @@ import streamlit as st
 
 import charts
 import database as db
+import next_block
 from exercise_library import EXERCISES
 from illustrations import get_svg
+from media import get_photos
 from program import DAYS, DAY_FOCUS, WEEK_THEMES
 from translations import (LANGS, tr, day_label, section_label, focus_label,
                           week_theme, exercise_label, daily_quote)
@@ -182,8 +184,16 @@ def pain_traffic_light(compact: bool = False):
 def render_exercise_guide(ex: dict):
     c1, c2 = st.columns([2, 3], gap="medium")
     with c1:
-        st.markdown(get_svg(ex.get("pattern", "balance")),
-                    unsafe_allow_html=True)
+        photos = get_photos(ex.get("id", ""))
+        if photos:
+            pc = st.columns(len(photos))
+            caps = [L("photo_start"), L("photo_end")]
+            for i, (col, url) in enumerate(zip(pc, photos)):
+                col.image(url, caption=caps[i] if i < 2 else None,
+                          width="stretch")
+        else:
+            st.markdown(get_svg(ex.get("pattern", "balance")),
+                        unsafe_allow_html=True)
         if ex.get("image_url"):
             st.image(ex["image_url"], caption=L("guidance_pic"))
         if ex.get("gif_url"):
@@ -383,8 +393,12 @@ def page_workout():
                     key = (section["name"], ex["name"])
                     is_done = existing.get(key, {}).get("completed")
                     with col, st.container(border=True):
-                        st.markdown(get_svg(ex.get("pattern", "balance")),
-                                    unsafe_allow_html=True)
+                        card_photos = get_photos(ex.get("id", ""))
+                        if card_photos:
+                            st.image(card_photos[0], width="stretch")
+                        else:
+                            st.markdown(get_svg(ex.get("pattern", "balance")),
+                                        unsafe_allow_html=True)
                         st.markdown(f"**{'✅ ' if is_done else ''}"
                                     f"{exercise_label(ex, LANG)}**")
                         st.caption(f"{ex['sets']} × {ex['reps']} · "
@@ -837,6 +851,34 @@ def page_settings():
 
     st.subheader(L("appearance"))
     st.markdown(L("appearance_note"))
+
+    # ---------------- next training block ----------------
+    st.subheader(L("nb_header"))
+    st.caption(L("nb_caption"))
+    blk = int(db.get_setting("block_number", 1))
+    st.markdown(f"**{L('nb_current')}: {blk}**")
+    tests = next_block.collect_tests()
+    if tests:
+        with st.expander(L("nb_tests_header"), expanded=True):
+            for t in tests:
+                st.markdown(f"🏁 **{t['name']}** — {t['result']}"
+                            + (f" · _{t['notes']}_" if t['notes'] else "")
+                            + f"  ({t['date']})")
+    else:
+        st.warning(L("nb_no_tests"))
+    nb_ok = st.checkbox(L("nb_confirm"))
+    if st.button(L("nb_generate"), disabled=not nb_ok, type="primary"):
+        rep = next_block.generate_next_block(save=True)
+        st.success(L("nb_done").format(block=rep["block"],
+                                       start=rep["start_date"]))
+        m1, m2, m3 = st.columns(3)
+        m1.metric(L("nb_m_sugg"), rep["n_suggestions"])
+        m2.metric(L("nb_m_shift"), rep["n_rep_shifts"])
+        m3.metric(L("nb_m_pain"), rep["avg_pain"] if rep["avg_pain"]
+                  is not None else "—")
+        if rep["conservative"]:
+            st.warning(L("nb_conservative"))
+        st.info(L("nb_next_steps"))
 
     st.subheader(L("export"))
     for label, df in [(L("dl_workouts"), db.logs_df()),

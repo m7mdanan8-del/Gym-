@@ -81,6 +81,17 @@ lets you pin a specific video, GIF or picture, which the app embeds).
 - **🛟 Safety Guide** — the pain traffic light (0–2 continue · 3–4 modify ·
   5+ stop), knee and shoulder-specific rules, and reassessment red flags.
 - **⚙️ Settings** — program start date, profile weight, CSV export.
+- **📸 Real exercise photos** — 90 of the 125 exercises show real
+  start/finish demonstration photos (public-domain, from the
+  [free-exercise-db](https://github.com/yuhonas/free-exercise-db)
+  project) in both the grid cards and the exercise guide; rehab-specific
+  drills keep the built-in illustrations.
+- **🔄 Next-block generator** — in Settings, once Week 4's benchmarks are
+  logged, one tap generates the next 4-week block: same split with rep
+  schemes shifted a gear toward strength, a personalised suggested start
+  load stamped on every exercise you logged a weight for (with a pain
+  guard that keeps suggestions conservative when recent pain averaged
+  ≥3/10), and a recap of your latest test results.
 - **🌐 Arabic language option** — a sidebar switcher (English / العربية)
   translates the entire interface, exercise names, section names, week
   themes, day focuses and the full safety guide, and flips the layout to
