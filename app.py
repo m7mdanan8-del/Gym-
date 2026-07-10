@@ -348,18 +348,63 @@ def page_workout():
         st.warning(L("no_program"))
         return
 
+    # ---------------- view toggle: grid (explore) / list ----------------
+    if hasattr(st, "segmented_control"):
+        view = st.segmented_control(
+            L("view_label"), options=["grid", "list"],
+            format_func=lambda v: L(f"view_{v}"), default="grid",
+            key="view_mode")
+    else:
+        view = st.radio(L("view_label"), ["grid", "list"],
+                        format_func=lambda v: L(f"view_{v}"),
+                        horizontal=True, key="view_mode")
+    view = view or "grid"
+
+    def _open_dialog(ex, section_name):
+        """Full guide + tracker in a modal — tracker auto-saves inside."""
+        @st.dialog(exercise_label(ex, LANG), width="large")
+        def _dlg():
+            render_exercise_guide(ex)
+            st.divider()
+            render_tracker(ex, log_date, week, day, section_name, existing)
+            if st.button(L("done_btn"),
+                         key=f"done|{day}|{section_name}|{ex['name']}",
+                         type="primary", width="stretch"):
+                st.rerun()   # closes the dialog and refreshes the grid
+        _dlg()
+
     for section in data["sections"]:
         st.subheader(section_label(section["name"], LANG))
-        for ex in section["exercises"]:
-            key = (section["name"], ex["name"])
-            done_mark = "✅ " if existing.get(key, {}).get("completed") else ""
-            label = (f"{done_mark}**{exercise_label(ex, LANG)}**  —  "
-                     f"{ex['sets']} × {ex['reps']}  ·  RPE {ex['rpe']}")
-            with st.expander(label):
-                render_exercise_guide(ex)
-                st.divider()
-                render_tracker(ex, log_date, week, day, section["name"],
-                               existing)
+        if view == "grid":
+            exs = section["exercises"]
+            for row_start in range(0, len(exs), 3):
+                cols = st.columns(3, gap="small")
+                for col, ex in zip(cols, exs[row_start:row_start + 3]):
+                    key = (section["name"], ex["name"])
+                    is_done = existing.get(key, {}).get("completed")
+                    with col, st.container(border=True):
+                        st.markdown(get_svg(ex.get("pattern", "balance")),
+                                    unsafe_allow_html=True)
+                        st.markdown(f"**{'✅ ' if is_done else ''}"
+                                    f"{exercise_label(ex, LANG)}**")
+                        st.caption(f"{ex['sets']} × {ex['reps']} · "
+                                   f"RPE {ex['rpe']}")
+                        if st.button(
+                                L("open_ex"),
+                                key=f"op|{week}|{day}|{section['name']}|{ex['name']}",
+                                width="stretch"):
+                            _open_dialog(ex, section["name"])
+        else:
+            for ex in section["exercises"]:
+                key = (section["name"], ex["name"])
+                done_mark = "✅ " if existing.get(key, {}).get("completed") else ""
+                label = (f"{done_mark}**{exercise_label(ex, LANG)}**  —  "
+                         f"{ex['sets']} × {ex['reps']}  ·  RPE {ex['rpe']}")
+                with st.expander(label):
+                    render_exercise_guide(ex)
+                    st.divider()
+                    render_tracker(ex, log_date, week, day, section["name"],
+                                   existing)
 
     # ---------------- cardio quick log ----------------
     st.subheader(L("cardio_log"))

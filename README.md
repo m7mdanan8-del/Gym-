@@ -36,31 +36,22 @@ you always know what to load next.
 
 | Week | Theme | Emphasis |
 |------|-------|----------|
-| 1 | Advanced Load | Front squat, seated DB shoulder press, pull-ups, box jumps and sprint strides enter at RPE 7 |
-| 2 | Overload | Heavier bars (RPE 7–8); walking lunges, barbell rows, single-leg press, long-lever Copenhagens join |
-| 3 | Power | Peak loading: front squat 5×5, trap-bar triples, highest box jumps, skater bounds, strides at 85% |
-| 4 | Peak + Retest | Reduced volume + benchmark battery: wall-sit, calf raises, plank, Y-balance, single-leg hop, max strict pull-ups |
+| 1 | Load | The muscle-per-day split begins — find your working weight on every machine, RPE 7 |
+| 2 | Overload | Heavier dumbbells & stacks (RPE 7–8); single-leg press and heavy DB RDLs join leg day |
+| 3 | Intensity | Top week (RPE 8): heaviest loads, highest box jumps, skater bounds on leg day |
+| 4 | Peak + Retest | Benchmarks across the split: push-ups (chest), leg battery (legs), strict pull-ups (back), plank (shoulders) |
 
-**Built for the gym:** the program is loaded with real weights — leg press,
-leg extension (limited arc), seated leg curl, barbell RDL, trap-bar
-deadlift, barbell hip thrust, Smith/seated calf machines, hip
-adduction/abduction machines, lat pulldown, seated cable row, dumbbell
-bench (neutral grip, capped depth), chest press machine, cable face pulls,
-cable external rotations, reverse pec-deck and cable Pallof presses —
-every one selected and range-restricted to stay safe for a partial-ACL
-knee and a post-dislocation shoulder.
-
-**Advanced block (current):** built for a trained athlete (4+ months in
-the gym) — front squats, seated DB shoulder presses, pull-ups, barbell
-rows, lateral raises, walking lunges, hack squats, single-leg press, box
-jumps, skater bounds and sprint strides, with strict quality gates on all
-power work. Standing guardrails: no behind-the-neck work, no dips, no
-barbell bench, pressing depth capped, pull-up bottoms stay active.
-
-**Weekly schedule:** Mon lower-body strength & power · Tue upper body &
-shoulder building · Wed posterior chain (hamstrings/glutes) · Thu speed,
-power & football prep · Fri recovery · Sat football (pre-match activation
-+ post-match reset) · Sun recovery + mobility.
+**Muscle-per-day split (current), dumbbells & machines only:**
+Mon **Chest** (machine press, DB bench, low-incline press, pec-deck,
+triceps pushdowns) · Tue **Legs** (leg press, hack squat, Bulgarians, leg
+extension/curl, calves + Nordics, Copenhagens, box jumps) · Wed **Back**
+(pull-ups, pulldowns, cable + chest-supported rows, back extensions,
+biceps curls) · Thu **Shoulders** (DB press, lateral raises, rear-delt
+fly, face pulls, shrugs + rotator-cuff block) · Fri recovery · Sat
+football · Sun recovery + mobility. Leg day sits four days before the
+match on purpose. Standing guardrails: no behind-the-neck work, no dips,
+no barbell bench, pressing depth capped, active-hang pull-ups, step-down
+box jumps.
 
 Every exercise includes: target muscle, purpose, sets/reps/tempo/rest/RPE,
 starting position, execution, coaching cues, tips, common mistakes,
@@ -71,9 +62,12 @@ lets you pin a specific video, GIF or picture, which the app embeds).
 ## Features
 
 - **🏋️ Today's Workout** — auto-selects the right week/day from your start
-  date; per-exercise tracker (completion checkbox, weight, pain 0–10,
-  difficulty, energy, sets/reps done, notes) that **auto-saves on change**;
-  live pain-rule warnings; cardio log with MET-based calorie estimates.
+  date; **grid view** (default) shows every exercise of the day as a card
+  with its illustration and prescription — tap Open for the full guide +
+  tracker in a popup — or switch to the classic list view; per-exercise
+  tracker (completion checkbox, weight, pain 0–10, difficulty, energy,
+  sets/reps done, notes) that **auto-saves on change**; live pain-rule
+  warnings; cardio log with MET-based calorie estimates.
 - **📅 Monthly Program** — full month overview, per week and day.
 - **📈 Progress Dashboard** — streak, totals, training volume, daily/weekly
   completion, pain trend with modify/stop guide-lines, body-weight and

@@ -3099,6 +3099,143 @@ EXERCISES = {
         "Stationary bike sprint intervals.",
         equipment="Pitch / track",
         yt_query="sprint strides build ups technique 80 percent"),
+
+    # ================================================================
+    # SPLIT-ROUTINE ADDITIONS — dumbbell & machine isolation work
+    # ================================================================
+    "pec_deck": _ex(
+        "Pec-Deck / Machine Chest Fly", "press",
+        "Chest (isolation)",
+        "Pure chest isolation with a guided arc and an adjustable start "
+        "range — the finishing pump for chest day, with the machine's "
+        "range stop protecting the front of the shoulder.",
+        3, "12-15", "2-1-3-0", "60 s", "7",
+        "Seat set so the handles are at mid-chest height. Set the start "
+        "range so the elbows begin only slightly behind the body line — "
+        "never a deep backwards stretch. Soft bend in the elbows.",
+        "Sweep the arms together in a hugging arc until the handles "
+        "almost touch, squeeze the chest 1 s, then resist the return "
+        "for 3 s, stopping at the set depth.",
+        ["Hug, don't press", "Squeeze 1 s in the middle",
+         "3-second fight on the way open"],
+        ["Set the range stop BEFORE your first rep — that adjustment "
+         "pin is the whole shoulder-safety system of this machine."],
+        ["Start range set too deep (shoulder stretch position)",
+         "Bouncing the stack", "Shrugging during the squeeze"],
+        "The deep-stretch open position is the labrum danger zone — the "
+        "range stop stays shallow this block. Any front-of-shoulder "
+        "pinch → skip, the pressing already covered the chest.",
+        "Small weight jumps; 2-s mid squeeze.",
+        "Cable fly at shoulder height (light) or extra press sets.",
+        "Incline push-up burnout set.",
+        equipment="Pec-deck machine",
+        yt_query="pec deck machine chest fly proper form"),
+
+    "chest_supported_row": _ex(
+        "Chest-Supported Dumbbell Row", "row",
+        "Mid-back, lats, rear delts",
+        "Heavy rowing with the chest glued to an incline bench — the "
+        "bench absorbs all the low-back stress, so every kilogram goes "
+        "into the back muscles. The strict, safe heavy row for back day.",
+        4, "8-10", "2-1-2-0", "90 s", "7-8",
+        "Incline bench at ~30-45°. Lie chest-down on it, feet braced, "
+        "dumbbells hanging at long arms below the shoulders, palms "
+        "facing each other.",
+        "Row both dumbbells to the lower ribs — elbows shaving the "
+        "sides, shoulder blades squeezing together — pause 1 s, lower "
+        "over 2 s to a long stretch without the chest leaving the bench.",
+        ["Chest stays welded to the bench", "Elbows shave the ribs",
+         "Blades squeeze together at the top"],
+        ["If the chest lifts off the bench, the weight is lying to you — "
+         "drop 10% and own it."],
+        ["Chest popping off the bench (heaving)", "Shrugging",
+         "Half-range short pulls"],
+        "The most shoulder- and back-friendly heavy row that exists — "
+        "the bench does the protecting. Keep the elbow path close.",
+        "Heavier DBs; 2-s pauses on the ribs.",
+        "Seated cable row.",
+        "Seated cable row (neutral grip).",
+        equipment="Incline bench + dumbbells",
+        yt_query="chest supported dumbbell row incline bench form"),
+
+    "db_curl": _ex(
+        "Dumbbell Biceps Curl (alternating)", "curl",
+        "Biceps, forearms",
+        "Direct arm work for back day — strong biceps also protect the "
+        "elbow and assist every pull-up and row you do.",
+        3, "10-12/side", "2-1-3-0", "60 s", "7-8",
+        "Standing tall (or seated on an upright bench), dumbbells at the "
+        "sides, palms forward, elbows pinned to the ribs.",
+        "Curl one dumbbell to shoulder height WITHOUT the elbow drifting "
+        "forward or the body swinging, squeeze 1 s, lower over a full "
+        "3 seconds. Alternate arms.",
+        ["Elbows pinned — only the forearm moves", "No body swing",
+         "3-second lowering builds the arm"],
+        ["Hammer-grip (palms facing) curls are a great second option and "
+         "slightly easier on the elbows — rotate between the two "
+         "weekly."],
+        ["Swinging the hips to lift", "Elbows drifting forward",
+         "Dropping the weight down fast"],
+        "Fully joint-safe. Cheat reps train your ego, strict reps train "
+        "your arms.",
+        "Small DB jumps; seated strict version.",
+        "Lighter DBs, both arms together.",
+        "Cable curl or hammer curl.",
+        equipment="Dumbbells",
+        yt_query="dumbbell biceps curl proper form no swing"),
+
+    "triceps_pushdown": _ex(
+        "Cable Triceps Pushdown (rope)", "triceps_press",
+        "Triceps",
+        "Direct triceps work for chest day — the rope lets the hands "
+        "split at the bottom for a full contraction, with zero stress on "
+        "the shoulder.",
+        3, "12-15", "2-1-2-0", "60 s", "7-8",
+        "Cable set high with a rope attachment. Stand tall, slight "
+        "forward lean, elbows pinned to the ribs, rope gripped with "
+        "neutral palms.",
+        "Press the rope down until the arms are straight, splitting the "
+        "ends apart at the bottom, squeeze 1 s, then let the forearms "
+        "ride back up over 2 s — the elbows never leave the ribs.",
+        ["Elbows welded to the ribs", "Split the rope at the bottom",
+         "Only the forearms move"],
+        ["Lean slightly forward and brace — standing bolt upright turns "
+         "heavy sets into a balancing act."],
+        ["Elbows flaring forward (turns it into a press)",
+         "Leaning on the cable with bodyweight", "Half reps at the top"],
+        "Completely shoulder-safe arm work — this replaces dips, which "
+        "stay permanently off your menu (they load the front capsule in "
+        "exactly the wrong way).",
+        "Small weight jumps; single-arm pushdowns.",
+        "Band pushdowns.",
+        "Overhead rope extension (light) or close-grip incline push-up.",
+        equipment="Cable station + rope",
+        yt_query="rope triceps pushdown proper form"),
+
+    "db_shrug": _ex(
+        "Dumbbell Shrug", "carry",
+        "Upper trapezius",
+        "Finishes shoulder day by building the upper traps — the frame "
+        "that makes shoulders look complete and helps suspend the "
+        "shoulder girdle under load.",
+        3, "12-15", "2-2-2-0", "60 s", "7-8",
+        "Standing tall, heavy dumbbells at the sides, arms long and "
+        "relaxed, ribs down, chin neutral.",
+        "Shrug the shoulders STRAIGHT UP toward the ears — no rolling — "
+        "hold the top 2 s, then lower over 2 s to a full stretch.",
+        ["Straight up and down — never roll", "2-second hold at the top",
+         "Long stretch at the bottom"],
+        ["The 2-s top hold at a moderate weight beats a bounce with the "
+         "heaviest dumbbells in the rack — every time."],
+        ["Rolling the shoulders (grinds the joint)", "Bouncing reps",
+         "Jutting the chin forward"],
+        "Straight-line shrugs are safe for your shoulder; rolling ones "
+        "are not — the rule is one word: vertical.",
+        "Heavier DBs while the 2-s hold survives.",
+        "Lighter DBs, seated.",
+        "Machine or cable shrug.",
+        equipment="Dumbbells",
+        yt_query="dumbbell shrug proper form no rolling"),
 }
 
 

@@ -234,6 +234,27 @@ _PATTERNS = {
       <path d="M116 78 L136 56 L138 38" stroke="{A}"/>
     """.replace("{A}", ACCENT), "Lat pulldown"),
 
+    "curl": _wrap("""
+      <circle cx="110" cy="30" r="11"/>
+      <path d="M110 41 L110 90"/>
+      <path d="M110 90 L96 114 L98 138"/><path d="M110 90 L124 114 L124 138"/>
+      <path d="M108 52 L104 84"/>                                   <!-- upper arm pinned -->
+      <path d="M104 84 L128 62" stroke="{A}"/>                      <!-- forearm curls up -->
+      <circle cx="132" cy="58" r="7" stroke="{A}"/>                 <!-- dumbbell -->
+      <path d="M112 52 L120 84"/>
+    """.replace("{A}", ACCENT), "Dumbbell curl"),
+
+    "triceps_press": _wrap("""
+      <path d="M108 14 L152 14"/>                                   <!-- high anchor -->
+      <path d="M130 14 L128 38" stroke-dasharray="4 5"/>            <!-- cable -->
+      <circle cx="106" cy="42" r="11"/>
+      <path d="M106 53 L106 98"/>
+      <path d="M106 98 L92 120 L94 140"/><path d="M106 98 L120 120 L122 140"/>
+      <path d="M108 62 L124 66"/>                                   <!-- upper arm pinned -->
+      <path d="M124 66 L134 96" stroke="{A}"/>                      <!-- forearm presses down -->
+      <path d="M124 96 L146 96" stroke="{A}"/>                      <!-- rope/bar -->
+    """.replace("{A}", ACCENT), "Triceps pushdown"),
+
     "jog": _wrap("""
       <circle cx="112" cy="30" r="11"/>
       <path d="M112 41 L106 78"/>
