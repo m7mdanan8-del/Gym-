@@ -2255,27 +2255,28 @@ EXERCISES = {
         yt_query="leg press machine proper form knee safe"),
 
     "leg_extension": _ex(
-        "Leg Extension (machine, 90°→45° range)", "tke",
+        "Leg Extension (machine, controlled arc)", "tke",
         "Quadriceps (isolated)",
         "Direct quad strength with zero balance demand. In conservative "
         "ACL rehab it is used in a LIMITED arc (90° down to ~45°) where "
         "ACL strain is minimal — a precision tool, not an ego machine.",
         3, "12-15", "2-1-2-0", "60 s", "6-7",
         "Adjust the seat so the knee axis lines up with the machine's "
-        "pivot; pad on the lower shin. Set the range limiter (or mentally "
-        "mark it) from 90° of bend to about 45°.",
-        "Extend the knees smoothly from 90° to roughly 45° (do NOT go to "
-        "full straight this month), squeeze 1 s, lower over 2 s. Light-to-"
-        "moderate weight, high control.",
-        ["Work the 90°→45° window only", "Squeeze, don't kick",
+        "pivot; pad on the lower shin. Work from 90° of bend to about "
+        "30° — stopping just short of a loaded full lockout.",
+        "Extend the knees smoothly from 90° to roughly 30°, squeeze 1 s, "
+        "lower over 2 s. After four months of training the arc has "
+        "earned this range — only the final snap into full lockout "
+        "under load stays off the menu.",
+        ["Work the 90°→30° window", "Squeeze, don't kick",
          "Slow 2-second lowering"],
         ["If your machine has a range limiter, use it — that hardware "
          "setting is your ACL's bodyguard."],
         ["Extending to full lockout under load (peak ACL strain zone)",
          "Heavy weight with fast kicks", "Hips lifting off the seat"],
-        "The last 45° of extension under machine load is exactly where "
-        "the ACL strains most — the limited arc is non-negotiable this "
-        "month. Any joint-line pain >2/10 → back to band TKEs.",
+        "The final degrees into locked-straight under machine load are "
+        "where the ACL strains most — stop shy of the snap. Any "
+        "joint-line pain >2/10 → back to band TKEs.",
         "Add small weight increments inside the same arc; full arc only "
         "with physio clearance next block.",
         "Band terminal knee extension.",
@@ -2742,6 +2743,362 @@ EXERCISES = {
         "Suitcase carry (heavy).",
         equipment="Cable station",
         yt_query="cable pallof press proper form"),
+
+    # ================================================================
+    # ADVANCED BLOCK — barbell strength, shoulder building, power
+    # (for the trained athlete: 4+ months of consistent gym work,
+    #  pain-free knee and shoulder through the earlier progressions)
+    # ================================================================
+    "front_squat": _ex(
+        "Front Squat (cross-arm or strap grip)", "squat",
+        "Quadriceps, glutes, upper back",
+        "The king of shoulder-friendly barbell squats: the bar sits on "
+        "the FRONT of the shoulders, so your right shoulder never goes "
+        "into the vulnerable back-rack position — while the upright torso "
+        "keeps knee loading strong, even and predictable.",
+        4, "5-6", "3-0-1-0", "2-3 min", "7-8",
+        "Bar racked at collarbone height. Step in, bar resting on the "
+        "front-delt shelf, arms crossed over it (or straps around the "
+        "bar) with elbows driven high. Feet shoulder-width, toes slightly "
+        "out.",
+        "Big breath, brace, unrack and step back. Squat down over 3 s "
+        "with the elbows HIGH and torso vertical, to the deepest point "
+        "you control with a proud chest. Drive up through the whole foot; "
+        "elbows never drop.",
+        ["Elbows high — the bar rides the shelf, not the hands",
+         "Torso vertical like an elevator", "Knees track over the toes"],
+        ["The cross-arm or strap grip exists exactly for lifters with "
+         "cranky shoulders — zero wrist or shoulder rotation required.",
+         "Start with the empty bar for two sessions; front squats reward "
+         "technique before load."],
+        ["Elbows dropping (bar rolls forward)", "Heels lifting",
+         "Chasing depth past control"],
+        "This replaces the barbell BACK squat for you: the back-rack grip "
+        "position stresses a post-dislocation shoulder. If your gym has "
+        "a safety-bar (SSB), that works too. Knee rule unchanged: depth "
+        "is earned, pain ≤2/10.",
+        "Add 2.5 kg per side when all reps are crisp; pause front squats.",
+        "Goblet squat (heavy) or leg press.",
+        "Hack squat machine or heavy goblet squat.",
+        equipment="Barbell + rack",
+        yt_query="front squat cross arm grip proper form"),
+
+    "hack_squat": _ex(
+        "Hack Squat (machine)", "leg_press",
+        "Quadriceps, glutes",
+        "Machine-guided heavy squatting at a fixed back angle — big quad "
+        "overload with no balance or shoulder demand, and an easy depth "
+        "stop for the knee. The perfect heavy partner to the front squat.",
+        3, "8-10", "3-1-1-0", "2 min", "7-8",
+        "Back and hips glued to the pads, shoulders under the shoulder "
+        "pads, feet mid-platform hip-width, toes slightly out.",
+        "Release the handles, lower over 3 s to ~90° knee bend (or your "
+        "controlled depth), brief pause — no bounce — then drive through "
+        "the whole foot without slamming the knees straight.",
+        ["Hips stay on the pad", "Pause at the bottom, never bounce",
+         "Push through the whole foot"],
+        ["Feet lower on the platform = more quad; higher = more glute. "
+         "Choose by how the knee feels that day."],
+        ["Bouncing out of the bottom", "Heels lifting (feet too low)",
+         "Knees caving under fatigue"],
+        "Depth stays at the range you control — the sled will happily "
+        "take you deeper than your knee wants. Set the safety stop.",
+        "Add plates weekly while the 3-s descent stays smooth.",
+        "Leg press.",
+        "Leg press or heavy goblet squat.",
+        equipment="Hack squat machine",
+        yt_query="hack squat machine proper form"),
+
+    "single_leg_press": _ex(
+        "Single-Leg Leg Press", "leg_press",
+        "Quadriceps, glutes (one side at a time)",
+        "Heavy single-leg strength with zero balance demand — exposes and "
+        "fixes left-right strength gaps that two-leg lifts hide. Directly "
+        "transfers to one-leg actions: striking, jumping, tackling.",
+        3, "8-10/side", "3-1-1-0", "90 s/side", "7-8",
+        "Leg press setup, one foot centred on the platform, the other "
+        "foot on the floor/rest.",
+        "Lower over 3 s to ~90°, pause, press through the whole foot. "
+        "Do the weaker (injured-side) leg FIRST, then match its reps "
+        "with the strong leg — never the reverse.",
+        ["Weak side first, strong side matches", "Knee tracks the toes",
+         "Same depth both sides"],
+        ["Log both sides' weights in the tracker notes — closing that gap "
+         "is one of your main scores this month."],
+        ["Letting the knee drift inward", "Deeper on the strong side",
+         "Half range when it gets heavy"],
+        "A >10 % strength gap between legs is homework, not a verdict — "
+        "it closes within weeks when trained like this.",
+        "Add weight when both sides match for all reps.",
+        "Two-leg leg press.",
+        "Rear-foot-elevated split squat (heavy).",
+        equipment="Leg press machine",
+        yt_query="single leg press machine form"),
+
+    "walking_lunge": _ex(
+        "Dumbbell Walking Lunge", "split_squat",
+        "Quads, glutes, single-leg control under fatigue",
+        "The most football-specific strength exercise in the gym: "
+        "continuous single-leg loading with a moving centre of mass — "
+        "strength, balance and conditioning in one brutal package.",
+        3, "10 steps/side", "controlled", "2 min", "7-8",
+        "Dumbbells at the sides, tall posture, clear runway of 10-15 m.",
+        "Step forward into a full lunge — back knee kisses the floor, "
+        "front shin near vertical — then drive through the front foot "
+        "straight into the next step. No pause, no wobble, quiet feet.",
+        ["Long steps, vertical front shin", "Torso tall, eyes ahead",
+         "Drive THROUGH each step, don't push off the back foot"],
+        ["When grip gives out before legs, switch to one heavy dumbbell "
+         "held at the chest (goblet walking lunge)."],
+        ["Short choppy steps (knee shoots forward)", "Leaning forward",
+         "Knee caving on the drive"],
+        "Earned after weeks of split squats and Bulgarians — your knee "
+        "tracking must already be automatic, because fatigue will test it.",
+        "Heavier dumbbells; longer runway.",
+        "Reverse lunges (stationary).",
+        "Rear-foot-elevated split squat.",
+        equipment="Dumbbells",
+        yt_query="dumbbell walking lunge proper form"),
+
+    "db_shoulder_press": _ex(
+        "Seated Dumbbell Shoulder Press (neutral grip)", "press",
+        "Deltoids, triceps, upper traps",
+        "The direct shoulder-builder you asked for — pressed with palms "
+        "facing (neutral) and elbows travelling slightly forward of the "
+        "body line, the path that builds delts while keeping the ball of "
+        "the shoulder centred and the labrum out of the argument.",
+        4, "8-10", "2-1-2-0", "90 s", "7",
+        "Upright bench (75-90°), dumbbells at shoulder height, palms "
+        "facing each other, elbows slightly IN FRONT of the shoulders — "
+        "never flared straight out to the sides. Feet planted, ribs down.",
+        "Press both dumbbells up and slightly together until the arms "
+        "are long overhead, then lower over 2 s back to shoulder height. "
+        "The elbows keep pointing slightly forward the whole time.",
+        ["Palms face each other", "Elbows forward of the body line",
+         "Ribs down — no back-bend pressing"],
+        ["This is your overhead graduation from the landmine press. "
+         "Start moderate: the last rep should look like the first.",
+         "A slight (10-15°) back-lean of the bench is even friendlier "
+         "on the shoulder than dead-vertical."],
+        ["Flaring the elbows out wide (vulnerable position)",
+         "Lowering behind the head — never",
+         "Arching the low back to grind reps"],
+        "Neutral grip + elbows forward = safe path. The flared, "
+        "behind-the-head style is permanently off your menu. Any front-"
+        "of-shoulder pinch or 'loose' feeling → back to landmine presses "
+        "for two weeks.",
+        "Small DB jumps; then alternating single-arm presses.",
+        "Half-kneeling landmine-style press.",
+        "Machine shoulder press (neutral grip, partial range).",
+        equipment="Dumbbells + upright bench",
+        yt_query="seated dumbbell shoulder press neutral grip"),
+
+    "lateral_raise": _ex(
+        "Dumbbell Lateral Raise", "scaption",
+        "Lateral deltoid",
+        "Direct side-delt volume — the muscle that makes shoulders look "
+        "and BE strong, trained in the exact scapular-plane path that "
+        "keeps the cuff happy.",
+        3, "12-15", "2-1-3-0", "60 s", "7",
+        "Standing tall, light-moderate dumbbells at the sides, a slight "
+        "bend in the elbows, hands turned so the thumbs are level with "
+        "the pinkies (neutral wrist).",
+        "Raise the arms out and ~20° FORWARD of straight-sideways (the "
+        "scapular plane) up to shoulder height — no higher — then lower "
+        "over a slow 3 seconds. The lowering builds the muscle.",
+        ["20° forward of sideways — never straight out back",
+         "Stop at shoulder height", "3-second lowering, every rep"],
+        ["If you shrug, it's too heavy. Delts grow on control and "
+         "3-second negatives, not on swinging."],
+        ["Swinging with the hips", "Raising above shoulder height",
+         "Thumbs pointing down (impingement position)"],
+        "Scapular plane + shoulder-height cap + thumbs level = the "
+        "shoulder-safe recipe. Tipping the thumbs down or going higher "
+        "grinds the cuff — never worth it.",
+        "Slow to a 4-s negative; add a 1-s hold at the top.",
+        "Scaption raise (lighter, thumbs up).",
+        "Cable lateral raise (low pulley).",
+        equipment="Dumbbells",
+        yt_query="dumbbell lateral raise proper form scapular plane"),
+
+    "incline_db_press": _ex(
+        "Low-Incline Dumbbell Press (15-30°)", "press",
+        "Upper chest, front delts, triceps",
+        "The upper-chest builder at the friendliest angle: a LOW incline "
+        "splits the difference between flat and shoulder press, loading "
+        "the upper pec hard while the shallow angle and neutral-ish grip "
+        "keep the shoulder path clean.",
+        3, "8-10", "3-1-1-0", "2 min", "7-8",
+        "Bench set to 15-30° (one or two notches up — NOT 45°). "
+        "Dumbbells pressed over the upper chest, palms turned 45° in "
+        "(between neutral and forward), blades pinned back and down.",
+        "Lower over 3 s with elbows ~45° from the ribs until the upper "
+        "arms reach parallel to the floor — the same depth cap as your "
+        "flat pressing — then press up and slightly together.",
+        ["Low incline — 15-30°, not a slope to the ceiling",
+         "Depth stops at arms-parallel", "Blades stay pinned"],
+        ["45°+ inclines shift the work to the front delt and crowd the "
+         "joint — the LOW incline is both safer and better for chest."],
+        ["Bench set too steep", "Bottoming out into a deep stretch",
+         "Elbows flaring to 90°"],
+        "Same labrum rule as all your pressing: no deep stretch at the "
+        "bottom, no barbell version this block. Pinch or apprehension = "
+        "back to flat DB bench.",
+        "Small DB jumps; 4-s negatives.",
+        "Flat DB bench press or floor press.",
+        "Machine incline press (depth stop set shallow).",
+        equipment="Dumbbells + adjustable bench",
+        yt_query="low incline dumbbell press 30 degrees form"),
+
+    "pullup": _ex(
+        "Pull-Up / Assisted Pull-Up (neutral grip)", "pulldown",
+        "Lats, mid-back, biceps, core",
+        "The gold-standard upper-body pull. Neutral-grip handles keep "
+        "both shoulders in their strongest, safest line while you build "
+        "toward strict bodyweight reps — a proper athlete's benchmark.",
+        4, "5-8 (or max strict reps)", "1-1-3-0", "2 min", "8",
+        "Neutral-grip (palms facing) handles. Full hang with ACTIVE "
+        "shoulders — blades pulled slightly down, ribs down, legs quiet. "
+        "Use the assist machine or a band under the knees if needed.",
+        "Pull the chest toward the handles by driving the elbows down, "
+        "chin over the bar without reaching with the neck, then lower "
+        "over a full 3 seconds to a long — but never dead-hanging-"
+        "passive — bottom.",
+        ["Active hang: blades set even at the bottom",
+         "Elbows drive down, chest leads up", "3-second lowering"],
+        ["Set the assist so you can do 5-8 strict reps; reduce the "
+         "assist weekly. The 3-s negative is what buys your first "
+         "unassisted rep.",
+         "Neutral grip first this block; wide overhand can come next "
+         "block if the shoulder stays silent."],
+        ["Kipping/swinging", "Dead passive hang at the bottom "
+         "(hangs on the capsule)", "Chin-reaching half reps"],
+        "The active-shoulder bottom position is the rule that protects "
+        "your shoulder — a fully relaxed hang loads the exact capsule "
+        "structures you're guarding. No kipping, ever.",
+        "Less assistance → bodyweight → slow negatives with weight.",
+        "Lat pulldown (heavy).",
+        "Lat pulldown machine (neutral grip).",
+        equipment="Pull-up bar / assist machine",
+        yt_query="neutral grip pull up proper form"),
+
+    "barbell_row": _ex(
+        "Barbell Bent-Over Row", "row",
+        "Lats, mid-back, rear delts, spinal erectors",
+        "The heaviest horizontal pull in the gym — big total-back "
+        "strength that armours the shoulder from behind and balances all "
+        "your pressing.",
+        4, "6-8", "2-1-2-0", "2 min", "7-8",
+        "Barbell held at hip height (overhand grip just outside the "
+        "legs), hinge to ~30-45° above horizontal with a flat back, bar "
+        "hanging under the shoulders, knees soft.",
+        "Row the bar to the lower ribs/upper belly, elbows shaving the "
+        "sides, squeeze 1 s, lower over 2 s to long arms without "
+        "rounding. The torso angle stays frozen — no heaving.",
+        ["Torso angle frozen — a camera should see no bounce",
+         "Bar to the lower ribs", "Flat back, braced core"],
+        ["Start moderate: the row rewards strictness. If you need to "
+         "heave, the hamstrings and back are lifting, not the lats."],
+        ["Heaving with the hips", "Rounding the low back",
+         "Elbows flaring wide"],
+        "Strict form is the shoulder-safe form: elbows close, bar to the "
+        "ribs. If the low back fatigues before the lats, use the "
+        "chest-supported version on an incline bench.",
+        "Add 2.5 kg/side when all reps are strict; pause rows.",
+        "Chest-supported DB row or seated cable row.",
+        "Chest-supported dumbbell row.",
+        equipment="Barbell",
+        yt_query="barbell bent over row proper form"),
+
+    # ---------------- power & speed ----------------
+    "box_jump": _ex(
+        "Box Jump (step down)", "hop",
+        "Explosive hip/knee extension — jump power",
+        "Trains the explosive triple-extension of jumping with the "
+        "landing IMPACT removed — you land on the box, softly, then step "
+        "down. Maximum power stimulus, minimum knee cost.",
+        4, "3", "explosive up, STEP down", "90 s", "8",
+        "Knee-to-mid-thigh-height box, arm's length in front. Athletic "
+        "stance.",
+        "Dip fast, swing the arms and jump onto the box, landing softly "
+        "in a quarter squat with the WHOLE foot on it, knees tracking. "
+        "Stand tall on the box, then STEP down one foot at a time. Reset "
+        "fully between reps.",
+        ["Land quiet, in a quarter squat, whole foot on",
+         "Always step down — never jump down",
+         "Full reset between reps — this is power, not cardio"],
+        ["Box height is not the goal — a crisp landing on a medium box "
+         "beats a scary scramble onto a high one.",
+         "3 reps per set, fresh and fast: the moment reps slow down, the "
+         "set is over."],
+        ["Jumping down off the box (that's a plyometric landing you "
+         "didn't order)", "Rebound-style touch-and-go reps",
+         "Landing deep in a full squat (box too high)"],
+        "The step-down rule is the whole reason this is knee-safe. "
+        "Gates: pain ≤2/10, no swelling, never the day before football.",
+        "Raise the box gradually; later, seated box jumps.",
+        "Hop & stick (small forward hops).",
+        "Jump squat (bodyweight, stick the landing).",
+        equipment="Plyo box",
+        yt_query="box jump proper landing step down"),
+
+    "skater_bound": _ex(
+        "Skater Bound (lateral bound & stick)", "hop",
+        "Lateral power — glutes, groin, knee stabilisers",
+        "The bounding pattern of cutting and defending: push off one leg "
+        "sideways, fly, and STICK the landing on the other. This is "
+        "change-of-direction power with a built-in landing-quality test "
+        "every rep.",
+        3, "4/side", "explosive, stick 2 s", "90 s", "8",
+        "Athletic stance on one leg, clear space 1-2 m to each side.",
+        "Bound sideways off the outside leg, land on the opposite leg "
+        "and FREEZE for 2 s — knee over toes, hips level, chest up, "
+        "silent foot. Then bound back. Distance grows only when every "
+        "landing is frozen and quiet.",
+        ["Stick every landing for 2 full seconds",
+         "Knee refuses to cave — film it", "Arms swing across to power "
+         "the bound"],
+        ["This is the graduation of your lateral hop & sticks — same "
+         "rules, more flight."],
+        ["Chasing distance with sloppy landings", "Upright stiff-leg "
+         "landings", "Continuous rebounding before landings are perfect"],
+        "The most demanding knee drill in the program — it is also the "
+        "one that most directly protects you on the pitch. Strict gates: "
+        "pain ≤2/10, fresh legs only, never within 48 h of a match.",
+        "Longer bounds; later, continuous rhythmic bounds.",
+        "Lateral hop & stick (smaller).",
+        "Lateral hop & stick.",
+        yt_query="skater bounds lateral bound stick landing"),
+
+    "sprint_strides": _ex(
+        "Sprint Strides (build-ups to ~85%)", "jog",
+        "Sprint mechanics, hamstrings at speed, acceleration",
+        "Football is decided at sprint speed — and hamstrings are only "
+        "protected by having BEEN at speed in training. Strides build "
+        "you to ~85% smoothly, so match sprints are never a shock.",
+        1, "6 × 60-80 m", "build 40 m → float 20 m → decelerate", "walk back", "8",
+        "60-80 m of pitch, track or firm grass. Fully warmed up — these "
+        "come AFTER the session warm-up, fresh.",
+        "Accelerate progressively over the first 40 m from jog to ~85% "
+        "of max speed, hold that smooth 'float' for 20 m — tall hips, "
+        "relaxed face and hands — then decelerate GRADUALLY over the "
+        "last 20 m. Walk back fully between reps.",
+        ["Build gradually — no 0-to-100", "Tall hips, relaxed face",
+         "Decelerate over many metres, never slam the brakes"],
+        ["The gradual deceleration is half the exercise — braking hard "
+         "is exactly the knee mechanism we avoid.",
+         "85% smooth beats 100% straining — save max speed for matches."],
+        ["Sprinting all-out from rep one", "Braking hard at the end",
+         "Doing these on tired legs or the day before football"],
+        "Gates: pain-free week, fresh legs, never within 48 h of a "
+        "match. Any hamstring twinge mid-stride = walk, done for the "
+        "day.",
+        "Progress float speed toward 90% over the block; add one rep "
+        "weekly.",
+        "Bike sprints (30 s hard) or hill walk-sprints.",
+        "Stationary bike sprint intervals.",
+        equipment="Pitch / track",
+        yt_query="sprint strides build ups technique 80 percent"),
 }
 
 

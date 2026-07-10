@@ -36,10 +36,10 @@ you always know what to load next.
 
 | Week | Theme | Emphasis |
 |------|-------|----------|
-| 1 | Foundation | Pattern grooving, isometrics, machine intro (leg press, cable row, chest press), RPE 5–6 |
-| 2 | Progression | Barbell RDLs & hip thrusts, leg extension in the protected 90°→45° arc, Nordics, cable cuff work, RPE 6–7 |
-| 3 | Advanced Progression | Trap-bar deadlift, heavy leg press, DB bench (capped depth), first hop-and-stick landings, 90/90 cuff work (gated), RPE 7–8 |
-| 4 | Variation + Assessment | Tempo barbell variations + benchmark tests (wall-sit, calf raises, plank, Y-balance, single-leg hop) |
+| 1 | Advanced Load | Front squat, seated DB shoulder press, pull-ups, box jumps and sprint strides enter at RPE 7 |
+| 2 | Overload | Heavier bars (RPE 7–8); walking lunges, barbell rows, single-leg press, long-lever Copenhagens join |
+| 3 | Power | Peak loading: front squat 5×5, trap-bar triples, highest box jumps, skater bounds, strides at 85% |
+| 4 | Peak + Retest | Reduced volume + benchmark battery: wall-sit, calf raises, plank, Y-balance, single-leg hop, max strict pull-ups |
 
 **Built for the gym:** the program is loaded with real weights — leg press,
 leg extension (limited arc), seated leg curl, barbell RDL, trap-bar
@@ -50,10 +50,17 @@ cable external rotations, reverse pec-deck and cable Pallof presses —
 every one selected and range-restricted to stay safe for a partial-ACL
 knee and a post-dislocation shoulder.
 
-**Weekly schedule:** Mon lower body (quad/ACL) · Tue upper body (shoulder
-rehab) · Wed posterior chain + balance · Thu full-body functional +
-football prep · Fri recovery · Sat football (pre-match activation +
-post-match reset) · Sun recovery + mobility.
+**Advanced block (current):** built for a trained athlete (4+ months in
+the gym) — front squats, seated DB shoulder presses, pull-ups, barbell
+rows, lateral raises, walking lunges, hack squats, single-leg press, box
+jumps, skater bounds and sprint strides, with strict quality gates on all
+power work. Standing guardrails: no behind-the-neck work, no dips, no
+barbell bench, pressing depth capped, pull-up bottoms stay active.
+
+**Weekly schedule:** Mon lower-body strength & power · Tue upper body &
+shoulder building · Wed posterior chain (hamstrings/glutes) · Thu speed,
+power & football prep · Fri recovery · Sat football (pre-match activation
++ post-match reset) · Sun recovery + mobility.
 
 Every exercise includes: target muscle, purpose, sets/reps/tempo/rest/RPE,
 starting position, execution, coaching cues, tips, common mistakes,
