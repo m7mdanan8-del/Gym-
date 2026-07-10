@@ -335,6 +335,49 @@ UI = {
                          "ar": "يستخدم التطبيق مظهرًا واحدًا ثابتًا: المظهر التحفيزي الرياضي — "
                                 "برتقالي جريء على خلفية فاتحة دافئة، مصمم ليبقيك متحمسًا أثناء "
                                 "التدريب."},
+    # Garmin watch
+    "gw_header":        {"en": "⌚ Garmin Watch", "ar": "⌚ ساعة غارمن"},
+    "gw_caption":       {"en": "Connect your Garmin watch and your daily steps, sleep and "
+                                "recorded activities (with the watch's real duration and "
+                                "calories) sync straight into the trackers.",
+                         "ar": "اربط ساعة غارمن وستتم مزامنة خطواتك اليومية ونومك وأنشطتك "
+                                "المسجلة (بالمدة والسعرات الحقيقية من الساعة) مباشرة إلى "
+                                "المتابعات."},
+    "gw_email":         {"en": "Garmin Connect e-mail", "ar": "البريد الإلكتروني لحساب غارمن"},
+    "gw_password":      {"en": "Password (used once — not stored)",
+                         "ar": "كلمة المرور (تُستخدم مرة واحدة — لا تُحفظ)"},
+    "gw_mfa":           {"en": "Two-factor code (only if Garmin asks for one)",
+                         "ar": "رمز التحقق الثنائي (فقط إذا طلبه غارمن)"},
+    "gw_mfa_ph":        {"en": "Leave empty on first try", "ar": "اتركه فارغًا في المحاولة الأولى"},
+    "gw_privacy":       {"en": "🔒 Your password is used once to log in and is never stored — "
+                                "only the resulting session tokens (valid ~1 year) are kept.",
+                         "ar": "🔒 كلمة مرورك تُستخدم مرة واحدة لتسجيل الدخول ولا تُحفظ أبدًا — "
+                                "يُحتفظ فقط برموز الجلسة الناتجة (صالحة نحو سنة)."},
+    "gw_connect":       {"en": "🔗 Connect & save", "ar": "🔗 اربط واحفظ"},
+    "gw_connecting":    {"en": "Connecting to Garmin…", "ar": "جارٍ الاتصال بغارمن…"},
+    "gw_connected":     {"en": "⌚ Connected: {email}", "ar": "⌚ متصل: {email}"},
+    "gw_needs_mfa":     {"en": "Garmin sent you a two-factor code (check e-mail/phone). Enter "
+                                "it in the code box above and press Connect again.",
+                         "ar": "أرسل غارمن رمز تحقق (تفقد بريدك/هاتفك). أدخله في خانة الرمز "
+                                "أعلاه واضغط «اربط» مرة أخرى."},
+    "gw_network_fail":  {"en": "Could not reach Garmin's servers — check your internet "
+                                "connection and try again.",
+                         "ar": "تعذر الوصول إلى خوادم غارمن — تحقق من اتصالك بالإنترنت "
+                                "وحاول مجددًا."},
+    "gw_auth_fail":     {"en": "Login failed — check the e-mail and password.",
+                         "ar": "فشل تسجيل الدخول — تحقق من البريد وكلمة المرور."},
+    "gw_generic_fail":  {"en": "Connection failed: {err}", "ar": "فشل الاتصال: {err}"},
+    "gw_days":          {"en": "Sync last…", "ar": "زامن آخر…"},
+    "gw_sync_now":      {"en": "🔄 Sync now", "ar": "🔄 زامن الآن"},
+    "gw_syncing":       {"en": "Pulling data from Garmin…", "ar": "جارٍ سحب البيانات من غارمن…"},
+    "gw_sync_done":     {"en": "Synced ✔ — steps for {steps} day(s), sleep for {sleep} "
+                                "day(s), {acts} new activities added to the cardio log.",
+                         "ar": "تمت المزامنة ✔ — خطوات {steps} يومًا، نوم {sleep} يومًا، "
+                                "وأضيف {acts} نشاطًا جديدًا إلى سجل الكارديو."},
+    "gw_reconnect":     {"en": "Session expired — press Disconnect and connect again.",
+                         "ar": "انتهت الجلسة — اضغط «افصل» ثم اربط من جديد."},
+    "gw_disconnect":    {"en": "🔌 Disconnect", "ar": "🔌 افصل"},
+
     # next training block
     "nb_header":        {"en": "🔄 Next Training Block", "ar": "🔄 البرنامج التدريبي التالي"},
     "nb_caption":       {"en": "When Week 4's tests are logged, generate the next 4-week "
