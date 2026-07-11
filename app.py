@@ -8,7 +8,7 @@ partial ACL tear and a previously dislocated right shoulder.
 Run with:  streamlit run app.py
 """
 
-from datetime import date
+from datetime import date, datetime
 
 import pandas as pd
 import streamlit as st
@@ -832,60 +832,58 @@ def page_safety():
 # ----------------------------------------------------------------------
 # PAGE: Garmin — sync, analysis, recommendations
 # ----------------------------------------------------------------------
-def _garmin_sync_tab():
-    st.subheader(L("gm_upload_header"))
-    st.markdown(L("gm_upload_help"))
-    files = st.file_uploader(
-        L("gm_uploader"), type=["csv", "fit", "tcx", "gpx", "json", "zip"],
-        accept_multiple_files=True, key="gm_files")
-    apply_trackers = st.checkbox(L("gm_apply_toggle"), value=True,
-                                 key="gm_apply")
-    if files and st.button(L("gm_import_btn"), type="primary",
-                           width="stretch"):
-        rep = {"new": 0, "seen": 0, "days": 0, "errors": 0}
-        with st.spinner("…"):
-            for f in files:
-                r = garmin.import_file(f.name, f.getvalue())
-                for k in rep:
-                    rep[k] += r.get(k, 0)
-        err = L("gm_import_err").format(n=rep["errors"]) if rep["errors"] else ""
-        st.success(L("gm_import_done").format(new=rep["new"], seen=rep["seen"],
-                                              days=rep["days"], err=err))
-        if apply_trackers and (rep["new"] or rep["days"]):
-            ap = garmin.apply_to_trackers()
-            st.info(L("gm_applied").format(rec=ap["recovery_days"],
-                                           car=ap["cardio"]))
+def _gm_do_sync(days: int) -> bool:
+    """API sync + flow into the trackers; stash a flash for after rerun."""
+    rep = garmin.api_sync(days_back=days)
+    if rep.get("ok"):
+        garmin.apply_to_trackers()
+        db.set_setting("gm_last_sync_at",
+                       datetime.now().isoformat(timespec="minutes"))
+        st.session_state["gm_flash"] = ("success",
+                                        L("gm_sync_done").format(**rep))
+        return True
+    st.session_state["gm_flash"] = ("error", L("gm_sync_fail"))
+    return False
 
-    # ---------------- optional live sync ----------------
-    st.divider()
-    st.subheader(L("gm_live_header"))
+
+def _garmin_sync_tab():
+    flash = st.session_state.pop("gm_flash", None)
+    if flash:
+        {"success": st.success, "error": st.error}[flash[0]](flash[1])
+
+    # ---------------- 1. link the account — the easy path ----------------
+    st.subheader(L("gm_connect_header"))
     if not garmin.GARMIN_API_AVAILABLE:
-        st.markdown(L("gm_live_missing"))
+        st.info(L("gm_live_missing"))
     elif garmin.api_is_connected():
         st.success(L("gm_connected").format(email=garmin.api_connected_email()))
+        last = db.get_setting("gm_last_sync_at")
+        st.caption(L("gm_autosync_note")
+                   + (f" · {L('gm_last_sync')}: {last.replace('T', ' ')}"
+                      if last else ""))
         c1, c2, c3 = st.columns([1, 1, 1])
         days = c1.number_input(L("gm_days_back"), 1, 90, 14)
         if c2.button(L("gm_sync_btn"), type="primary", width="stretch"):
-            with st.spinner("…"):
-                rep = garmin.api_sync(days_back=int(days))
-            if rep.get("ok"):
-                st.success(L("gm_sync_done").format(**rep))
-                if st.session_state.get("gm_apply", True):
-                    ap = garmin.apply_to_trackers()
-                    st.info(L("gm_applied").format(rec=ap["recovery_days"],
-                                                   car=ap["cardio"]))
-            else:
-                st.error(L("gm_sync_fail"))
+            with st.spinner(L("gm_syncing")):
+                _gm_do_sync(int(days))
+            st.rerun()
         if c3.button(L("gm_disconnect"), width="stretch"):
             garmin.api_disconnect()
             st.rerun()
     else:
+        st.markdown(L("gm_connect_sub"))
         with st.form("gm_connect_form"):
             ge = st.text_input(L("gm_email"))
             gp = st.text_input(L("gm_password"), type="password")
             gm_code = st.text_input(L("gm_mfa"))
-            if st.form_submit_button(L("gm_connect_btn"), width="stretch"):
-                res = garmin.api_connect(ge, gp, gm_code)
+            if st.form_submit_button(L("gm_connect_btn"), type="primary",
+                                     width="stretch"):
+                with st.spinner(L("gm_connecting")):
+                    res = garmin.api_connect(ge, gp, gm_code)
+                    if res.get("ok"):
+                        db.set_setting("gm_autosync_date",
+                                       date.today().isoformat())
+                        _gm_do_sync(30)
                 if res.get("ok"):
                     st.rerun()
                 elif res.get("needs_mfa"):
@@ -893,6 +891,33 @@ def _garmin_sync_tab():
                 else:
                     st.error(L("gm_auth_err") if res.get("error") == "auth"
                              else res.get("error", ""))
+
+    # ---------------- 2. file import — the no-login fallback ----------------
+    st.divider()
+    with st.expander(L("gm_upload_expander"),
+                     expanded=not garmin.GARMIN_API_AVAILABLE):
+        st.markdown(L("gm_upload_help"))
+        files = st.file_uploader(
+            L("gm_uploader"), type=["csv", "fit", "tcx", "gpx", "json", "zip"],
+            accept_multiple_files=True, key="gm_files")
+        apply_trackers = st.checkbox(L("gm_apply_toggle"), value=True,
+                                     key="gm_apply")
+        if files and st.button(L("gm_import_btn"), type="primary",
+                               width="stretch"):
+            rep = {"new": 0, "seen": 0, "days": 0, "errors": 0}
+            with st.spinner(L("gm_syncing")):
+                for f in files:
+                    r = garmin.import_file(f.name, f.getvalue())
+                    for k in rep:
+                        rep[k] += r.get(k, 0)
+            err = (L("gm_import_err").format(n=rep["errors"])
+                   if rep["errors"] else "")
+            st.success(L("gm_import_done").format(
+                new=rep["new"], seen=rep["seen"], days=rep["days"], err=err))
+            if apply_trackers and (rep["new"] or rep["days"]):
+                ap = garmin.apply_to_trackers()
+                st.info(L("gm_applied").format(rec=ap["recovery_days"],
+                                               car=ap["cardio"]))
 
     # ---------------- synced data + management ----------------
     adf = db.garmin_activities_df()
@@ -1003,6 +1028,14 @@ def _garmin_insights_tab():
 
 def page_garmin():
     st.title(L("gm_title"))
+    # hands-free daily refresh: first page visit of the day pulls the
+    # last week from Garmin (the date guard is set first, so a failing
+    # sync can never loop)
+    if (garmin.GARMIN_API_AVAILABLE and garmin.api_is_connected()
+            and db.get_setting("gm_autosync_date") != date.today().isoformat()):
+        db.set_setting("gm_autosync_date", date.today().isoformat())
+        with st.spinner(L("gm_syncing")):
+            _gm_do_sync(7)
     t_sync, t_ana, t_ins = st.tabs(
         [L("gm_tab_sync"), L("gm_tab_analysis"), L("gm_tab_insights")])
     with t_sync:

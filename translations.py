@@ -386,6 +386,24 @@ UI = {
     "gm_tab_sync":      {"en": "📥 Sync", "ar": "📥 مزامنة"},
     "gm_tab_analysis":  {"en": "📊 Analysis", "ar": "📊 تحليل"},
     "gm_tab_insights":  {"en": "💡 Recommendations", "ar": "💡 توصيات"},
+    "gm_connect_header": {"en": "🔗 Link your Garmin account",
+                          "ar": "🔗 اربط حساب جارمن"},
+    "gm_connect_sub":   {"en": "Sign in with your Garmin Connect e-mail and password **once** — "
+                                "your last 30 days load immediately, and after that the app "
+                                "re-syncs automatically every day you open this page. The password "
+                                "is used for that single login and never stored.",
+                         "ar": "سجّل الدخول ببريد وكلمة مرور Garmin Connect **مرة واحدة** — تُحمَّل "
+                                "بيانات آخر ٣٠ يومًا فورًا، وبعدها يزامن التطبيق تلقائيًا كل يوم "
+                                "تفتح فيه هذه الصفحة. كلمة المرور تُستخدم لتسجيل الدخول مرة واحدة "
+                                "ولا تُحفظ أبدًا."},
+    "gm_connecting":    {"en": "Connecting to Garmin and pulling your last 30 days…",
+                         "ar": "جارٍ الاتصال بجارمن وسحب بيانات آخر ٣٠ يومًا…"},
+    "gm_syncing":       {"en": "Syncing with Garmin…", "ar": "جارٍ المزامنة مع جارمن…"},
+    "gm_autosync_note": {"en": "🔄 Auto-syncs once a day when you open this page — nothing to do.",
+                         "ar": "🔄 يزامن تلقائيًا مرة يوميًا عند فتح هذه الصفحة — لا حاجة لأي إجراء."},
+    "gm_last_sync":     {"en": "Last sync", "ar": "آخر مزامنة"},
+    "gm_upload_expander": {"en": "📁 Prefer not to sign in? Import Garmin export files instead",
+                           "ar": "📁 لا تريد تسجيل الدخول؟ استورد ملفات تصدير جارمن بدلًا من ذلك"},
     "gm_upload_header": {"en": "Upload Garmin files", "ar": "رفع ملفات جارمن"},
     "gm_upload_help":   {"en": "Works with everything Garmin lets you export — no login needed:\n"
                                 "- **Activities CSV** — connect.garmin.com → Activities → *Export CSV* (all your workouts at once)\n"
@@ -409,15 +427,12 @@ UI = {
     "gm_import_err":    {"en": " · {n} file(s)/rows skipped", "ar": " · تم تخطي {n} ملف/سطر"},
     "gm_applied":       {"en": "Trackers updated: {rec} recovery day(s), {car} cardio entrie(s).",
                          "ar": "تم تحديث المتتبعات: {rec} يوم استشفاء، {car} إدخال كارديو."},
-    "gm_live_header":   {"en": "Live sync (optional)", "ar": "مزامنة مباشرة (اختياري)"},
-    "gm_live_missing":  {"en": "Live sync needs the `garminconnect` library, which is kept **out of the "
-                                "cloud deployment on purpose** (it broke it before). Running the app "
-                                "locally? `pip install garminconnect`, restart, and this section lights "
-                                "up. File upload above gives you the same data either way.",
-                         "ar": "تتطلب المزامنة المباشرة مكتبة `garminconnect`، وهي مستبعدة من النشر "
-                                "السحابي **عمدًا** (كسرت التطبيق سابقًا). إن كنت تشغّل التطبيق محليًا: "
-                                "`pip install garminconnect` ثم أعد التشغيل وسيُفعَّل هذا القسم. "
-                                "رفع الملفات أعلاه يمنحك البيانات نفسها في كل الأحوال."},
+    "gm_live_missing":  {"en": "Account linking needs the `garminconnect` library "
+                                "(`pip install garminconnect==0.2.40 garth==0.5.21`, then restart). "
+                                "Meanwhile the file import below gives you the same data.",
+                         "ar": "يتطلب ربط الحساب مكتبة `garminconnect` "
+                                "(`pip install garminconnect==0.2.40 garth==0.5.21` ثم أعد التشغيل). "
+                                "في هذه الأثناء يمنحك استيراد الملفات أدناه البيانات نفسها."},
     "gm_connected":     {"en": "Connected to Garmin as **{email}**", "ar": "متصل بجارمن باسم **{email}**"},
     "gm_email":         {"en": "Garmin e-mail", "ar": "البريد الإلكتروني لجارمن"},
     "gm_password":      {"en": "Password (used once, never stored)",

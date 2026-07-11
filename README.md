@@ -77,21 +77,23 @@ lets you pin a specific video, GIF or picture, which the app embeds).
   completion, pain trend with modify/stop guide-lines, body-weight and
   fat-loss pace, calories burned, cardio minutes, steps, recovery score.
 - **⌚ Garmin — Sync & Analysis** — a full watch-data platform with three
-  tabs. **Sync** ingests anything Garmin lets you export, *no login and no
-  fragile dependencies required*: the Activities CSV (all workouts at
-  once), single .FIT / .TCX / .GPX activity files, and the full
-  account-data ZIP (steps, sleep, resting HR, stress, body battery from
-  the wellness JSONs inside); imports are idempotent and can optionally
-  flow into the Recovery Tracker and cardio log. **Analysis** computes a
+  tabs. **Sync**: link your Garmin account by signing in *once* (password
+  used for that single login, never stored; MFA supported) — your last
+  30 days load immediately, and the app then **re-syncs automatically
+  every day you open the page**: activities, steps, sleep, resting HR,
+  stress and body battery, flowing straight into the Recovery Tracker and
+  cardio log. Prefer not to sign in? A fallback importer takes anything
+  Garmin exports: the Activities CSV, single .FIT / .TCX / .GPX files, or
+  the full account-data ZIP — all idempotent. **Analysis** computes a
   TRIMP-like daily training load, the acute:chronic workload ratio (ACWR —
   the standard ACL load-spike metric, charted with its 0.8–1.3 safe band),
   weekly volume, activity mix, and sleep / steps / resting-HR / stress
   trends. **Recommendations** turns all of it into prioritised, bilingual,
   rehab-aware advice (load spikes, missing rest days, back-to-back hard
   sessions, 80/20 intensity balance, sleep debt, resting-HR drift, …).
-  Live API sync via `garminconnect` activates automatically when the
-  library is installed locally — it is deliberately excluded from the
-  cloud deployment, which it previously broke.
+  Live sync uses `garminconnect` **pinned to the pure-python 0.2.x line**
+  — 0.3+ pulls in the native `curl_cffi` package, which is what broke the
+  previous cloud deployment.
 - **😴 Recovery Tracker** — sleep, water, protein, steps, soreness, energy,
   recovery score, football performance rating, with trend charts and
   readiness warnings.
