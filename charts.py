@@ -143,6 +143,58 @@ def pain_chart(df: pd.DataFrame, dark: bool = True, title: str | None = None):
     return fig
 
 
+def acwr_chart(df: pd.DataFrame, dark: bool = True,
+               title: str = "Training load ratio (ACWR)",
+               empty_msg: str = "Need ~2 weeks of activity data.",
+               band_label: str = "safe zone 0.8–1.3"):
+    """Acute:chronic workload ratio with the 0.8–1.3 'sweet spot' band —
+    the standard load-spike guide used in ACL re-injury prevention."""
+    t = _theme(dark)
+    if df is None or df.empty or df["acwr"].dropna().empty:
+        return _empty(t, title, empty_msg)
+    d = df[df["acwr"].notna()]
+    fig = go.Figure()
+    fig.add_hrect(y0=0.8, y1=1.3, fillcolor=t["aqua"], opacity=0.10,
+                  line_width=0)
+    fig.add_hline(y=1.5, line=dict(color=t["red"], width=1, dash="dot"),
+                  annotation_text="spike ≥1.5", annotation_position="right",
+                  annotation_font=dict(size=10, color=t["muted"]))
+    fig.add_hline(y=0.8, line=dict(color=t["muted"], width=1, dash="dot"))
+    fig.add_trace(go.Scatter(
+        x=d["log_date"], y=d["acwr"], mode="lines+markers",
+        line=dict(color=t["violet"], width=2),
+        marker=dict(size=6, color=t["violet"],
+                    line=dict(width=2, color="#1a1a19" if dark else "#fcfcfb")),
+        hovertemplate="%{y:.2f}<extra></extra>",
+    ))
+    top = max(1.8, float(d["acwr"].max()) + 0.2)
+    fig = _base_layout(fig, t, title, band_label, y_range=[0, top])
+    fig.update_xaxes(tickformat="%d %b", hoverformat="%a %d %b")
+    return fig
+
+
+def hbar(df: pd.DataFrame, x: str, y: str, title: str,
+         color_key: str = "orange", x_title: str = "", dark: bool = True,
+         hover_fmt: str = "%{x:.0f}"):
+    """Horizontal category bar (e.g. minutes per activity type)."""
+    t = _theme(dark)
+    if df is None or df.empty:
+        return _empty(t, title)
+    d = df.iloc[::-1]                      # largest on top
+    fig = go.Figure(go.Bar(
+        x=d[x], y=d[y], orientation="h",
+        marker=dict(color=t[color_key], cornerradius=4, line=dict(width=0)),
+        hovertemplate=hover_fmt + "<extra></extra>",
+    ))
+    fig.update_layout(bargap=0.35)
+    fig = _base_layout(fig, t, title, "")
+    fig.update_xaxes(title=dict(text=x_title,
+                                font=dict(color=t["muted"], size=11)),
+                     showgrid=True, gridcolor=t["grid"])
+    fig.update_yaxes(showgrid=False)
+    return fig
+
+
 def weight_chart(df: pd.DataFrame, dark: bool = True, title: str | None = None):
     t = _theme(dark)
     title = title or "Body weight (kg)"

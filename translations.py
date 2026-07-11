@@ -378,6 +378,204 @@ UI = {
     "dl_recovery":      {"en": "Recovery history", "ar": "سجل الاستشفاء"},
     "dl_weight":        {"en": "Body weight", "ar": "وزن الجسم"},
     "dl_cardio":        {"en": "Cardio log", "ar": "سجل الكارديو"},
+
+    # ---------------- Garmin platform ----------------
+    "nav_garmin":       {"en": "⌚ Garmin", "ar": "⌚ جارمن"},
+    "gm_title":         {"en": "⌚ Garmin — Sync & Analysis",
+                         "ar": "⌚ جارمن — مزامنة وتحليل"},
+    "gm_tab_sync":      {"en": "📥 Sync", "ar": "📥 مزامنة"},
+    "gm_tab_analysis":  {"en": "📊 Analysis", "ar": "📊 تحليل"},
+    "gm_tab_insights":  {"en": "💡 Recommendations", "ar": "💡 توصيات"},
+    "gm_upload_header": {"en": "Upload Garmin files", "ar": "رفع ملفات جارمن"},
+    "gm_upload_help":   {"en": "Works with everything Garmin lets you export — no login needed:\n"
+                                "- **Activities CSV** — connect.garmin.com → Activities → *Export CSV* (all your workouts at once)\n"
+                                "- **.FIT / .TCX / .GPX** — a single activity's *Export* on its Garmin Connect page\n"
+                                "- **Account-data ZIP** — garmin.com/account/datamanagement → *Export your data* "
+                                "(adds steps, sleep, resting HR, stress & body battery)",
+                         "ar": "يدعم كل ما يتيح جارمن تصديره — دون تسجيل دخول:\n"
+                                "- **ملف CSV للأنشطة** — connect.garmin.com ← الأنشطة ← *Export CSV* (كل تمارينك دفعة واحدة)\n"
+                                "- **‎.FIT / .TCX / .GPX** — تصدير نشاط واحد من صفحته في Garmin Connect\n"
+                                "- **ملف ZIP لبيانات الحساب** — garmin.com/account/datamanagement ← *Export your data* "
+                                "(يضيف الخطوات والنوم ونبض الراحة والتوتر وطاقة الجسم)"},
+    "gm_uploader":      {"en": "Drop CSV / FIT / TCX / GPX / JSON / ZIP files here",
+                         "ar": "أسقط ملفات CSV / FIT / TCX / GPX / JSON / ZIP هنا"},
+    "gm_import_btn":    {"en": "Import files", "ar": "استيراد الملفات"},
+    "gm_apply_toggle":  {"en": "Also update my trackers (steps & sleep → Recovery, activities → cardio log)",
+                         "ar": "حدّث المتتبعات أيضًا (الخطوات والنوم ← الاستشفاء، الأنشطة ← سجل الكارديو)"},
+    "gm_import_done":   {"en": "Imported: {new} new activities · {seen} already known · {days} wellness days"
+                                "{err}",
+                         "ar": "تم الاستيراد: {new} نشاطًا جديدًا · {seen} معروف مسبقًا · {days} يوم بيانات صحية"
+                                "{err}"},
+    "gm_import_err":    {"en": " · {n} file(s)/rows skipped", "ar": " · تم تخطي {n} ملف/سطر"},
+    "gm_applied":       {"en": "Trackers updated: {rec} recovery day(s), {car} cardio entrie(s).",
+                         "ar": "تم تحديث المتتبعات: {rec} يوم استشفاء، {car} إدخال كارديو."},
+    "gm_live_header":   {"en": "Live sync (optional)", "ar": "مزامنة مباشرة (اختياري)"},
+    "gm_live_missing":  {"en": "Live sync needs the `garminconnect` library, which is kept **out of the "
+                                "cloud deployment on purpose** (it broke it before). Running the app "
+                                "locally? `pip install garminconnect`, restart, and this section lights "
+                                "up. File upload above gives you the same data either way.",
+                         "ar": "تتطلب المزامنة المباشرة مكتبة `garminconnect`، وهي مستبعدة من النشر "
+                                "السحابي **عمدًا** (كسرت التطبيق سابقًا). إن كنت تشغّل التطبيق محليًا: "
+                                "`pip install garminconnect` ثم أعد التشغيل وسيُفعَّل هذا القسم. "
+                                "رفع الملفات أعلاه يمنحك البيانات نفسها في كل الأحوال."},
+    "gm_connected":     {"en": "Connected to Garmin as **{email}**", "ar": "متصل بجارمن باسم **{email}**"},
+    "gm_email":         {"en": "Garmin e-mail", "ar": "البريد الإلكتروني لجارمن"},
+    "gm_password":      {"en": "Password (used once, never stored)",
+                         "ar": "كلمة المرور (تُستخدم مرة واحدة ولا تُحفظ)"},
+    "gm_mfa":           {"en": "MFA code (only if asked)", "ar": "رمز التحقق (إن طُلب)"},
+    "gm_connect_btn":   {"en": "Connect", "ar": "اتصال"},
+    "gm_needs_mfa":     {"en": "Garmin sent you a code — enter it above and press Connect again.",
+                         "ar": "أرسل جارمن رمزًا إليك — أدخله أعلاه واضغط اتصال مجددًا."},
+    "gm_auth_err":      {"en": "Login failed — check e-mail and password.",
+                         "ar": "فشل تسجيل الدخول — تحقق من البريد وكلمة المرور."},
+    "gm_days_back":     {"en": "Days to pull", "ar": "عدد الأيام"},
+    "gm_sync_btn":      {"en": "Sync now", "ar": "زامن الآن"},
+    "gm_disconnect":    {"en": "Disconnect", "ar": "قطع الاتصال"},
+    "gm_sync_done":     {"en": "Synced: {days} wellness days · {new} new activities · {seen} already known",
+                         "ar": "تمت المزامنة: {days} يوم بيانات صحية · {new} نشاطًا جديدًا · {seen} معروف مسبقًا"},
+    "gm_sync_fail":     {"en": "Sync failed — connection expired? Reconnect and try again.",
+                         "ar": "فشلت المزامنة — ربما انتهت الجلسة؟ أعد الاتصال وحاول مجددًا."},
+    "gm_data_header":   {"en": "Synced data", "ar": "البيانات المتزامنة"},
+    "gm_recent_acts":   {"en": "Recent activities", "ar": "الأنشطة الأخيرة"},
+    "gm_no_data":       {"en": "Nothing synced yet — upload a Garmin export above to get started.",
+                         "ar": "لا بيانات بعد — ارفع ملف تصدير جارمن أعلاه للبدء."},
+    "gm_clear":         {"en": "Delete all synced Garmin data", "ar": "حذف كل بيانات جارمن المتزامنة"},
+    "gm_clear_confirm": {"en": "I'm sure — wipe the Garmin tables",
+                         "ar": "أنا متأكد — امسح جداول جارمن"},
+    "gm_col_date":      {"en": "Date", "ar": "التاريخ"},
+    "gm_col_type":      {"en": "Type", "ar": "النوع"},
+    "gm_col_title":     {"en": "Activity", "ar": "النشاط"},
+    "gm_col_min":       {"en": "Min", "ar": "دقيقة"},
+    "gm_col_km":        {"en": "km", "ar": "كم"},
+    "gm_col_kcal":      {"en": "kcal", "ar": "سعرة"},
+    "gm_col_hr":        {"en": "Avg HR", "ar": "متوسط النبض"},
+    "gm_col_load":      {"en": "Load", "ar": "الحمل"},
+    # metric tiles
+    "gm_m_acts":        {"en": "Activities synced", "ar": "أنشطة متزامنة"},
+    "gm_m_min7":        {"en": "Training (7 d)", "ar": "تدريب (٧ أيام)"},
+    "gm_m_km7":         {"en": "Distance (7 d)", "ar": "مسافة (٧ أيام)"},
+    "gm_m_load7":       {"en": "Load (7 d)", "ar": "الحمل (٧ أيام)"},
+    "gm_m_acwr":        {"en": "Load ratio (ACWR)", "ar": "نسبة الحمل (ACWR)"},
+    "gm_m_sleep":       {"en": "Sleep avg (7 d)", "ar": "متوسط النوم (٧ أيام)"},
+    "gm_m_steps":       {"en": "Steps avg (7 d)", "ar": "متوسط الخطوات (٧ أيام)"},
+    "gm_m_rhr":         {"en": "Resting HR (7 d)", "ar": "نبض الراحة (٧ أيام)"},
+    "gm_acwr_help":     {"en": "Acute (7-day) ÷ chronic (28-day) training load. 0.8–1.3 is the sweet "
+                                "spot; above 1.5 is a spike — the zone where ACL re-injury risk climbs.",
+                         "ar": "حمل التدريب الحاد (٧ أيام) ÷ المزمن (٢٨ يومًا). النطاق الآمن ٠٫٨–١٫٣؛ "
+                                "فوق ١٫٥ قفزة حمل — حيث يرتفع خطر إصابة الرباط الصليبي مجددًا."},
+    # chart titles
+    "gm_ch_load":       {"en": "Daily training load", "ar": "حمل التدريب اليومي"},
+    "gm_ch_acwr":       {"en": "Load ratio — acute : chronic (ACWR)",
+                         "ar": "نسبة الحمل — الحاد : المزمن (ACWR)"},
+    "gm_ch_acwr_band":  {"en": "safe zone 0.8–1.3", "ar": "النطاق الآمن ٠٫٨–١٫٣"},
+    "gm_ch_acwr_empty": {"en": "Need ~2 weeks of activities for the load ratio.",
+                         "ar": "نحتاج نحو أسبوعين من الأنشطة لحساب نسبة الحمل."},
+    "gm_ch_weekmin":    {"en": "Weekly training minutes", "ar": "دقائق التدريب الأسبوعية"},
+    "gm_ch_mix":        {"en": "Activity mix — minutes (last 28 days)",
+                         "ar": "توزيع الأنشطة — بالدقائق (آخر ٢٨ يومًا)"},
+    "gm_ch_sleep":      {"en": "Sleep (Garmin)", "ar": "النوم (جارمن)"},
+    "gm_ch_steps":      {"en": "Steps (Garmin)", "ar": "الخطوات (جارمن)"},
+    "gm_ch_rhr":        {"en": "Resting heart rate", "ar": "نبض الراحة"},
+    "gm_ch_stress":     {"en": "Stress level (0–100)", "ar": "مستوى التوتر (٠–١٠٠)"},
+    # insights
+    "gm_ins_caption":   {"en": "Generated from your synced Garmin data and tuned to your situation: "
+                                "partial ACL tear, right-shoulder rehab, football on Saturdays. They "
+                                "complement — never replace — your physiotherapist's advice.",
+                         "ar": "مُولّدة من بيانات جارمن المتزامنة ومكيّفة لحالتك: قطع جزئي في الرباط "
+                                "الصليبي، تأهيل الكتف الأيمن، كرة قدم يوم السبت. وهي مكمّلة لنصيحة "
+                                "أخصائي العلاج الطبيعي — لا بديلًا عنها."},
+    "gm_i_nodata":      {"en": "No Garmin data yet. Upload your Activities CSV (or the full account "
+                                "export ZIP) in the Sync tab and the analysis fills itself in.",
+                         "ar": "لا بيانات جارمن بعد. ارفع ملف CSV للأنشطة (أو ملف ZIP لتصدير الحساب "
+                                "الكامل) في تبويب المزامنة وسيمتلئ التحليل تلقائيًا."},
+    "gm_i_spike_high":  {"en": "🚨 Training-load spike: your acute:chronic ratio is {r} (safe zone "
+                                "0.8–1.3). With a partial ACL tear this is the highest-risk pattern — "
+                                "cut this week's volume by ~30%, keep sessions easy, and skip pivoting "
+                                "drills until the ratio drops below 1.3.",
+                         "ar": "🚨 قفزة في حمل التدريب: نسبة الحاد:المزمن لديك {r} (النطاق الآمن "
+                                "٠٫٨–١٫٣). مع قطع جزئي في الرباط الصليبي هذا أخطر نمط — قلّل حجم هذا "
+                                "الأسبوع بنحو ٣٠٪، وأبقِ الجلسات خفيفة، وتجنب تمارين الالتفاف حتى "
+                                "تنخفض النسبة دون ١٫٣."},
+    "gm_i_spike_mild":  {"en": "⚠️ Load is climbing fast (ACWR {r}). Hold volume steady this week — "
+                                "no new intensity — and let the chronic base catch up. Protect the "
+                                "knee: no extra pivoting or jumping beyond the program.",
+                         "ar": "⚠️ الحمل يرتفع بسرعة (ACWR {r}). ثبّت الحجم هذا الأسبوع — دون شدة "
+                                "جديدة — ودع القاعدة المزمنة تلحق. احمِ الركبة: لا التفاف أو قفز "
+                                "إضافيًا خارج البرنامج."},
+    "gm_i_undertrain":  {"en": "Your load ratio is {r} — you're training below your recent base. "
+                                "Detraining also raises injury risk when you return to football. "
+                                "Rebuild gradually: add one easy aerobic session this week.",
+                         "ar": "نسبة الحمل لديك {r} — تتدرب دون قاعدتك الأخيرة. فقدان اللياقة يرفع "
+                                "أيضًا خطر الإصابة عند العودة لكرة القدم. أعد البناء تدريجيًا: أضف "
+                                "جلسة هوائية خفيفة هذا الأسبوع."},
+    "gm_i_sweet":       {"en": "✅ Load ratio {r} — right in the 0.8–1.3 sweet spot. This is exactly "
+                                "how you build fitness while protecting the ACL. Keep this rhythm.",
+                         "ar": "✅ نسبة الحمل {r} — في قلب النطاق الآمن ٠٫٨–١٫٣. هكذا تبني اللياقة "
+                                "وتحمي الرباط الصليبي معًا. حافظ على هذا الإيقاع."},
+    "gm_i_ramp":        {"en": "⚠️ This week's training volume is {pct}% above last week. Keep "
+                                "week-to-week jumps under ~30% — big ramps are the classic overuse "
+                                "trigger for knees.",
+                         "ar": "⚠️ حجم تدريب هذا الأسبوع أعلى بـ {pct}٪ من الأسبوع الماضي. أبقِ "
+                                "الزيادات الأسبوعية دون ٣٠٪ تقريبًا — القفزات الكبيرة هي المحفّز "
+                                "الكلاسيكي لإصابات الإفراط في الركبة."},
+    "gm_i_norest":      {"en": "🛌 Seven straight days with training and no rest day. Tissue "
+                                "(especially a healing ACL) adapts during rest — schedule a full "
+                                "rest or mobility-only day in the next 48 h.",
+                         "ar": "🛌 سبعة أيام تدريب متتالية دون راحة. الأنسجة (خصوصًا رباط صليبي "
+                                "يتعافى) تتكيف أثناء الراحة — ضع يوم راحة كاملة أو مرونة فقط خلال "
+                                "الـ ٤٨ ساعة القادمة."},
+    "gm_i_hard_b2b":    {"en": "⚠️ You've stacked hard sessions (≥85% max HR) on back-to-back days. "
+                                "Separate hard days with at least one easy day — your knee and "
+                                "shoulder recover between stimuli, not during them.",
+                         "ar": "⚠️ لديك جلسات شاقة (≥٨٥٪ من أقصى نبض) في أيام متتالية. افصل الأيام "
+                                "الشاقة بيوم خفيف على الأقل — الركبة والكتف يتعافيان بين الجرعات لا "
+                                "خلالها."},
+    "gm_i_polarize":    {"en": "{pct}% of your recent sessions are high-intensity (zone 4–5). Aim "
+                                "for roughly 80% easy / 20% hard: more zone-2 work builds the "
+                                "aerobic base for football without pounding the joints.",
+                         "ar": "{pct}٪ من جلساتك الأخيرة عالية الشدة (نطاق ٤–٥). استهدف تقريبًا ٨٠٪ "
+                                "خفيف / ٢٠٪ شاق: مزيد من عمل النطاق الثاني يبني القاعدة الهوائية "
+                                "لكرة القدم دون إجهاد المفاصل."},
+    "gm_i_stale":       {"en": "Your newest Garmin data is {days} days old — sync again for "
+                                "up-to-date recommendations.",
+                         "ar": "أحدث بيانات جارمن لديك عمرها {days} يومًا — زامن مجددًا للحصول على "
+                                "توصيات محدّثة."},
+    "gm_i_consistent":  {"en": "🏆 Four straight weeks with 3+ sessions per week — consistency is "
+                                "the single strongest predictor of rehab success. Outstanding.",
+                         "ar": "🏆 أربعة أسابيع متتالية بثلاث جلسات أو أكثر أسبوعيًا — الانتظام أقوى "
+                                "مؤشر لنجاح التأهيل. ممتاز."},
+    "gm_i_sleep_low":   {"en": "😴 Sleep averaged {h} h this week (target 7–9 h). Sleep is when "
+                                "ligament tissue repairs and reaction time recovers — protect it "
+                                "like a training session, especially the night before football.",
+                         "ar": "😴 متوسط نومك هذا الأسبوع {h} ساعة (الهدف ٧–٩). أثناء النوم تُرمَّم "
+                                "أنسجة الأربطة ويستعيد رد الفعل سرعته — احمِه كأنه جلسة تدريب، "
+                                "خصوصًا ليلة المباراة."},
+    "gm_i_sleep_good":  {"en": "✅ Sleep averaged {h} h this week — excellent recovery foundation.",
+                         "ar": "✅ متوسط النوم هذا الأسبوع {h} ساعة — أساس استشفاء ممتاز."},
+    "gm_i_rhr_up":      {"en": "❤️ Resting heart rate is ~{bpm} bpm above your baseline this week — "
+                                "an early sign of fatigue, under-recovery or oncoming illness. "
+                                "Favour easy sessions and extra sleep until it settles.",
+                         "ar": "❤️ نبض الراحة أعلى بنحو {bpm} نبضة من خط الأساس هذا الأسبوع — إشارة "
+                                "مبكرة لتعب أو نقص استشفاء أو مرض قادم. فضّل الجلسات الخفيفة ونومًا "
+                                "إضافيًا حتى يستقر."},
+    "gm_i_steps_low":   {"en": "🚶 Daily steps averaged {n} this week. Easy walking is the most "
+                                "knee-friendly way to add activity — aim for 8,000+ on rest days.",
+                         "ar": "🚶 متوسط الخطوات اليومية هذا الأسبوع {n}. المشي الخفيف أكثر الطرق "
+                                "لطفًا على الركبة لزيادة النشاط — استهدف ٨٠٠٠+ في أيام الراحة."},
+    "gm_i_stress":      {"en": "🧘 Garmin stress averaged {s}/100 this week. High baseline stress "
+                                "slows tissue recovery — try 10 min of breathing work or an easy "
+                                "walk on rest days.",
+                         "ar": "🧘 متوسط توتر جارمن هذا الأسبوع {s}/١٠٠. التوتر المرتفع يبطئ استشفاء "
+                                "الأنسجة — جرّب ١٠ دقائق من تمارين التنفس أو مشيًا خفيفًا أيام الراحة."},
+    "gm_i_battery":     {"en": "🔋 Body battery peaked at only {b}/100 on average this week — "
+                                "you're starting days under-charged. Look at sleep timing and "
+                                "evening screen/caffeine habits.",
+                         "ar": "🔋 ذروة طاقة الجسم بلغت {b}/١٠٠ فقط في المتوسط هذا الأسبوع — تبدأ "
+                                "أيامك دون شحن كامل. راجع توقيت النوم وعادات الشاشة والكافيين مساءً."},
+    "gm_i_allquiet":    {"en": "Data synced and nothing needs attention right now — keep training. "
+                                "More history sharpens the analysis.",
+                         "ar": "البيانات متزامنة ولا شيء يستدعي الانتباه حاليًا — واصل التدريب. "
+                                "مزيد من السجل يزيد دقة التحليل."},
 }
 
 # -------------------------------------------------------------------------

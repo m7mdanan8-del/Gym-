@@ -1,3 +1,7 @@
 streamlit>=1.46.0
 pandas>=2.0.0
 plotly>=5.20.0
+fitdecode>=0.10.0
+# Optional, LOCAL ONLY — live Garmin sync. Deliberately not installed on
+# Streamlit Cloud (it broke the deployment before); the app detects it at
+# runtime:  pip install garminconnect
