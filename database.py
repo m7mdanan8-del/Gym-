@@ -89,6 +89,32 @@ def init_db():
             key   TEXT PRIMARY KEY,
             value TEXT
         );
+        CREATE TABLE IF NOT EXISTS garmin_activities (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            start_time    TEXT NOT NULL,
+            log_date      TEXT NOT NULL,
+            activity_type TEXT,
+            title         TEXT,
+            minutes       REAL,
+            distance_km   REAL,
+            calories      REAL,
+            avg_hr        REAL,
+            max_hr        REAL,
+            ascent_m      REAL,
+            training_effect REAL,
+            source        TEXT,
+            external_id   TEXT,
+            UNIQUE (start_time, activity_type)
+        );
+        CREATE TABLE IF NOT EXISTS garmin_daily (
+            log_date     TEXT PRIMARY KEY,
+            steps        INTEGER,
+            sleep_hours  REAL,
+            resting_hr   INTEGER,
+            stress       INTEGER,
+            body_battery INTEGER,
+            calories     REAL
+        );
         """)
     seed_program_if_missing()
 
@@ -287,6 +313,75 @@ def cardio_df() -> pd.DataFrame:
 def delete_cardio(row_id: int):
     with _conn() as c:
         c.execute("DELETE FROM cardio WHERE id=?", (row_id,))
+
+
+# ---------------------------------------------------------------------
+# Garmin data (synced from watch exports / Garmin Connect)
+# ---------------------------------------------------------------------
+def upsert_garmin_activity(a: dict) -> bool:
+    """Insert an activity; the (start_time, activity_type) unique key makes
+    repeated imports of the same file harmless. Returns True if new."""
+    cols = ["start_time", "log_date", "activity_type", "title", "minutes",
+            "distance_km", "calories", "avg_hr", "max_hr", "ascent_m",
+            "training_effect", "source", "external_id"]
+    with _conn() as c:
+        exists = c.execute(
+            "SELECT 1 FROM garmin_activities WHERE start_time=? AND activity_type=?",
+            (a.get("start_time"), a.get("activity_type"))).fetchone()
+        c.execute(f"""
+        INSERT INTO garmin_activities ({','.join(cols)})
+        VALUES ({','.join('?' * len(cols))})
+        ON CONFLICT (start_time, activity_type) DO UPDATE SET
+            title=excluded.title, minutes=excluded.minutes,
+            distance_km=excluded.distance_km, calories=excluded.calories,
+            avg_hr=excluded.avg_hr, max_hr=excluded.max_hr,
+            ascent_m=excluded.ascent_m,
+            training_effect=excluded.training_effect
+        """, [a.get(col) for col in cols])
+    return not exists
+
+
+def garmin_activities_df() -> pd.DataFrame:
+    with _conn() as c:
+        df = pd.read_sql_query(
+            "SELECT * FROM garmin_activities ORDER BY start_time", c)
+    if not df.empty:
+        df["log_date"] = pd.to_datetime(df["log_date"])
+    return df
+
+
+def delete_garmin_activity(row_id: int):
+    with _conn() as c:
+        c.execute("DELETE FROM garmin_activities WHERE id=?", (row_id,))
+
+
+def upsert_garmin_daily(log_date: str, **kw):
+    """Merge daily wellness values — only overwrite with non-null data."""
+    cols = ["steps", "sleep_hours", "resting_hr", "stress",
+            "body_battery", "calories"]
+    vals = [kw.get(c) for c in cols]
+    with _conn() as c:
+        c.execute(f"""
+        INSERT INTO garmin_daily (log_date, {','.join(cols)})
+        VALUES (?,?,?,?,?,?,?)
+        ON CONFLICT (log_date) DO UPDATE SET
+        {','.join(f'{c}=COALESCE(excluded.{c}, {c})' for c in cols)}
+        """, [log_date] + vals)
+
+
+def garmin_daily_df() -> pd.DataFrame:
+    with _conn() as c:
+        df = pd.read_sql_query(
+            "SELECT * FROM garmin_daily ORDER BY log_date", c)
+    if not df.empty:
+        df["log_date"] = pd.to_datetime(df["log_date"])
+    return df
+
+
+def clear_garmin_data():
+    with _conn() as c:
+        c.execute("DELETE FROM garmin_activities")
+        c.execute("DELETE FROM garmin_daily")
 
 
 # ---------------------------------------------------------------------

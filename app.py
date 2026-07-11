@@ -15,6 +15,7 @@ import streamlit as st
 
 import charts
 import database as db
+import garmin
 import next_block
 from exercise_library import EXERCISES
 from illustrations import get_svg
@@ -829,6 +830,190 @@ def page_safety():
 
 
 # ----------------------------------------------------------------------
+# PAGE: Garmin — sync, analysis, recommendations
+# ----------------------------------------------------------------------
+def _garmin_sync_tab():
+    st.subheader(L("gm_upload_header"))
+    st.markdown(L("gm_upload_help"))
+    files = st.file_uploader(
+        L("gm_uploader"), type=["csv", "fit", "tcx", "gpx", "json", "zip"],
+        accept_multiple_files=True, key="gm_files")
+    apply_trackers = st.checkbox(L("gm_apply_toggle"), value=True,
+                                 key="gm_apply")
+    if files and st.button(L("gm_import_btn"), type="primary",
+                           width="stretch"):
+        rep = {"new": 0, "seen": 0, "days": 0, "errors": 0}
+        with st.spinner("…"):
+            for f in files:
+                r = garmin.import_file(f.name, f.getvalue())
+                for k in rep:
+                    rep[k] += r.get(k, 0)
+        err = L("gm_import_err").format(n=rep["errors"]) if rep["errors"] else ""
+        st.success(L("gm_import_done").format(new=rep["new"], seen=rep["seen"],
+                                              days=rep["days"], err=err))
+        if apply_trackers and (rep["new"] or rep["days"]):
+            ap = garmin.apply_to_trackers()
+            st.info(L("gm_applied").format(rec=ap["recovery_days"],
+                                           car=ap["cardio"]))
+
+    # ---------------- optional live sync ----------------
+    st.divider()
+    st.subheader(L("gm_live_header"))
+    if not garmin.GARMIN_API_AVAILABLE:
+        st.markdown(L("gm_live_missing"))
+    elif garmin.api_is_connected():
+        st.success(L("gm_connected").format(email=garmin.api_connected_email()))
+        c1, c2, c3 = st.columns([1, 1, 1])
+        days = c1.number_input(L("gm_days_back"), 1, 90, 14)
+        if c2.button(L("gm_sync_btn"), type="primary", width="stretch"):
+            with st.spinner("…"):
+                rep = garmin.api_sync(days_back=int(days))
+            if rep.get("ok"):
+                st.success(L("gm_sync_done").format(**rep))
+                if st.session_state.get("gm_apply", True):
+                    ap = garmin.apply_to_trackers()
+                    st.info(L("gm_applied").format(rec=ap["recovery_days"],
+                                                   car=ap["cardio"]))
+            else:
+                st.error(L("gm_sync_fail"))
+        if c3.button(L("gm_disconnect"), width="stretch"):
+            garmin.api_disconnect()
+            st.rerun()
+    else:
+        with st.form("gm_connect_form"):
+            ge = st.text_input(L("gm_email"))
+            gp = st.text_input(L("gm_password"), type="password")
+            gm_code = st.text_input(L("gm_mfa"))
+            if st.form_submit_button(L("gm_connect_btn"), width="stretch"):
+                res = garmin.api_connect(ge, gp, gm_code)
+                if res.get("ok"):
+                    st.rerun()
+                elif res.get("needs_mfa"):
+                    st.warning(L("gm_needs_mfa"))
+                else:
+                    st.error(L("gm_auth_err") if res.get("error") == "auth"
+                             else res.get("error", ""))
+
+    # ---------------- synced data + management ----------------
+    adf = db.garmin_activities_df()
+    if adf.empty:
+        return
+    st.divider()
+    st.subheader(L("gm_recent_acts"))
+    show = garmin.activities_with_load().sort_values(
+        "start_time", ascending=False).head(30)
+    st.dataframe(pd.DataFrame({
+        L("gm_col_date"): show["start_time"].str[:16].str.replace("T", " "),
+        L("gm_col_type"): show["activity_type"].map(
+            lambda t: garmin.type_label(t, LANG)),
+        L("gm_col_title"): show["title"],
+        L("gm_col_min"): show["minutes"].round(0),
+        L("gm_col_km"): show["distance_km"],
+        L("gm_col_kcal"): show["calories"],
+        L("gm_col_hr"): show["avg_hr"],
+        L("gm_col_load"): show["load"],
+    }), width="stretch", hide_index=True)
+    with st.expander(L("gm_clear")):
+        if st.checkbox(L("gm_clear_confirm"), key="gm_wipe_ok"):
+            if st.button(L("gm_clear"), type="primary"):
+                db.clear_garmin_data()
+                st.rerun()
+
+
+def _garmin_analysis_tab():
+    dark = is_dark()
+    s = garmin.stats_summary()
+    if s["activities"] == 0 and db.garmin_daily_df().empty:
+        st.info(L("gm_no_data"))
+        return
+
+    m = st.columns(4)
+    m[0].metric(L("gm_m_acts"), s["activities"])
+    m[1].metric(L("gm_m_min7"), f"{s['minutes_7d']:.0f} min")
+    m[2].metric(L("gm_m_km7"), f"{s['km_7d']:.1f} km")
+    m[3].metric(L("gm_m_acwr"),
+                f"{s['acwr']:.2f}" if s["acwr"] is not None else "—",
+                help=L("gm_acwr_help"))
+    m = st.columns(4)
+    m[0].metric(L("gm_m_load7"), f"{s['load_7d']:.0f}")
+    m[1].metric(L("gm_m_sleep"),
+                f"{s['sleep_7d']:.1f} h" if s["sleep_7d"] else "—")
+    m[2].metric(L("gm_m_steps"),
+                f"{s['steps_7d']:,.0f}" if s["steps_7d"] else "—")
+    m[3].metric(L("gm_m_rhr"),
+                f"{s['rhr_7d']:.0f} bpm" if s["rhr_7d"] else "—")
+    st.divider()
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.plotly_chart(charts.bar(
+            garmin.daily_load_df().tail(42), "log_date", "load",
+            L("gm_ch_load"), "orange", "", dark, hover_fmt="%{y:.0f}"),
+            width="stretch")
+    with c2:
+        st.plotly_chart(charts.acwr_chart(
+            garmin.acwr_df(), dark, title=L("gm_ch_acwr"),
+            empty_msg=L("gm_ch_acwr_empty"),
+            band_label=L("gm_ch_acwr_band")), width="stretch")
+
+    c3, c4 = st.columns(2)
+    with c3:
+        st.plotly_chart(charts.bar(
+            garmin.weekly_df(), "week_start", "minutes", L("gm_ch_weekmin"),
+            "blue", "min", dark, hover_fmt="%{y:.0f} min"), width="stretch")
+    with c4:
+        mix = garmin.type_mix_df()
+        if not mix.empty:
+            mix = mix.assign(label=mix["activity_type"].map(
+                lambda t: garmin.type_label(t, LANG)))
+        st.plotly_chart(charts.hbar(
+            mix, "minutes", "label", L("gm_ch_mix"), "aqua", "min", dark,
+            hover_fmt="%{x:.0f} min"), width="stretch")
+
+    ddf = db.garmin_daily_df()
+    if not ddf.empty:
+        c5, c6 = st.columns(2)
+        with c5:
+            st.plotly_chart(charts.line(
+                ddf[ddf["sleep_hours"].notna()], "log_date", "sleep_hours",
+                L("gm_ch_sleep"), "violet", "h", dark,
+                hover_fmt="%{y:.1f} h"), width="stretch")
+            st.plotly_chart(charts.bar(
+                ddf[ddf["steps"].notna()], "log_date", "steps",
+                L("gm_ch_steps"), "aqua", "", dark,
+                hover_fmt="%{y:,.0f}"), width="stretch")
+        with c6:
+            st.plotly_chart(charts.line(
+                ddf[ddf["resting_hr"].notna()], "log_date", "resting_hr",
+                L("gm_ch_rhr"), "red", "bpm", dark,
+                hover_fmt="%{y:.0f} bpm"), width="stretch")
+            st.plotly_chart(charts.line(
+                ddf[ddf["stress"].notna()], "log_date", "stress",
+                L("gm_ch_stress"), "yellow", "/100", dark,
+                hover_fmt="%{y:.0f}/100"), width="stretch")
+
+
+def _garmin_insights_tab():
+    st.caption(L("gm_ins_caption"))
+    render = {"error": st.error, "warning": st.warning,
+              "info": st.info, "success": st.success}
+    for level, text in garmin.insights(LANG):
+        render[level](text)
+
+
+def page_garmin():
+    st.title(L("gm_title"))
+    t_sync, t_ana, t_ins = st.tabs(
+        [L("gm_tab_sync"), L("gm_tab_analysis"), L("gm_tab_insights")])
+    with t_sync:
+        _garmin_sync_tab()
+    with t_ana:
+        _garmin_analysis_tab()
+    with t_ins:
+        _garmin_insights_tab()
+
+
+# ----------------------------------------------------------------------
 # PAGE: Settings
 # ----------------------------------------------------------------------
 def page_settings():
@@ -909,7 +1094,8 @@ with st.sidebar:
                  format_func=lambda k: LANGS[k],
                  key="_lang_widget", on_change=_set_lang)
     nav_items = ["nav_workout", "nav_program", "nav_dashboard",
-                 "nav_recovery", "nav_edit", "nav_safety", "nav_settings"]
+                 "nav_garmin", "nav_recovery", "nav_edit", "nav_safety",
+                 "nav_settings"]
     page = st.radio("Navigate", nav_items, format_func=L,
                     label_visibility="collapsed")
     st.divider()
@@ -928,6 +1114,7 @@ PAGES = {
     "nav_workout": page_workout,
     "nav_program": page_program,
     "nav_dashboard": page_dashboard,
+    "nav_garmin": page_garmin,
     "nav_recovery": page_recovery,
     "nav_edit": page_edit,
     "nav_safety": page_safety,
